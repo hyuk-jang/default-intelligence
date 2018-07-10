@@ -203,3 +203,84 @@ const defaultSensorConfig = {
   dbInfo,
 };
 exports.defaultSensorConfig = defaultSensorConfig;
+
+/** DataLogger 정보 */
+const dataLoggerInfo = {
+  /**
+   * DB상에서 고유한 Logger ID
+   * Data Logger Unique ID (Prefix + Main_Seq + Logger Code
+   * @example
+   * Main Seq: 3, Logger Prefix: DV, Code: 003 --> DV_3_003
+   */
+  sdl_real_id: '',
+  /**
+   * Main당 일반적으로 부를 Logger ID
+   * Data Logger ID (Prefix + Logger Code)
+   * @example
+   * Logger Prefix: DV, Code: 003 --> DV_003
+   */
+  sdl_id: '',
+  /** 장치 이름 */
+  target_alias: '',
+  /** Data Logger Sequence */
+  sensor_data_logger_seq: 0,
+  connect_info,
+  protocol_info,
+  /** Data Logger 고유 코드(protocol_info 에 보통 국번으로 들어감) */
+  serial_number: ''
+};
+exports.dataLoggerInfo = dataLoggerInfo;
+
+/** 센서 정보 */
+const sensorInfo = {
+  /** sensor ID (Sequence) */
+  sensor_seq: 0,
+  /**
+   * DB상에서 고유한 Sensor ID
+   * Sensor Unique ID (Prefix + Main_Seq + Sensor Code
+   * @example
+   * Main Seq: 3, Sensor Def Prefix: WD, Code: 003 --> WD_3_003
+   */
+  sensor_real_id: '',
+  /**
+   * Main 당 일반적으로 부를 Sensor ID
+   * Sensor Unique ID (Prefix + Sensor Code)
+   * @example
+   * Sensor Def Prefix: WD, Code: 003 --> WD_3_003
+   */  
+  sensor_id: '',
+  /** Sensor Numbering 번호 (001, 002, ...) */
+  target_code: '',
+  /**
+   * Data Logger에서 수집한 데이터 군 중에서 해당 센서 데이터가 위치하는 인덱스
+   * @default 0
+   * @example
+   * Data Logger Data --> {temp: [36.5, 35.1, 37.5], solar: [851, 768, 956]}
+   * sc_target_id: temp 일 경우 --> 36.5 
+   */
+  data_logger_index: 0,
+  /**
+   * Sensor Unique Key 로 사용되는 ID
+   * @desc sc_target_id 와 data_logger_index를 이용하여 센서 데이터 결정
+   * @example
+   * temp, solar, lux, ws, reh, ...
+   */
+  sc_target_id: '',
+  /**
+   * 표기 단위
+   * @example
+   * ℃, %, m/s, ppm, ...
+   */
+  sc_data_unit: ''
+};
+
+
+/** 센서 장치를 가져올 컨트롤러 생성 정보 */
+const sensorDataLoggerConfig = {
+  /** 가져올 Main ID */
+  hasDev: false,
+  deviceInfo,
+  dataLoggerInfo,
+  sensorList: [sensorInfo],
+};
+exports.sensorDataLoggerConfig = sensorDataLoggerConfig;

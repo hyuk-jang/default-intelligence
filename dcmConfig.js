@@ -1,4 +1,33 @@
 /**
+ * @typedef {Object} sensorDataLoggerConfig 센서 장치를 가져올 컨트롤러 생성 정보
+ * @property {boolean} hasDev 
+ * @property {deviceInfo} deviceInfo 
+ * @property {dataLoggerInfo} dataLoggerInfo 
+ * @property {Array.<sensorInfo>} sensorInfo 
+ */
+
+/**
+ * @typedef {Object} sensorInfo 센서 정보
+ * @property {number} sensor_seq sensor ID (Sequence)
+ * @property {string} sensor_real_id DB상에서 고유한 Sensor ID
+ * @property {string} sensor_id Main 당 일반적으로 부를 Sensor ID
+ * @property {string} target_code Sensor Numbering 번호 (001, 002, ...)
+ * @property {number} data_logger_index Data Logger에서 수집한 데이터 군 중에서 해당 센서 데이터가 위치하는 인덱스
+ * @property {string} sc_target_id Sensor Unique Key 로 사용되는 ID
+ * @property {string} sc_data_unit 표기 단위(℃, %, m/s, ppm, ...)
+ */
+
+/**
+ * @typedef {Object} dataLoggerInfo
+ * @property {string} sdl_real_id DB상에서 고유한 Logger ID
+ * @property {string} sdl_id Main당 일반적으로 부를 Logger ID
+ * @property {string} target_alias 장치 이름
+ * @property {connect_info} connect_info
+ * @property {protocol_info} protocol_info
+ * @property {string} serial_number Data Logger 고유 코드(protocol_info 에 보통 국번으로 들어감)
+ */
+
+/**
  * @typedef {Object} defaultManagerConfig
  * @property {dbInfo} dbInfo
  * @property {Array.<defaultControlConfig>} deviceControllerList
