@@ -177,9 +177,29 @@ exports.dbInfo = dbInfo;
 
 /** deviceInfo 생성 자료 구조 */
 const defaultManagerConfig = {
-  /** true 일 경우 Echo Server 구동 */
+  /** DB 설정 정보 */
   dbInfo,
   /** 장치와의 연결 성공 */
   deviceControllerList: [defaultControlConfig]
 };
 exports.defaultManagerConfig = defaultManagerConfig;
+
+
+/** 센서 장치를 가져올 컨트롤러 생성 정보 */
+const defaultSensorConfig = {
+  /** 가져올 Main ID */
+  main_seq: 0,
+  /**
+   * 계측 주기 (1, 60, 600, 3600, ...)
+   * @default 60
+   * @example
+   * 1 --> 1초마다
+   * 60 --> 1분마다
+   * 600 --> 10분마다
+   * 3600 --> 1시간마다
+   */
+  searchInterval: 60,
+  /** DB 설정 정보 */
+  dbInfo,
+};
+exports.defaultSensorConfig = defaultSensorConfig;

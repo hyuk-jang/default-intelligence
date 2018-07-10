@@ -1,7 +1,7 @@
 
-/** 컨트롤러 생성자 설정 옵션 Jsdoc */
+/** Device Client Manager 생성자 설정 옵션 Jsdoc */
 require('./dcmConfig');
-const controlConfigModel =  require('./dcmConfigModel');
+const dcmConfigModel =  require('./dcmConfigModel');
 
 /** Device Client Controller  */
 require('./dccControllerConstructor');
@@ -16,6 +16,6 @@ require('./wsOperation');
 
 
 module.exports = {
-  controlConfigModel,
+  dcmConfigModel,
   dccFlagModel,
 };
