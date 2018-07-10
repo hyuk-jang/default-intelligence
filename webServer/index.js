@@ -1,3 +1,0 @@
-require('./define');
-
-module.exports = {};

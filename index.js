@@ -1,15 +1,21 @@
 
 /** 컨트롤러 생성자 설정 옵션 Jsdoc */
-require('./controlConfig');
-const controlConfigModel =  require('./controlConfigModel');
-const deviceClientController =  require('./deviceClientController');
-const deviceProtocolConverter =  require('./deviceProtocolConverter');
-const webServer =  require('./webServer');
+require('./dcmConfig');
+const controlConfigModel =  require('./dcmConfigModel');
+
+/** Device Client Controller  */
+require('./dccControllerConstructor');
+require('./dccOperation');
+const dccFlagModel =  require('./dccFlagModel');
+
+/** Device Protocol Converter */
+require('./dpcOperation');
+
+/** Web Server */
+require('./wsOperation');
 
 
 module.exports = {
   controlConfigModel,
-  deviceClientController,
-  deviceProtocolConverter,
-  webServer
+  dccFlagModel,
 };
