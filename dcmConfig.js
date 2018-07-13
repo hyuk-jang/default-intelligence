@@ -3,7 +3,7 @@
  * @property {boolean} hasDev 
  * @property {deviceInfo} deviceInfo 
  * @property {dataLoggerInfo} dataLoggerInfo 
- * @property {Array.<sensorInfo>} sensorInfo 
+ * @property {Array.<sensorInfo>} sensorList
  */
 
 /**
@@ -13,8 +13,10 @@
  * @property {string} sensor_id Main 당 일반적으로 부를 Sensor ID
  * @property {string} target_code Sensor Numbering 번호 (001, 002, ...)
  * @property {number} data_logger_index Data Logger에서 수집한 데이터 군 중에서 해당 센서 데이터가 위치하는 인덱스
+ * @property {string} sd_target_id Sensor 실제 데이터 Key
  * @property {string} sc_target_id Sensor Unique Key 로 사용되는 ID
  * @property {string} sc_data_unit 표기 단위(℃, %, m/s, ppm, ...)
+ * @property {number} sensorData 센서 데이터
  */
 
 /**
