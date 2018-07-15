@@ -186,7 +186,7 @@ exports.defaultManagerConfig = defaultManagerConfig;
 
 
 /** 센서 장치를 가져올 컨트롤러 생성 정보 */
-const defaultSensorConfig = {
+const defaultDataLoggerConfig = {
   /** 가져올 Main ID */
   main_seq: 0,
   /**
@@ -202,7 +202,7 @@ const defaultSensorConfig = {
   /** DB 설정 정보 */
   dbInfo,
 };
-exports.defaultSensorConfig = defaultSensorConfig;
+exports.defaultDataLoggerConfig = defaultDataLoggerConfig;
 
 /** DataLogger 정보 */
 const dataLoggerInfo = {
@@ -212,43 +212,43 @@ const dataLoggerInfo = {
    * @example
    * Main Seq: 3, Logger Prefix: DV, Code: 003 --> DV_3_003
    */
-  sdl_real_id: '',
+  dl_real_id: '',
   /**
    * Main당 일반적으로 부를 Logger ID
    * Data Logger ID (Prefix + Logger Code)
    * @example
    * Logger Prefix: DV, Code: 003 --> DV_003
    */
-  sdl_id: '',
+  dl_id: '',
+  /** Data Logger 고유 코드(protocol_info 에 보통 국번으로 들어감) */
+  target_id: '',
   /** 장치 이름 */
   target_alias: '',
   /** Data Logger Sequence */
-  sensor_data_logger_seq: 0,
+  data_logger_def_seq: 0,
   connect_info,
   protocol_info,
-  /** Data Logger 고유 코드(protocol_info 에 보통 국번으로 들어감) */
-  serial_number: ''
 };
 exports.dataLoggerInfo = dataLoggerInfo;
 
 /** 센서 정보 */
-const sensorInfo = {
+const nodeInfo = {
   /** sensor ID (Sequence) */
-  sensor_seq: 0,
+  node_seq: 0,
   /**
    * DB상에서 고유한 Sensor ID
    * Sensor Unique ID (Prefix + Main_Seq + Sensor Code
    * @example
    * Main Seq: 3, Sensor Def Prefix: WD, Code: 003 --> WD_3_003
    */
-  sensor_real_id: '',
+  node_real_id: '',
   /**
    * Main 당 일반적으로 부를 Sensor ID
    * Sensor Unique ID (Prefix + Sensor Code)
    * @example
    * Sensor Def Prefix: WD, Code: 003 --> WD_3_003
    */  
-  sensor_id: '',
+  node_id: '',
   /** Sensor Numbering 번호 (001, 002, ...) */
   target_code: '',
   /**
@@ -260,27 +260,55 @@ const sensorInfo = {
    */
   data_logger_index: 0,
   /**
+   * Sensor 실제 데이터 Key로 DeviceProtocolConverter Data Key에 사용
+   * @desc data Unique Key
+   * @example
+   * temperature, moduleFrontTemperature, waterLevel, ...
+   */
+  nd_target_id: '',  
+  /**
    * Sensor Unique Key 로 사용되는 ID
    * @desc sc_target_id 와 data_logger_index를 이용하여 센서 데이터 결정
    * @example
    * temp, solar, lux, ws, reh, ...
    */
-  sc_target_id: '',
+  nc_target_id: '',
   /**
    * 표기 단위
    * @example
    * ℃, %, m/s, ppm, ...
    */
-  sc_data_unit: ''
+  nc_data_unit: '',
+  /** 
+   * Node가 센서인지 장치 인지 여부
+   * @desc DB에 센서라면 sensor_data에 저장, 장치라면 device_data에 저장
+   */
+  nc_is_sensor: 0,
+  /** DB상에서 고유한 Logger ID */
+  dl_real_id: '',
+  /** Main당 일반적으로 부를 Logger ID */
+  dl_id: '',
+  /** Node Definition Table Sequence */
+  node_def_seq: 0,
+  /** Node Class Sequence */
+  node_class_seq: 0,
+  /** Main Sequence */
+  main_seq: 0,
+  /** Data Logger Sequence */
+  data_logger_seq: 0,
+  /** 노드 데이터를 입력 받을 Key */
+  data: null
+
 };
+exports.nodeInfo = nodeInfo;
 
 
 /** 센서 장치를 가져올 컨트롤러 생성 정보 */
-const sensorDataLoggerConfig = {
+const dataLoggerConfig = {
   /** 가져올 Main ID */
   hasDev: false,
   deviceInfo,
   dataLoggerInfo,
-  sensorList: [sensorInfo],
+  nodeList: [nodeInfo],
 };
-exports.sensorDataLoggerConfig = sensorDataLoggerConfig;
+exports.dataLoggerConfig = dataLoggerConfig;

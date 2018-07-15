@@ -1,32 +1,40 @@
 /**
- * @typedef {Object} sensorDataLoggerConfig 센서 장치를 가져올 컨트롤러 생성 정보
+ * @typedef {Object} dataLoggerConfig 장치를 가져올 로거 컨트롤러 생성 정보
  * @property {boolean} hasDev 
  * @property {deviceInfo} deviceInfo 
  * @property {dataLoggerInfo} dataLoggerInfo 
- * @property {Array.<sensorInfo>} sensorList
+ * @property {Array.<nodeInfo>} nodeList
  */
 
 /**
- * @typedef {Object} sensorInfo 센서 정보
- * @property {number} sensor_seq sensor ID (Sequence)
- * @property {string} sensor_real_id DB상에서 고유한 Sensor ID
- * @property {string} sensor_id Main 당 일반적으로 부를 Sensor ID
- * @property {string} target_code Sensor Numbering 번호 (001, 002, ...)
+ * @typedef {Object} nodeInfo 노드 정보
+ * @property {number} node_seq node ID (Sequence)
+ * @property {string} node_real_id DB상에서 고유한 Node ID
+ * @property {string} node_id Main 당 일반적으로 부를 Node ID
+ * @property {string} target_code Node Numbering 번호 (001, 002, ...)
  * @property {number} data_logger_index Data Logger에서 수집한 데이터 군 중에서 해당 센서 데이터가 위치하는 인덱스
- * @property {string} sd_target_id Sensor 실제 데이터 Key
- * @property {string} sc_target_id Sensor Unique Key 로 사용되는 ID
- * @property {string} sc_data_unit 표기 단위(℃, %, m/s, ppm, ...)
- * @property {number} sensorData 센서 데이터
+ * @property {string} nd_target_id Node 실제 데이터 Key로 DeviceProtocolConverter Data Key에 사용
+ * @property {string} nc_target_id Node Unique Key 로 사용되는 ID
+ * @property {string} nc_data_unit 표기 단위(℃, %, m/s, ppm, ...)
+ * @property {number} nc_is_sensor 센서 여부 (데이터가 수치로 표기되면 센서, 아니면 장치), DB에 센서라면 sensor_data에 저장, 장치라면 device_data에 저장
+ * @property {string} dl_real_id DB상에서 고유한 Logger ID
+ * @property {string} dl_id Main당 일반적으로 부를 Logger ID
+ * @property {number} node_def_seq Node Definition Table Sequence
+ * @property {number} node_class_seq Node Class Sequence
+ * @property {number} main_seq Main Sequence
+ * @property {number} data_logger_seq Data Logger Sequence
+ * @property {number} data 노드 데이터
  */
 
 /**
  * @typedef {Object} dataLoggerInfo
- * @property {string} sdl_real_id DB상에서 고유한 Logger ID
- * @property {string} sdl_id Main당 일반적으로 부를 Logger ID
+ * @property {string} dl_real_id DB상에서 고유한 Logger ID
+ * @property {string} dl_id Main당 일반적으로 부를 Logger ID
+ * @property {string} target_id Data Logger 고유 코드(protocol_info 에 보통 국번으로 들어감)
  * @property {string} target_alias 장치 이름
  * @property {connect_info} connect_info
  * @property {protocol_info} protocol_info
- * @property {string} serial_number Data Logger 고유 코드(protocol_info 에 보통 국번으로 들어감)
+ * @property {number} data_logger_def_seq Data Logger Sequence
  */
 
 /**
@@ -36,7 +44,7 @@
  */
 
 /**
- * @typedef {Object} defaultSensorConfig 센서 장치를 가져올 컨트롤러 생성 정보
+ * @typedef {Object} defaultDataLoggerConfig 센서 장치를 가져올 컨트롤러 생성 정보
  * @property {number} main_seq 가져올 Main ID
  * @property {number} searchInterval 계측 주기 (1, 60, 600, 3600, ...)
  * @property {dbInfo} dbInfo DB 설정 정보
