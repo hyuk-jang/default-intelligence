@@ -1,4 +1,18 @@
 /**
+ * @typedef {Object} baseModelDeviceStructure
+ * @property {string} KEY 해당 Model을 관리할 ID로 데이터 저장 Key 로 사용
+ * @property {string=} NAME 장치 모델 명
+ * @property {Object=} STATUS 현자 상태 값
+ * @property {Object} COMMAND 명령 정보
+ */
+
+/**
+ * @typedef {Object} commandInfoModel
+ * @property {stirng} cmd 명령
+ * @property {number=} timeout 해당 명령을 수행하기 까지 지연 시간
+ */
+
+/**
  * @typedef {Object} parsingResultFormat
  * @property {string} eventCode Parsing 결과 Event Code
  * @property {*} data Parsing 결과 반환 Data

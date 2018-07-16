@@ -1,3 +1,13 @@
+
+/**
+ * @typedef {Object} requestOrderInfo 컨트롤러에 장치로 명령을 내릴때 사용하는 형식
+ * @property {string} commandType  'ADD', 'CANCEL' --> 명령 추가, 명령 삭제
+ * @property {boolean} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
+ * @property {string} nodeId Main 당 일반적으로 부를 Node ID
+ * @property {string} commandId 명령을 내릴 때 해당 명령의 고유 ID
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
+ */
+
 /**
  * @typedef {Object} dataLoggerConfig 장치를 가져올 로거 컨트롤러 생성 정보
  * @property {boolean} hasDev 
@@ -11,6 +21,7 @@
  * @property {number} node_seq node ID (Sequence)
  * @property {string} node_real_id DB상에서 고유한 Node ID
  * @property {string} node_id Main 당 일반적으로 부를 Node ID
+ * @property {string} node_name Main 당 일반적으로 부를 Node Name
  * @property {string} target_code Node Numbering 번호 (001, 002, ...)
  * @property {number} data_logger_index Data Logger에서 수집한 데이터 군 중에서 해당 센서 데이터가 위치하는 인덱스
  * @property {string} nd_target_id Node 실제 데이터 Key로 DeviceProtocolConverter Data Key에 사용

@@ -1,3 +1,31 @@
+'use strict';
+
+const requestOrderInfo = {
+  /** 
+   * 명령 추가 삭제에 대한 옵션 내용 
+   * @example
+   * ADD: 명령 추가
+   * CALCEL: 명령 취소
+   */
+  commandType: '',
+  /** 
+   @ Device Protocol Converter에 요청할 명령에 대한 인자값
+   * @type {boolean=} true: Open, On, ... ::: false: Close, Off
+   * @example
+   * 1: Open, On
+   * 0: Close, Off
+   * undefined: Status
+   */
+  controlValue: undefined,
+  /** Main 당 일반적으로 부를 Node ID */
+  nodeId: '',
+  /** 명령을 내릴 때 해당 명령의 고유 ID */
+  commandId: 'Default',
+  /** 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3) */
+  rank: 3,
+};
+exports.requestOrderInfo = requestOrderInfo;
+
 const protocolOptionInfo = {
   /** 전송 데이터가 같으나 파싱이 실패할 경우 데이터 누적을 할지 여부 */
   hasTrackingData: false
@@ -233,23 +261,29 @@ exports.dataLoggerInfo = dataLoggerInfo;
 
 /** 센서 정보 */
 const nodeInfo = {
-  /** sensor ID (Sequence) */
+  /** node ID (Sequence) */
   node_seq: 0,
   /**
-   * DB상에서 고유한 Sensor ID
-   * Sensor Unique ID (Prefix + Main_Seq + Sensor Code
+   * DB상에서 고유한 Node ID
+   * Node Unique ID (Prefix + Main_Seq + Node Code
    * @example
-   * Main Seq: 3, Sensor Def Prefix: WD, Code: 003 --> WD_3_003
+   * Main Seq: 3, Node Def Prefix: WD, Code: 003 --> WD_3_003
    */
   node_real_id: '',
   /**
-   * Main 당 일반적으로 부를 Sensor ID
-   * Sensor Unique ID (Prefix + Sensor Code)
+   * Main 당 일반적으로 부를 Node ID
+   * Node Unique ID (Prefix + Node Code)
    * @example
-   * Sensor Def Prefix: WD, Code: 003 --> WD_3_003
-   */  
+   * Node Def Prefix: WD, Code: 003 --> WD_3_003
+   */
   node_id: '',
-  /** Sensor Numbering 번호 (001, 002, ...) */
+  /**
+   * Main 당 일반적으로 부를 Node Name
+   * @example
+   * Node Def Name: 수문, Code: 003 --> 수문 003
+   */
+  node_name: '',
+  /** Node Numbering 번호 (001, 002, ...) */
   target_code: '',
   /**
    * Data Logger에서 수집한 데이터 군 중에서 해당 센서 데이터가 위치하는 인덱스
@@ -260,14 +294,14 @@ const nodeInfo = {
    */
   data_logger_index: 0,
   /**
-   * Sensor 실제 데이터 Key로 DeviceProtocolConverter Data Key에 사용
+   * Node 실제 데이터 Key로 DeviceProtocolConverter Data Key에 사용
    * @desc data Unique Key
    * @example
    * temperature, moduleFrontTemperature, waterLevel, ...
    */
-  nd_target_id: '',  
+  nd_target_id: '',
   /**
-   * Sensor Unique Key 로 사용되는 ID
+   * Node Unique Key 로 사용되는 ID
    * @desc sc_target_id 와 data_logger_index를 이용하여 센서 데이터 결정
    * @example
    * temp, solar, lux, ws, reh, ...
