@@ -234,6 +234,10 @@ exports.defaultDataLoggerConfig = defaultDataLoggerConfig;
 
 /** DataLogger 정보 */
 const dataLoggerInfo = {
+  /** Data Logger Sequence */
+  data_logger_seq: 0,
+  /** Data Logger Definition Sequence */
+  data_logger_def_seq: 0,
   /**
    * DB상에서 고유한 Logger ID
    * Data Logger Unique ID (Prefix + Main_Seq + Logger Code
@@ -252,8 +256,8 @@ const dataLoggerInfo = {
   target_id: '',
   /** 장치 이름 */
   target_alias: '',
-  /** Data Logger Sequence */
-  data_logger_def_seq: 0,
+  /** Data Logger Numbering 번호 (001, 002, ...) */
+  target_code: '',
   connect_info,
   protocol_info,
 };
@@ -346,3 +350,11 @@ const dataLoggerConfig = {
   nodeList: [nodeInfo],
 };
 exports.dataLoggerConfig = dataLoggerConfig;
+
+
+/** dataLogger 들을 총 관리하는 객체 설정 변수 */
+const integratedDataLoggerConfig = {
+  dbInfo,
+  dataLoggerList: [dataLoggerConfig]
+};
+exports.integratedDataLoggerConfig = integratedDataLoggerConfig;

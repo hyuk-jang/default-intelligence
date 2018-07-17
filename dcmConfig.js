@@ -1,11 +1,18 @@
+'use strict';
 
 /**
  * @typedef {Object} requestOrderInfo 컨트롤러에 장치로 명령을 내릴때 사용하는 형식
- * @property {string} commandType  'ADD', 'CANCEL' --> 명령 추가, 명령 삭제
+ * @property {string} requestCommandType  'ADD', 'CANCEL' --> 명령 추가, 명령 삭제
+ * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID
  * @property {boolean} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
  * @property {string} nodeId Main 당 일반적으로 부를 Node ID
- * @property {string} commandId 명령을 내릴 때 해당 명령의 고유 ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
+ */
+
+/**
+ * @typedef {Object} integratedDataLoggerConfig dataLogger 들을 총 관리하는 객체 설정 변수
+ * @property {dbInfo} dbInfo 
+ * @property {dataLoggerConfig[]} dataLoggerList 
  */
 
 /**
@@ -39,13 +46,15 @@
 
 /**
  * @typedef {Object} dataLoggerInfo
+ * @property {number} data_logger_seq Data Logger Sequence
+ * @property {number} data_logger_def_seq Data Logger Definition Sequence
  * @property {string} dl_real_id DB상에서 고유한 Logger ID
  * @property {string} dl_id Main당 일반적으로 부를 Logger ID
  * @property {string} target_id Data Logger 고유 코드(protocol_info 에 보통 국번으로 들어감)
- * @property {string} target_alias 장치 이름
+ * @property {string} target_alias Data Logger 이름
+ * @property {string} target_code Data Logger Numbering 번호 (001, 002, ...)
  * @property {connect_info} connect_info
  * @property {protocol_info} protocol_info
- * @property {number} data_logger_def_seq Data Logger Sequence
  */
 
 /**
