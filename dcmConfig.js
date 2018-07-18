@@ -4,8 +4,10 @@
  * @typedef {Object} requestOrderInfo 컨트롤러에 장치로 명령을 내릴때 사용하는 형식
  * @property {string} requestCommandType  'ADD', 'CANCEL' --> 명령 추가, 명령 삭제
  * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID
- * @property {boolean} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
+ * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
+ * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
  * @property {string} nodeId Main 당 일반적으로 부를 Node ID
+ * @property {string=} dl_id Main당 일반적으로 부를 Logger ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  */
 
@@ -42,6 +44,8 @@
  * @property {number} main_seq Main Sequence
  * @property {number} data_logger_seq Data Logger Sequence
  * @property {number} data 노드 데이터
+ * @property {function():dataLoggerInfo} getDataLogger 연결된 Data Logger 가져오기
+ * @property {Date} writeDate 데이터가 입력된 시간
  */
 
 /**

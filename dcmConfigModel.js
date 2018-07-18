@@ -1,26 +1,29 @@
 'use strict';
 
 const requestOrderInfo = {
+  /** 명령을 내릴 때 해당 명령의 고유 ID */
+  requestCommandId: 'Default',
   /** 
    * 명령 추가 삭제에 대한 옵션 내용 
    * @example
    * ADD: 명령 추가
    * CALCEL: 명령 취소
    */
-  commandType: '',
+  requestCommandType: '',
   /** 
    @ Device Protocol Converter에 요청할 명령에 대한 인자값
-   * @type {boolean=} true: Open, On, ... ::: false: Close, Off
+   * @type {number=} true: Open, On, ... ::: false: Close, Off
    * @example
-   * 1: Open, On
    * 0: Close, Off
-   * undefined: Status
+   * 1: Open, On
+   * undefined, 2: Status
+   * 3: Set   --> controlSetValue 가 필수적으로 입력
    */
   controlValue: undefined,
+  /** controlValue 가 2일 경우 설정하는 값 */
+  controlSetValue: 0,
   /** Main 당 일반적으로 부를 Node ID */
   nodeId: '',
-  /** 명령을 내릴 때 해당 명령의 고유 ID */
-  commandId: 'Default',
   /** 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3) */
   rank: 3,
 };
@@ -335,7 +338,17 @@ const nodeInfo = {
   /** Data Logger Sequence */
   data_logger_seq: 0,
   /** 노드 데이터를 입력 받을 Key */
-  data: null
+  data: null,
+  /**
+   * @function getDataLogger 연결된 Data Logger 가져오기
+   * @return {dataLoggerInfo}
+   */
+  getDataLogger: () => {},
+  /**
+   * 데이터가 입력된 시간
+   * @type {Data}
+   */
+  writeDate: null
 
 };
 exports.nodeInfo = nodeInfo;
