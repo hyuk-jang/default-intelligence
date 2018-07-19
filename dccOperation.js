@@ -15,6 +15,7 @@
  * @property {string} commandId 해당 명령 통합 ID
  * @property {string} commandType 명령 통합의 요청, 삭제 (ADD, CANCEL)
  * @property {string} commandName 해당 명령 집합 단위 이름
+ * @property {string} uuid 명령 유일 ID
  * @property {Array.<commandInfo>} cmdList 명령을 보낼 배열
  * @property {number} currCmdIndex cmdList Index
  * @property {number} operationStatus 명령 수행 상태
