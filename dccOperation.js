@@ -4,6 +4,7 @@
  * @property {string} commandId 해당 명령 집합 통합 ID
  * @property {string} commandType 명령 통합의 요청, 삭제 (ADD, CANCEL)
  * @property {string} commandName 해당 명령 집합 단위 이름
+ * @property {string} uuid 명령 유일 ID
  * @property {number=} currCmdIndex cmdList Index => Default: 0
  * @property {Array.<commandInfo>} cmdList 명령을 보낼 배열
  */
@@ -36,8 +37,8 @@
  * @typedef {Object} Timer 커스터마이징 타이머
  * @property {Function} start setTimeout(), remaining 차감 시작
  * @property {Function} pause clearTimeout(), remaining 시간 정지
- * @property {Function} getTimeLeft 요청 명령 실행까지의 남은 시간 반환
- * @property {Function} getStateRunning Timer의 동작 유무 확인, true: Running, false: Pause
+ * @property {function():number} getTimeLeft 요청 명령 실행까지의 남은 시간 반환
+ * @property {function():boolean} getStateRunning Timer의 동작 유무 확인, true: Running, false: Pause
  */
 
 /**

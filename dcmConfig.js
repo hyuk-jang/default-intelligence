@@ -1,14 +1,61 @@
 'use strict';
 
-/**
- * @typedef {Object} requestOrderInfo 컨트롤러에 장치로 명령을 내릴때 사용하는 형식
+
+/** 
+ * @typedef {Object} combinedOrderStorage 복합 명령 현황 저장소
+ * @property {combinedOrderInfo} controlStorage 제어 명령 저장소
+ * @property {combinedOrderInfo} cancelStorage 취소 명령 저장소
+ * @property {combinedOrderInfo} measureStorage 계측 명령 저장소
+ */
+
+/** 
+ * @typedef {Object} combinedOrderInfo 복합 명령 관리 구조
+ * @property {Array.<combinedOrderWrapInfo>} waitingList 명령 대기
+ * @property {Array.<combinedOrderWrapInfo>} proceedingList 명령 요청 중
+ * @property {Array.<combinedOrderWrapInfo>=} runningList 실행되고 있는 명령. combinedOrderList의 controlList에서만 쓰임
+ */
+
+/** 
+ * @typedef {Object} combinedOrderWrapInfo 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
  * @property {string} requestCommandType  'ADD', 'CANCEL' --> 명령 추가, 명령 삭제
- * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID
+ * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string} requestCommandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @property {Array.<combinedOrderContainerInfo>} remainList
+ * @property {Array.<combinedOrderContainerInfo>} completeList
+ */
+
+/** 
+ * @typedef {Object} combinedOrderContainerInfo 제어 타입에 따른 분류 형식
  * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
  * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
- * @property {string} nodeId Main 당 일반적으로 부를 Node ID
- * @property {string=} dl_id Main당 일반적으로 부를 Logger ID
+ * @property {Array.<combinedOrderElementInfo>} commandList
+ */ 
+
+/** 
+ * @typedef {Object} combinedOrderElementInfo 실제 장치를 제어할 세부 내용
+ * @property {string} uuid UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
+ * @property {string=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
+ */  
+
+/**
+ * @typedef {Object} requestCombinedOrder 복합 명령을 내릴 경우
+ * @property {string} requestCommandType  'ADD', 'CANCEL' --> 명령 추가, 명령 삭제
+ * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string} requestCommandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @property {requestOrderInfo[]} requestOrderList 
+ */
+
+/**
+ * @typedef {Object} requestOrderInfo 컨트롤러에 장치로 명령을 내릴때 사용하는 형식
+ * @property {string=} requestCommandType  'ADD', 'CANCEL' --> 명령 추가, 명령 삭제
+ * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string=} requestCommandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
+ * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
+ * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
+ * @property {string=} uuid 해당 명령 유일키
  */
 
 /**

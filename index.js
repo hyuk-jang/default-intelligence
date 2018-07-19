@@ -10,6 +10,7 @@ const dccFlagModel =  require('./dccFlagModel');
 
 /** Device Protocol Converter */
 require('./dpcOperation');
+require('./dpcProtocol');
 
 /** Web Server */
 require('./wsOperation');

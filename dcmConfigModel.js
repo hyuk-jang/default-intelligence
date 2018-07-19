@@ -7,7 +7,8 @@ const requestOrderInfo = {
    * 명령 추가 삭제에 대한 옵션 내용 
    * @example
    * ADD: 명령 추가
-   * CALCEL: 명령 취소
+   * CANCEL: 명령 취소
+   * '', undefined : 계측
    */
   requestCommandType: '',
   /** 
@@ -22,7 +23,10 @@ const requestOrderInfo = {
   controlValue: undefined,
   /** controlValue 가 2일 경우 설정하는 값 */
   controlSetValue: 0,
-  /** Main 당 일반적으로 부를 Node ID */
+  /** 
+   * Main 당 일반적으로 부를 Node ID
+   * @type {string|string[]}
+   */
   nodeId: '',
   /** 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3) */
   rank: 3,
