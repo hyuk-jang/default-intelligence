@@ -1,5 +1,65 @@
 'use strict';
 
+/** combinedOrderInfo Key */
+const combinedOrderType = {
+  /** 명령이 대기열에 올라가있는 리스트, 아직 장치 제어 요청이 일어나기 전 */
+  WAIT: 'waitingList',
+  /** 
+   * 실제 장비로 작업 요청이 들어갔다는 것으로 진행 중
+   * dccFlagModel.definedCommandSetMessage.COMMANDSET_EXECUTION_START 가 발생했을 경우
+   */
+  PROCEED: 'proceedingList',
+  /**
+   * requestCommandType.CONTROL 일 경우 현재 장치에 어떤 명령이 동작되고 있는지 추적할 필요가 있는 경우
+   */
+  RUNNING: 'runningList',
+};
+exports.combinedOrderType = combinedOrderType;
+
+
+/** 명령 요청 타입 */
+const requestCommandType = {
+  /** 
+   * 명령 제어에 사용.
+   * combinedOrderStorage의 controlStorage에 저장되고 관리되며 요청 명령이 runningList에 저장됨.
+   * @example
+   * 장치 제어 요청 --> controlStorage.waitingList 에 저장
+   * 실제 장치 요청 시작 --> controlStorage.proceedingList 에 저장
+   * 모든 장치 요청 완료 --> controlStorage.runningList 저장
+   */
+  CONTROL: 'CONTROL',
+  /**
+   * TODO: 명령 취소 요청 고민 더 필요
+   * 명령 제어 취소 요청. 
+   * combinedOrderStorage.controlStorage 에 해당 명령이 존재해야만 삭제 가능
+   * @example
+   * controlStorage.waitingList --> 해당 명령 대기열 제거 명령 요청 및 완료 시 
+   * controlStorage.proceedingList --> remainList 취소 요청, completeList 복원 요청
+   * controlStorage.runningList --> completeList 복원 요청
+   */
+  CANCEL: 'CANCEL',
+  /** 
+   * 명령 계측 요청
+   * combinedOrderStorage.measureStorage 에 저장되며 완료시 삭제
+   */
+  MEASURE: 'MEASURE',
+};
+exports.requestCommandType = requestCommandType;
+
+/** 장치 제어 타입 */
+const requestDeviceControlType = {
+  /** 장치 Close, Off */
+  FALSE: 0,
+  /** 장치 Open, On */
+  TRUE: 1,
+  /** 장치 Measure */
+  MEASURE: 2,
+  /** 장치 값 설정 */
+  SET: 3,
+};
+exports.requestDeviceControlType = requestDeviceControlType;
+
+
 const requestOrderInfo = {
   /** 명령을 내릴 때 해당 명령의 고유 ID */
   requestCommandId: 'Default',

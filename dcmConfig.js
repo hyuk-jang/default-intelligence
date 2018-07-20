@@ -17,22 +17,22 @@
 
 /** 
  * @typedef {Object} combinedOrderWrapInfo 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
- * @property {string} requestCommandType  'ADD', 'CANCEL' --> 명령 추가, 명령 삭제
+ * @property {string} requestCommandType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
  * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} requestCommandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
- * @property {Array.<combinedOrderContainerInfo>} remainList
- * @property {Array.<combinedOrderContainerInfo>} completeList
+ * @property {Array.<combinedOrderContainerInfo>} orderContainerList
  */
 
 /** 
  * @typedef {Object} combinedOrderContainerInfo 제어 타입에 따른 분류 형식
  * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
  * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
- * @property {Array.<combinedOrderElementInfo>} commandList
+ * @property {Array.<combinedOrderElementInfo>} orderElementList 
  */ 
 
 /** 
  * @typedef {Object} combinedOrderElementInfo 실제 장치를 제어할 세부 내용
+ * @property {boolean} hasComplete 해당 작업 완료 여부
  * @property {string} uuid UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  * @property {string=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
