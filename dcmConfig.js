@@ -53,6 +53,7 @@
  * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  * @property {string} uuid UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
+ * @property {string} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  */
 
 

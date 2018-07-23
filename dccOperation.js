@@ -4,6 +4,7 @@
  * @property {string} commandId 해당 명령 집합 통합 ID
  * @property {string} commandType 명령 통합의 요청, 삭제 (ADD, CANCEL)
  * @property {string} commandName 해당 명령 집합 단위 이름
+ * @property {string} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {string} uuid 명령 유일 ID
  * @property {number=} currCmdIndex cmdList Index => Default: 0
  * @property {Array.<commandInfo>} cmdList 명령을 보낼 배열
@@ -15,6 +16,7 @@
  * @property {string} commandId 해당 명령 통합 ID
  * @property {string} commandType 명령 통합의 요청, 삭제 (ADD, CANCEL)
  * @property {string} commandName 해당 명령 집합 단위 이름
+ * @property {string} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {string} uuid 명령 유일 ID
  * @property {Array.<commandInfo>} cmdList 명령을 보낼 배열
  * @property {number} currCmdIndex cmdList Index
