@@ -1,4 +1,13 @@
-'use strict';
+
+
+/** combinedOrderInfo Key */
+const nodePickKey = {
+  /** Node 데이터 간략화 */
+  FOR_DATA: ['node_id', 'node_name', 'data'],
+  /**  DB에 입력하기 위한 Node 정보 */
+  FOR_DB: ['node_seq', 'node_id', 'data', 'nc_is_sensor', 'writeDate'],
+};
+exports.nodePickKey = nodePickKey;
 
 /** combinedOrderInfo Key */
 const combinedOrderType = {
@@ -18,7 +27,7 @@ exports.combinedOrderType = combinedOrderType;
 
 
 /** 명령 요청 타입 */
-const requestCommandType = {
+const requestOrderCommandType = {
   /** 
    * 명령 제어에 사용.
    * combinedOrderStorage의 controlStorage에 저장되고 관리되며 요청 명령이 runningList에 저장됨.
@@ -44,7 +53,7 @@ const requestCommandType = {
    */
   MEASURE: 'MEASURE',
 };
-exports.requestCommandType = requestCommandType;
+exports.requestOrderCommandType = requestOrderCommandType;
 
 /** 장치 제어 타입 */
 const requestDeviceControlType = {
