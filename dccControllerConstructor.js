@@ -25,6 +25,17 @@
  */
 
 /**
+ * @typedef {Object} constructorSocketWithParser Parser를 붙인 Socket Config
+ * @property {number} port 접속 Port
+ * @property {string} host 접속 host
+ * @property {{parser: string, option:*}} addConfigInfo Socket에 Binding 할 Parser 객체
+ * #parser ---> 'delimiterParser'
+ * #option --> 각 Parser Type에 맞는 Option
+ * @example
+ * addConfigInfo{parser:'delimiterParser', option: Buffer.from([0x04])}  해당 option과 매칭까지의 데이터 반환
+ */
+
+/**
  * @typedef {Object} constructorXbee Serial Config
  * @property {string} port 접속 PortxbeeConstrucorInfo
  * @property {number} baudRate 보 레이트

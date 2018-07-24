@@ -211,3 +211,15 @@ exports.definedCommanderResponse = {
    */
   NEXT: 'NEXT'
 };
+
+exports.controllerParserType = {
+  serial: {
+    DELIMITER: 'delimiterParser',
+    BYTE_LENGTH: 'byteLengthParser',
+    READ_LINE: 'readLineParser',
+    READY: 'readyParser',
+  },
+  socket: {
+    DELIMITER: 'delimiterParser',
+  }
+};
