@@ -1,28 +1,3 @@
-
-
-/**
- * @typedef {Object} msInfo Main Storage List에서 각각의 거점 별 모든 정보를 가지고 있을 객체 정보
- * @property {msFieldInfo} msFieldInfo 거점 정보
- * @property {Socket} msClient 거점 Socket Client 객체
- * @property {msDataInfo} msDataInfo 거점 데이터 저장소 객체
- */
-
-/**
- * @typedef {Object} msFieldInfo Main Storage 에서 쓰일 DB Main(거점) 정보
- * @property {number} main_seq MAIN SEQ
- * @property {number} weather_location_seq 기상청 위치 정보 SEQ
- * @property {string} uuid UUID
- * @property {string} name UPSAS 이름
- * @property {string} address 주소
- * @property {string} ip ip
- */
-
-/**
- * @typedef {Object} msDataInfo Main Storage 에서 쓰일 거점 Data 정보
- * @property {Array.<nodeInfo>} nodeList MAIN SEQ
- * 이하 필요 시 추가
- */
-
 /**
  * @typedef {Object} searchRange searchRange Type
  * @property {string} searchType day, month, year, range

@@ -1,7 +1,15 @@
 'use strict';
 
+/**
+ * @typedef {Object} simpleOrderInfo 간단한 명령 정보
+ * @property {string} orderCommandType CONTROL, CANCEL, MEASURE [requestOrderCommandType]
+ * @property {string} orderStatus waitingList, proceedingList, runningList [combinedOrderType]
+ * @property {string} uuid 유일 키로 해당 명령 고유 ID
+ * @property {string} commandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string} commandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ */
 
-/** 
+/**
  * @desc orderLV1
  * @typedef {Object} combinedOrderStorage 복합 명령 현황 저장소
  * @property {combinedOrderInfo} controlStorage 제어 명령 저장소
@@ -9,7 +17,7 @@
  * @property {combinedOrderInfo} measureStorage 계측 명령 저장소
  */
 
-/** 
+/**
  * @desc orderLV2
  * @typedef {Object} combinedOrderInfo 복합 명령 관리 구조
  * @property {Array.<combinedOrderWrapInfo>} waitingList 명령 대기
@@ -17,7 +25,7 @@
  * @property {Array.<combinedOrderWrapInfo>=} runningList 실행되고 있는 명령. combinedOrderList의 controlList에서만 쓰임
  */
 
-/** 
+/**
  * @desc orderLV3
  * @typedef {Object} combinedOrderWrapInfo 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
  * @property {string} uuid UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
@@ -27,22 +35,22 @@
  * @property {Array.<combinedOrderContainerInfo>} orderContainerList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
  */
 
-/** 
+/**
  * @desc orderLV4
  * @typedef {Object} combinedOrderContainerInfo 제어 타입에 따른 분류 형식
  * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
  * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
  * @property {Array.<combinedOrderElementInfo>} orderElementList 실제 controlValue 제어를 요청할 목록
- */ 
+ */
 
-/** 
+/**
  * @desc orderLV5
  * @typedef {Object} combinedOrderElementInfo 실제 장치를 제어할 세부 내용
  * @property {boolean} hasComplete 해당 작업 완료 여부
  * @property {string} uuid UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  * @property {string=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
- */  
+ */
 
 /**
  * @typedef {Object} executeOrderInfo 복합 명령을 내릴 경우
@@ -57,7 +65,6 @@
  * @property {string} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  */
 
-
 /**
  * @typedef {Object} requestSingleOrderInfo 단일 명령을 내릴 경우
  * @property {string} requestCommandType  'ADD', 'CANCEL' --> 명령 추가, 명령 삭제
@@ -67,13 +74,12 @@
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  */
 
-
 /**
  * @typedef {Object} requestCombinedOrderInfo 복합 명령을 내릴 경우
  * @property {string} requestCommandType  'ADD', 'CANCEL' --> 명령 추가, 명령 삭제
  * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} requestCommandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
- * @property {requestOrderElementInfo[]} requestElementList 
+ * @property {requestOrderElementInfo[]} requestElementList
  */
 
 /**
@@ -86,17 +92,17 @@
 
 /**
  * @typedef {Object} integratedDataLoggerConfig dataLogger 들을 총 관리하는 객체 설정 변수
- * @property {dbInfo} dbInfo 
+ * @property {dbInfo} dbInfo
  * @property {deviceInfo} mainSocketInfo Main Socket Server 에 접속하고 명령을 주고 받기 위한 Client 생성 정보
  * @property {string} uuid 데이터 수집 관리자의 Main UUID, Web Server Socket Server로 접속할 때 식별 및 임시 인증으로 사용
- * @property {dataLoggerConfig[]} dataLoggerList 
+ * @property {dataLoggerConfig[]} dataLoggerList
  */
 
 /**
  * @typedef {Object} dataLoggerConfig 장치를 가져올 로거 컨트롤러 생성 정보
- * @property {boolean} hasDev 
- * @property {deviceInfo} deviceInfo 
- * @property {dataLoggerInfo} dataLoggerInfo 
+ * @property {boolean} hasDev
+ * @property {deviceInfo} deviceInfo
+ * @property {dataLoggerInfo} dataLoggerInfo
  * @property {Array.<nodeInfo>} nodeList
  */
 
