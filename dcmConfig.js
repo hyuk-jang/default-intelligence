@@ -22,7 +22,6 @@
  * @typedef {Object} combinedOrderWrapInfo 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
  * @property {string} uuid UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
  * @property {string} requestCommandType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
- * @property {string} requestCommandType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
  * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} requestCommandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
  * @property {Array.<combinedOrderContainerInfo>} orderContainerList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
