@@ -1,15 +1,6 @@
 'use strict';
 
 /**
- * @typedef {Object} simpleOrderInfo 간단한 명령 정보
- * @property {string} orderCommandType CONTROL, CANCEL, MEASURE [requestOrderCommandType]
- * @property {string} orderStatus waitingList, proceedingList, runningList [combinedOrderType]
- * @property {string} uuid 유일 키로 해당 명령 고유 ID
- * @property {string} commandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
- * @property {string} commandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
- */
-
-/**
  * @desc orderLV1
  * @typedef {Object} combinedOrderStorage 복합 명령 현황 저장소
  * @property {combinedOrderInfo} controlStorage 제어 명령 저장소
@@ -131,6 +122,7 @@
 
 /**
  * @typedef {Object} dataLoggerInfo
+ * @property {number} main_seq Main Sequence
  * @property {number} data_logger_seq Data Logger Sequence
  * @property {number} data_logger_def_seq Data Logger Definition Sequence
  * @property {string} dl_real_id DB상에서 고유한 Logger ID

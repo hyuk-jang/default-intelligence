@@ -1,4 +1,17 @@
 
+/** simpleOrderInfo Status 변경 Key */
+const simpleOrderStatus = {
+  /** 신규 등록되었을 경우 */
+  NEW: 'NEW',
+  /** 명령이 진행되었을 경우 */
+  PROCEED: 'PROCEED', 
+  /** 명령의 실행이 완료되고  */
+  RUNNING: 'RUNNING',
+  /** 명령의 실행이 완료되었을 경우 */
+  COMPLETE: 'COMPLETE'
+};
+exports.simpleOrderStatus = simpleOrderStatus;
+
 
 /** combinedOrderInfo Key */
 const nodePickKey = {

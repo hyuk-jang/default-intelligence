@@ -4,7 +4,7 @@
  * @desc Socket Client (Device Client Manager)
  * @typedef {Object} transDataToServerInfo
  * @property {string} commandType 전송 타입, [node: node 정보, command: 명령 정보]
- * @property {nodeInfo[]|simpleOrderInfo} data 데이터
+ * @property {nodeInfo[]|simpleOrderInfo[]} data 데이터
  * @example
  * commandType: node --> nodeInfo[]
  * commandType: command --> combinedOrderStorage
@@ -43,9 +43,22 @@
 /**
  * @desc Socket Server (Web Server)
  * @typedef {Object} msDataInfo Main Storage 에서 쓰일 거점 Data 정보
- * @property {Array.<nodeInfo>} nodeList MAIN SEQ
- * @property {combinedOrderStorage} orderStorage 복합 명령 현황 저장소
+ * @property {dataLoggerInfo[]} dataLoggerList dataLoggerInfo List
+ * @property {nodeInfo[]} nodeList nodeInfo List
+ * @property {simpleOrderInfo[]} simpleOrderList 간단한 명령 정보
  * 이하 필요 시 추가
  */
+
+
+/**
+ * @typedef {Object} simpleOrderInfo 간단한 명령 정보
+ * @property {string} orderCommandType CONTROL, CANCEL, MEASURE [requestOrderCommandType]
+ * @property {string} orderStatus waitingList, proceedingList, runningList [combinedOrderType]
+ * @property {string} uuid 유일 키로 해당 명령 고유 ID
+ * @property {string} commandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string} commandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ */ 
+
+
 
 module;

@@ -16,6 +16,7 @@ require('./dpcProtocol');
 
 /** Web Server */
 require('./wsOperation');
+require('./wsScheme');
 
 module.exports = {
   dcmConfigModel,
