@@ -106,6 +106,7 @@
  * @property {string} target_code Node Numbering 번호 (001, 002, ...)
  * @property {number} data_logger_index Data Logger에서 수집한 데이터 군 중에서 해당 센서 데이터가 위치하는 인덱스
  * @property {string} nd_target_id Node 실제 데이터 Key로 DeviceProtocolConverter Data Key에 사용
+ * @property {string} nd_target_name Node 장치 실체적 이름
  * @property {string} nc_target_id Node Unique Key 로 사용되는 ID
  * @property {string} nc_data_unit 표기 단위(℃, %, m/s, ppm, ...)
  * @property {number} nc_is_sensor 센서 여부 (데이터가 수치로 표기되면 센서, 아니면 장치), DB에 센서라면 sensor_data에 저장, 장치라면 device_data에 저장

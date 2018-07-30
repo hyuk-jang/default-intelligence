@@ -27,6 +27,7 @@
  * @property {msFieldInfo} msFieldInfo 거점 정보
  * @property {net.Socket} msClient 거점 Socket Client 객체
  * @property {msDataInfo} msDataInfo 거점 데이터 저장소 객체
+ * @property {Session[]} msSessionList 로그인 한 Session 리스트
  */
 
 /**
