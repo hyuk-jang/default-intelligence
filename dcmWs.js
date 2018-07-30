@@ -12,6 +12,21 @@
 
 /**
  * @desc Socket Server (Web Server)
+ * @typedef {Object} executeCommandFormat 웹서버 html에서 사용자의 요청에 따라 Socket Client로 명령을 보내기 위한 형식
+ * @property {string} cmdType 명령 종류
+ * @example
+ * SINGLE: 장치 단일 제어. executeSingleControl 메소드 사용
+ * AUTOMATIC: 명령 제어. executeSavedCommand 메소드 사용
+ * SCENARIO: 시연용으로 제작된 명령 제어. executeScenario 사용
+ * @property {Object} data 각 메소드에서 사용될 데이터 포맷. cmdType에 따라 형태라 상이함
+ * @example
+ * SINGLE: requestSingleOrderInfo 1개 arg 사용
+ * AUTOMATIC: savedCommandId, requestCommandType 2개 arg 사용
+ * SCENARIO: scenarioId, requestCommandType 2개 arg 사용
+ */
+
+/**
+ * @desc Socket Server (Web Server)
  * @typedef {Object} transDataToClientInfo
  * @property {string} commandType 전송 타입, [node: node 정보, command: 명령 정보]
  * @property {nodeInfo[]|combinedOrderStorage} data 데이터
