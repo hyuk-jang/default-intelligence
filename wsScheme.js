@@ -271,7 +271,7 @@ w
  * @typedef {Object} MEMBER '가입한 회원의 정보'
  * @property {number} member_seq 회원정보 시퀀스
  * @property {number} main_seq MAIN 시퀀스
- * @property {string} id 아이디
+ * @property {string} user_id 아이디
  * @property {string} grade 회원 등급
  * @property {string} name 이름
  * @property {string} address 주소
