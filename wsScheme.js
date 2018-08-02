@@ -272,12 +272,13 @@ w
  * @property {number} member_seq 회원정보 시퀀스
  * @property {number} main_seq MAIN 시퀀스
  * @property {string} user_id 아이디
- * @property {string} grade 회원 등급
- * @property {string} name 이름
- * @property {string} address 주소
- * @property {string} tel 전화번호
  * @property {string} pw_salt 암호화소금
  * @property {string} pw_hash 암호화비밀번호
+ * @property {string} name 이름
+ * @property {string} nick_name 별칭
+ * @property {string} grade 회원 등급
+ * @property {string} address 주소
+ * @property {string} tel 전화번호
  * @property {number} is_deleted 삭제여부
  * @property {Date} writedate 생성일
  * @property {Date} updatedate 수정일

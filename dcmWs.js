@@ -33,8 +33,29 @@
  * @property {msFieldInfo} msFieldInfo 거점 정보
  * @property {net.Socket} msClient 거점 Socket Client 객체
  * @property {msDataInfo} msDataInfo 거점 데이터 저장소 객체
- * @property {Session[]} msSessionList 로그인 한 Session 리스트
+ * @property {msUserInfo[]} msUserList 해당 정보를 확인할 자격을 가진 user 정보
  */
+
+/**
+ * @desc Socket Server (Web Server)
+ * @typedef {Object} msUserInfo socketIO URL에 접속한 사용자를 기억하기 위한 정보
+ * @property {string} sessionID 세션 ID (현재 접속한 브라우저 req.sessionID)
+ * @property {sessionUserInfo} sessionUserInfo 사용자 정보 (현재 접속한 브라우저 req.user)
+ * @property {net.Socket} socketClient 브라우저에 접속한 socketIO client 객체
+ */
+
+/**
+ * @desc Socket Server (Web Server)
+ * @typedef {Object} sessionUserInfo MEMBER table에서 특정 key 기반으로 가져온 req.user에 저장된 사용자 정보
+ * @property {number} main_seq MAIN 시퀀스
+ * @property {string} user_id 아이디
+ * @property {string} name 이름
+ * @property {string} nick_name 별칭
+ * @property {string} grade 회원 등급
+ * @property {string} address 주소
+ * @property {string} tel 전화번호
+ */ 
+
 
 /**
  * @desc Socket Server (Web Server)
