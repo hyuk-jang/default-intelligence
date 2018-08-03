@@ -91,6 +91,20 @@
  */
 
 /**
+ * @typedef {Object} chartOption
+ * @property {string} selectKey Chart에 표현할 Key
+ * @property {string} dateKey 차트 리스트 범위를 참조할 Key
+ * @property {string=} maxKey 최대 값 구할 키
+ * @property {string=} minKey 최소 값 구할 키
+ * @property {string=} averKey 평균 값 구할 키
+ * @property {string=} groupKey rowDataPacketList를 Group 처리 할 Key
+ * @property {string=} sortKey 정렬 순위를 참조할 Key
+ * @property {string=} colorKey Chart Line 색상
+ * @property {boolean=} hasArea Area로 설정할 여부
+ */
+
+
+/**
  * @typedef {Object} calcRowPacketIntervalOption
  * @property {string} calcMaxKey
  * @property {string} calcMinKey
