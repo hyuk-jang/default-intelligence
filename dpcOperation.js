@@ -1,4 +1,3 @@
-
 /**
  * @typedef {Object} defaultFormatToRequest 요청한 객체에게 응답하는 기본 형식
  * @property {stirng} commandId 요청 ID
@@ -10,7 +9,7 @@
  * @typedef {Object} defaultFormatToResponse 요청한 객체에게 응답하는 기본 형식
  * @property {stirng} commandId 요청 ID를 그대로 반환
  * @property {stirng=} uuid 고유 식별 ID를 그대로 반환
- * @property {boolean} hasError 명령 수행 실패 여부
+ * @property {number} isError 명령 수행 실패 여부(해당 Key가 있으면 Response, 없으면 Request로 식별함)
  * @property {string} errorStack hasError가 true일 경우 해당 Error Stack
  * @property {*} contents 정상적인 응답인 경우 응답 결과를 넣고자 할 경우 넣어서 반환
  */
