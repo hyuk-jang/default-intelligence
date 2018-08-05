@@ -1,23 +1,23 @@
 /** Socket Server에서 Socket Client로 명령을 요청하고자 할 때의 명령 식별 타입 */
 const transmitToClientCommandType = {
   /** 단일 제어 모드 */
-  SINGLE: 'single',
+  SINGLE: 'SINGLE',
   /** 명령 제어 모드 */
-  AUTOMATIC: 'automatic',
+  AUTOMATIC: 'AUTOMATIC',
   /** 시나리오 모드  */
-  SCENARIO: 'scenario'
+  SCENARIO: 'SCENARIO'
 };
 exports.transmitToClientCommandType = transmitToClientCommandType;
 
 /** simpleOrderInfo Status 변경 Key */
 const transmitToServerCommandType = {
   /** 노드 정보가 업데이트 되었을 경우 */
-  NODE: 'node',
+  NODE: 'NODE',
   /** 명령 정보가 업데이트 되었을 경우 */
-  COMMAND: 'command',
+  COMMAND: 'COMMAND',
   /** 현황판 데이터를 요청할 경우  */
-  STAUTS: 'status',
+  STAUTS: 'STAUTS',
   /**  client 인증을 하고자 할 경우 */
-  CERTIFICATION: 'certification'
+  CERTIFICATION: 'CERTIFICATION'
 };
 exports.transmitToServerCommandType = transmitToServerCommandType;

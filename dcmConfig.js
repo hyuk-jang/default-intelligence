@@ -45,6 +45,7 @@
 
 /**
  * @typedef {Object} executeOrderInfo 복합 명령을 내릴 경우
+ * @property {string} integratedUuid 통합 명령 UUID로 combinedOrderWrapInfo uuid 사용.
  * @property {string} requestCommandType  'CONTROL', 'CANCEL', --> 명령 추가, 명령 삭제
  * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} requestCommandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
@@ -52,7 +53,7 @@
  * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
  * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
- * @property {string} uuid UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
+ * @property {string} uuid 해당 명령 UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
  * @property {string} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  */
 
@@ -84,7 +85,7 @@
 /**
  * @typedef {Object} integratedDataLoggerConfig dataLogger 들을 총 관리하는 객체 설정 변수
  * @property {dbInfo} dbInfo
- * @property {deviceInfo} mainSocketInfo Main Socket Server 에 접속하고 명령을 주고 받기 위한 Client 생성 정보
+ * @property {constructorSocketWithParser} mainSocketInfo Main Socket Server 에 접속하고 명령을 주고 받기 위한 Client 생성 정보
  * @property {string} uuid 데이터 수집 관리자의 Main UUID, Web Server Socket Server로 접속할 때 식별 및 임시 인증으로 사용
  * @property {dataLoggerConfig[]} dataLoggerList
  */
