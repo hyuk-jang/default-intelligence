@@ -1,4 +1,8 @@
-'use strict';
+/**
+ * @typedef {Object} timeIntervalToValidateInfo 데이터의 유효성을 인정해주는 시간 간격 정보
+ * @property {string} diffType 시간 간격 타입(months, weeks, days,	hours, minutes, seconds, and milliseconds)
+ * @property {number} duration 지속 시간. 이를 벗어나면 유효한 데이터가 아님
+ */
 
 /**
  * @desc orderLV1
@@ -85,9 +89,10 @@
 /**
  * @typedef {Object} integratedDataLoggerConfig dataLogger 들을 총 관리하는 객체 설정 변수
  * @property {dbInfo} dbInfo
- * @property {constructorSocketWithParser} mainSocketInfo Main Socket Server 에 접속하고 명령을 주고 받기 위한 Client 생성 정보
  * @property {string} uuid 데이터 수집 관리자의 Main UUID, Web Server Socket Server로 접속할 때 식별 및 임시 인증으로 사용
  * @property {dataLoggerConfig[]} dataLoggerList
+ * @property {constructorSocketWithParser} mainSocketInfo Main Socket Server 에 접속하고 명령을 주고 받기 위한 Client 생성 정보
+ * @property {constructorSerial=} powerStatusBoardInfo 현황판
  */
 
 /**

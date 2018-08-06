@@ -18,6 +18,8 @@ const transmitToServerCommandType = {
   /** 현황판 데이터를 요청할 경우  */
   STAUTS: 'STAUTS',
   /**  client 인증을 하고자 할 경우 */
-  CERTIFICATION: 'CERTIFICATION'
+  CERTIFICATION: 'CERTIFICATION',
+  /**  현황판 출력 데이터를 얻고자 할 경우 */
+  POWER_BOARD: 'POWER_BOARD'
 };
 exports.transmitToServerCommandType = transmitToServerCommandType;
