@@ -5,8 +5,6 @@
  * @property {mSetInfo} setInfo
  * @property {mRealtionInfo} realtionInfo
  * @property {mControlInfo} controlInfo
- * @property {tempControlInfo[]} controlList   // TEST
- * @property {control[]} simpleList   // TEST
  */
 
 /******************** drawInfo 시작  **********************/
@@ -51,7 +49,7 @@
 
 /**
  * @typedef {Object} mSetInfo Node, DataLogger, ConnectInfo 설정
- * @property {MAIN} mainInfo 메인 정보
+ * @property {MAIN} mainInfo 메인 정보. 입력한 정보를 기반으로 MAIN table 조회 후 main_seq 취득
  * @property {mDccConstructorInfo[]} dccConstructorList DCC 객체 생성 정보 정의 목록
  * @property {mDpcConstructorInfo[]} dpcConstructorList DPC 객체 생성 정보 정의 목록
  * @property {mDataLoggerStructureInfo[]} dataLoggerStructureList 데이터 로거 구조 목록
@@ -186,7 +184,7 @@
 
 /**
  * @typedef {Object} mControlInfo 명령 정보
- * @property {mTempControlInfo[]} tempControl 임시 명령 정보
+ * @property {mTempControlInfo[]} tempControlList 임시 명령 정보
  */
 
 /**
