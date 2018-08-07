@@ -19,6 +19,9 @@ require('./dpcProtocol');
 require('./wsOperation');
 require('./wsScheme');
 
+/** Map */
+require('./mapFormat');
+
 module.exports = {
   dcmConfigModel,
   dccFlagModel,

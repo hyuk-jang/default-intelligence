@@ -1,4 +1,3 @@
-
 /**
  * @typedef {Object} CONNECTOR '접속반 상세 정보'
  * @property {number} connector_seq 접속반 정보 시퀀스
@@ -15,7 +14,6 @@
  * @property {string} director_tel 연락처
  */
 
-
 /**
  * @typedef {Object} PHOTOVOLTAIC '수중 태양광 모듈 상세 정보'
  * @property {number} photovoltaic_seq 모듈 세부 정보 시퀀스
@@ -29,7 +27,6 @@
  * @property {string} chart_color 대시 보드 차트 색상
  * @property {number} chart_sort_rank 대시 보드 차트 정렬 순위
  */
-
 
 /**
  * @typedef {Object} INVERTER '인버터 장치 상세 정보'
@@ -52,7 +49,6 @@
  * @property {number} compare_inverter_seq 성능 비교를 위한 인버터
  */
 
-
 /**
  * @typedef {Object} WEATHER_DEVICE_DATA '기상관측장비로부터 수집한 데이터를 저장'
  * @property {number} weather_device_data_seq 기상관측장비 측정 정보 시퀀스
@@ -68,7 +64,6 @@
  * @property {number} uv 자외선
  * @property {Date} writedate 등록일
  */
-
 
 /**
  * @typedef {Object} KMA_DATA '기상청에서 발표한 일기예보를 저장'
@@ -91,7 +86,6 @@ w
  * @property {Date} updatedate 수정일
  */
 
-
 /**
  * @typedef {Object} DV_DATA_LOGGER_TROUBLE_DATA '장치에서 에러가 검출될 경우 발생 및 해결 정보 저장'
  * @property {number} data_logger_trouble_data_seq 고장 이력 시퀀스
@@ -101,7 +95,6 @@ w
  * @property {Date} occur_date 발생 일자
  * @property {Date} fix_date 해결 일자
  */
-
 
 /**
  * @typedef {Object} PL_SALTERN_BLOCK '염판'
@@ -115,7 +108,6 @@ w
  * @property {number} depth 상대적 고도
  */
 
-
 /**
  * @typedef {Object} PL_BRINE_WAREHOUSE '해주'
  * @property {number} brine_warehouse_seq 해주 시퀀스
@@ -128,7 +120,6 @@ w
  * @property {number} depth 상대적 고도
  */
 
-
 /**
  * @typedef {Object} PL_SEA '바다'
  * @property {number} sea_seq 바다 시퀀스
@@ -136,7 +127,6 @@ w
  * @property {string} target_name 바다 이름
  * @property {number} depth 상대적 고도
  */
-
 
 /**
  * @typedef {Object} PL_RESERVOIR '저수지'
@@ -146,7 +136,6 @@ w
  * @property {number} depth 상대적 고도
  */
 
-
 /**
  * @typedef {Object} PL_WATERWAY '수로'
  * @property {number} waterway_seq 수로 시퀀스
@@ -154,7 +143,6 @@ w
  * @property {string} target_name 수로 이름
  * @property {number} depth 상대적 고도
  */
-
 
 /**
  * @typedef {Object} PL_RELATION_NODE '센서 관계'
@@ -166,7 +154,6 @@ w
  * @property {number} waterway_seq 수로 시퀀스
  */
 
-
 /**
  * @typedef {Object} DV_SENSOR_DATA '수치 데이터를 가지고 있는 센서의 데이터를 기록'
  * @property {number} sensor_data_seq 센서 데이터 시퀀스
@@ -174,7 +161,6 @@ w
  * @property {number} num_data 센서 데이터
  * @property {Date} writedate 입력일
  */
-
 
 /**
  * @typedef {Object} INVERTER_DATA '인버터에서 측정된 데이터'
@@ -192,7 +178,6 @@ w
  * @property {Date} writedate 등록일
  */
 
-
 /**
  * @typedef {Object} CONNECTOR_TROUBLE_DATA '장치에서 에러가 검출될 경우 발생 및 해결 정보 저장'
  * @property {number} connector_trouble_data_seq 접속반 문제 이력 시퀀스
@@ -203,7 +188,6 @@ w
  * @property {Date} occur_date 발생 일자
  * @property {Date} fix_date 해결 일자
  */
-
 
 /**
  * @typedef {Object} INVERTER_TROUBLE_DATA '장치에서 에러가 검출될 경우 발생 및 해결 정보 저장'
@@ -216,7 +200,6 @@ w
  * @property {Date} fix_date 해결 일자
  */
 
-
 /**
  * @typedef {Object} MODULE_DATA '접속반에서 측정된 데이터'
  * @property {number} module_data_seq 접속반 데이터 시퀀스
@@ -225,7 +208,6 @@ w
  * @property {number} vol 10:1 Scale
  * @property {Date} writedate 등록일
  */
-
 
 /**
  * @typedef {Object} PHOTOVOLTAIC_TROUBLE_DATA '장치에서 에러가 검출될 경우 발생 및 해결 정보 저장'
@@ -238,7 +220,6 @@ w
  * @property {Date} fix_date 해결 일자
  */
 
-
 /**
  * @typedef {Object} RELATION_POWER '태양광 계측 시스템 관계 정보'
  * @property {number} main_seq MAIN 시퀀스
@@ -248,7 +229,6 @@ w
  * @property {number} saltern_block_seq 염판 시퀀스
  * @property {number} connector_ch 접속반 연결 채널
  */
-
 
 /**
  * @typedef {Object} MAIN '설치되고 운용중인 UPSAS 목록 정보 '
@@ -265,7 +245,6 @@ w
  * @property {Date} writedate 생성일
  * @property {Date} updatedate 수정일
  */
-
 
 /**
  * @typedef {Object} MEMBER '가입한 회원의 정보'
@@ -284,7 +263,6 @@ w
  * @property {Date} updatedate 수정일
  */
 
-
 /**
  * @typedef {Object} WEATHER_LOCATION '기상청의 날씨 API를 가져올 위치값 테이블'
  * @property {number} weather_location_seq 기상청 정보 위치 시퀀스
@@ -297,7 +275,6 @@ w
  * @property {number} y Y
  */
 
-
 /**
  * @typedef {Object} MAIN_MAP '염전맵이 저장되어 있는 경로'
  * @property {number} main_seq MAIN 시퀀스
@@ -306,7 +283,6 @@ w
  * @property {string} name 파일이름
  * @property {Date} writedate 등록일
  */
-
 
 /**
  * @typedef {Object} CALENDAR '실험 달력'
@@ -317,7 +293,6 @@ w
  * @property {Date} writedate 작성일
  */
 
-
 /**
  * @typedef {Object} DV_NODE_DEF '노드 개요 정보'
  * @property {number} node_def_seq 노드 개요 정보 시퀀스
@@ -327,7 +302,6 @@ w
  * @property {string} target_name 필요시 세부 사용 목적 기술
  * @property {string} description 노드 데이터 단위에 대한 부연 설명이 필요한 경우
  */
-
 
 /**
  * @typedef {Object} DV_DATA_LOGGER '데이타 로거'
@@ -340,7 +314,6 @@ w
  * @property {string} protocol_info 장치 프로토콜 정보
  */
 
-
 /**
  * @typedef {Object} DV_NODE '장치 및 센서 정'
  * @property {number} node_seq 노드 정보 시퀀스
@@ -351,17 +324,15 @@ w
  * @property {string} serial_number 장치 뒷면에 나와있는 S/N
  */
 
-
 /**
  * @typedef {Object} DV_NODE_CLASS '지정된 센서 목록으로 온도 센서(Temperature), 풍향 센서(WindSpeed) 등등을 표기한 '
  * @property {number} node_class_seq 노드 대분류 시퀀스
- * @property {string} target_id 노드를 가르키는 고유 명
- * @property {string} target_name 장치 명(한글)
+ * @property {string} target_id 노드를 가르키는 고유 명(temp, reh, solar, co2, ...)
+ * @property {string} target_name target_id에 대응하는 이름(온도, 습도, 일사량, 이산화탄소, ...)
  * @property {number} is_sensor 센서 여부(0: Device, 1: Sensor)
- * @property {string} data_unit cm, kWh, m/s, m 등등
+ * @property {string} data_unit 데이터 단위(℃, %, W/m², ppl, ...)
  * @property {string} description 부연 설명이 필요한 경우
  */
-
 
 /**
  * @typedef {Object} TEMP_WATER_LEVEL '임시 수위 테이블'
@@ -371,14 +342,12 @@ w
  * @property {Date} applydate 적용시간
  */
 
-
 /**
  * @typedef {Object} DV_DATA_LOGGER_DEF '데이터 로거 개요'
  * @property {number} data_logger_def_seq 데이터 로거 개요 시퀀스
  * @property {string} target_prefix 데이터 로거 접두사(D_WD, D_P, ...)
  * @property {string} target_alias 데이터 로거를 부를 일반 명칭
  */
-
 
 /**
  * @typedef {Object} DV_DEVICE_DATA '동작 상태를 가지고 있는 장치의 데이터를 기'

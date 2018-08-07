@@ -137,8 +137,8 @@
  * @property {string} target_id Data Logger 고유 코드(protocol_info 에 보통 국번으로 들어감)
  * @property {string} target_alias Data Logger 이름
  * @property {string} target_code Data Logger Numbering 번호 (001, 002, ...)
- * @property {connect_info} connect_info
- * @property {protocol_info} protocol_info
+ * @property {connect_info} connect_info Device Client Controller 라이브러리 생성자에게 넘겨줄 생성 정보
+ * @property {protocol_info} protocol_info Device Protocol Converter 라이브러리 생성자에게 넘겨줄 생성 정보
  */
 
 /**
@@ -174,21 +174,21 @@
  * @property {string} target_id device ID (dialing, id, ...)
  * @property {string} target_category inverter, connector, weather
  * @property {string=} target_name IVT_001, IVT_002, 인버터 1, alias
- * @property {logOption=} logOption 일어나는 이벤트에 대해 FileSystem 처리할 항목
- * @property {controlInfo} controlInfo DCC를 제어하는데 있어 운영상 필요한 boolean 값 모음
- * @property {connect_info} connect_info 장치와의 접속 정보
- * @property {protocol_info} protocol_info 프로토콜 생성자에 넘겨줄 설정 데이터
+ * @property {logOption=} logOption Device Client Controller 객체에서 일어나는 이벤트에 대해 FileSystem 처리할 항목
+ * @property {controlInfo} controlInfo Device Client Controller 객체를 제어하는데 있어 운영상 필요한 boolean 값 모음
+ * @property {connect_info} connect_info Device Client Controller 라이브러리 생성자에게 넘겨줄 생성 정보
+ * @property {protocol_info} protocol_info Device Protocol Converter 라이브러리 생성자에게 넘겨줄 생성 정보
  */
 
 /**
- * @typedef {Object} controlInfo DCC를 제어하는데 있어 운영상 필요한 boolean 값 모음
+ * @typedef {Object} controlInfo Device Client Controller 객체를 제어하는데 있어 운영상 필요한 boolean 값 모음
  * @prop {boolean} hasOneAndOne 계속하여 연결을 수립할지 여부
  * @prop {boolean} hasErrorHandling 에러가 발생하였을 경우 다음 명령 진행을 멈출지 여부
  * @prop {boolean} hasReconnect 장치의 연결이 끊겼을 경우 자동으로 재접속을 수행할지 여부
  */
 
 /**
- * @typedef {Object} logOption 일어나는 이벤트에 대해 FileSystem 처리할 항목
+ * @typedef {Object} logOption Device Client Controller 객체에서 일어나는 이벤트에 대해 FileSystem 처리할 항목
  * @property {boolean} hasDcEvent Connect, Disconnect
  * @property {boolean} hasDcError Timeout, Incorrect, Unhandling, ...
  * @property {boolean} hasDcMessage ExecutionTerminate, OneAndOne, Delete Success
@@ -198,7 +198,7 @@
  */
 
 /**
- * @typedef {Object} connect_info 장치와의 접속 정보
+ * @typedef {Object} connect_info Device Client Controller 라이브러리 생성자에게 넘겨줄 생성 정보
  * @property {string} type 'socket', 'serial', 'zigbee', ...
  * @property {string=} subType 'parser', 'xbee', ....
  * @property {number=} baudRate
@@ -208,16 +208,16 @@
  */
 
 /**
- * @typedef {Object} protocol_info 프로토콜 생성자에 넘겨줄 설정 데이터
- * @property {string} mainCategory
- * @property {string} subCategory
- * @property {string|Buffer} deviceId
- * @property {protocolOptionInfo=} protocolOptionInfo
+ * @typedef {Object} protocol_info Device Protocol Converter 라이브러리 생성자에게 넘겨줄 생성 정보
+ * @property {string} mainCategory 장치 종류.
+ * @property {string} subCategory 장치 내 세부 프로토콜
+ * @property {string|Buffer} deviceId 장치 일련번호(S/N)
+ * @property {protocolOptionInfo=} protocolOptionInfo 프로토콜 변환 과정에서 생기는 이벤트에 대해서 처리할 옵션 정보
  * @property {Object=} option
  */
 
 /**
- * @typedef {Object} protocolOptionInfo
+ * @typedef {Object} protocolOptionInfo 프로토콜 변환 과정에서 생기는 이벤트에 대해서 처리할 옵션 정보
  * @property {boolean} hasTrackingData  전송 데이터가 같으나 파싱이 실패할 경우 데이터 누적을 할지 여부 (Default: false)
  */
 
