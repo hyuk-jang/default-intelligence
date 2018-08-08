@@ -109,15 +109,20 @@
  * @property {string} node_real_id DB상에서 고유한 Node ID
  * @property {string} node_id Main 당 일반적으로 부를 Node ID
  * @property {string} node_name Main 당 일반적으로 부를 Node Name
- * @property {string} target_code Node Numbering 번호 (001, 002, ...)
- * @property {number} data_logger_index Data Logger에서 수집한 데이터 군 중에서 해당 센서 데이터가 위치하는 인덱스
- * @property {string} nd_target_id Node 실제 데이터 Key로 DeviceProtocolConverter Data Key에 사용
- * @property {string} nd_target_name Node 장치 실체적 이름
- * @property {string} nc_target_id Node Unique Key 로 사용되는 ID
- * @property {string} nc_data_unit 표기 단위(℃, %, m/s, ppm, ...)
- * @property {number} nc_is_sensor 센서 여부 (데이터가 수치로 표기되면 센서, 아니면 장치), DB에 센서라면 sensor_data에 저장, 장치라면 device_data에 저장
  * @property {string} dl_real_id DB상에서 고유한 Logger ID
  * @property {string} dl_id Main당 일반적으로 부를 Logger ID
+ * @property {string} dl_name 데이터 로거 명
+ * @property {string} data_unit 표기 단위(℃, %, m/s, ppm, ...)
+ * @property {number} is_sensor 센서 여부 (데이터가 수치로 표기되면 센서, 아니면 장치), DB에 센서라면 sensor_data에 저장, 장치라면 device_data에 저장
+ * @property {number} data_logger_index Data Logger에서 수집한 데이터 군 중에서 해당 센서 데이터가 위치하는 인덱스
+ * @property {string} n_target_code Node Numbering 번호 (001, 002, ...)
+ * @property {string} nd_target_id Node 실제 데이터 Key로 DeviceProtocolConverter Data Key에 사용
+ * @property {string} nd_target_name Node 장치 실체적 이름
+ * @property {string} nd_target_prefix Node 접두사
+ * @property {string} nd_description 노드 개요 설명
+ * @property {string} nc_target_id Node Unique Key 로 사용되는 ID
+ * @property {string} nc_target_name 대분류 장치 명
+ * @property {string} nc_description 대분류 설명
  * @property {number} node_def_seq Node Definition Table Sequence
  * @property {number} node_class_seq Node Class Sequence
  * @property {number} main_seq Main Sequence
@@ -134,9 +139,11 @@
  * @property {number} data_logger_def_seq Data Logger Definition Sequence
  * @property {string} dl_real_id DB상에서 고유한 Logger ID
  * @property {string} dl_id Main당 일반적으로 부를 Logger ID
- * @property {string} target_id Data Logger 고유 코드(protocol_info 에 보통 국번으로 들어감)
- * @property {string} target_alias Data Logger 이름
- * @property {string} target_code Data Logger Numbering 번호 (001, 002, ...)
+ * @property {string} dl_name 데이터로거 명
+ * @property {string} serial_number Data Logger 고유 코드(protocol_info 에 보통 국번으로 들어감)
+ * @property {string} dl_target_code Data Logger Numbering 번호 (001, 002, ...)
+ * @property {string} dld_target_name Data Logger 이름
+ * @property {string} dld_target_prefix Data Logger 접두사
  * @property {connect_info} connect_info Device Client Controller 라이브러리 생성자에게 넘겨줄 생성 정보
  * @property {protocol_info} protocol_info Device Protocol Converter 라이브러리 생성자에게 넘겨줄 생성 정보
  */
