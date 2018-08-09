@@ -1,6 +1,3 @@
-
-
-
 /**
  * @typedef {Object} generationCmdFormat
  * @property {number} api_mode: 1,              // [1, 2]; 1 is default, 2 is with escaping (set ATAP=2)
@@ -20,7 +17,7 @@
 /**
  * @typedef {Object} xbeeApi_0x10 0x10(d 16): ZigBee Transmit Request (ZNet, ZigBee)
  * @property {number} type // xbee_api.constants.FRAME_TYPE.ZIGBEE_TRANSMIT_REQUEST
- * @property {number} id  // optional, nextFrameId() is called per default 
+ * @property {number} id  // optional, nextFrameId() is called per default
  * @property {string} destination64: "0013a200400a0127",
  * @property {string=} destination16: "fffe", // optional, "fffe" is default
  * @property {number=} broadcastRadius: 0x00, // optional, 0x00 is default
@@ -31,25 +28,23 @@
 /**
  * ND Discorvery
  * @typedef {Object} xbeeApi_0x88 (d 136): AT Command Response (802.15.4, ZNet, ZigBee)
- * @property {number} type: 0x88, // xbee_api.constants.FRAME_TYPE.AT_COMMAND_RESPONSE 
+ * @property {number} type: 0x88, // xbee_api.constants.FRAME_TYPE.AT_COMMAND_RESPONSE
  * @property {number} id: 0x01,
  * @property {number} command: "BD",
  * @property {number} commandStatus: 0x00,
  * @property {number} commandData: []
  */
 
-
 /**
  * Transmit Status
  * @typedef {Object} xbeeApi_0x8B 0x8B(d 139): ZigBee Transmit Status (ZNet, ZigBee)
- * @property {number} type xbee_api.constants.FRAME_TYPE.ZIGBEE_TRANSMIT_STATUS 
+ * @property {number} type xbee_api.constants.FRAME_TYPE.ZIGBEE_TRANSMIT_STATUS
  * @property {number} id 0x01,
  * @property {string} remote16: "7d84",
  * @property {number} transmitRetryCount: 0,
  * @property {number} deliveryStatus: 0,
  * @property {number} discoveryStatus: 1
  */
-
 
 /**
  * Receive Packet
@@ -59,8 +54,6 @@
  * @property {number} remote16: "7d84",
  * @property {number} receiveOptions: 0x01,
  * @property {Buffer} data: [ 0x52, 0x78, 0x44, 0x61, 0x74, 0x61 ]
- */ 
-
-
+ */
 
 module;
