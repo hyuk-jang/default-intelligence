@@ -53,7 +53,7 @@
  * @property {string} requestCommandType  'CONTROL', 'CANCEL', --> 명령 추가, 명령 삭제
  * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} requestCommandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
- * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
+ * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값. 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
  * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
  * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
@@ -64,7 +64,7 @@
 /**
  * @typedef {Object} requestSingleOrderInfo 단일 명령을 내릴 경우
  * @property {string} requestCommandType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제, 계측 명령 추가
- * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
+ * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
  * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
  * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
@@ -80,7 +80,7 @@
 
 /**
  * @typedef {Object} requestOrderElementInfo 컨트롤러에 장치로 명령을 내릴때 사용하는 형식
- * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
+ * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
  * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
  * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
@@ -147,6 +147,27 @@
  * @property {connect_info} connect_info Device Client Controller 라이브러리 생성자에게 넘겨줄 생성 정보
  * @property {protocol_info} protocol_info Device Protocol Converter 라이브러리 생성자에게 넘겨줄 생성 정보
  */
+
+/**
+ * @typedef {Object} placeInfo
+ * @property {number} main_seq Main Sequence
+ * @property {number} node_seq node ID (Sequence)
+ * @property {number} place_seq place ID (Sequence)
+ * @property {number} data_logger_seq Data Logger Sequence
+ * @property {string} node_real_id DB상에서 고유한 Node ID
+ * @property {string} node_id Main 당 일반적으로 부를 Node ID
+ * @property {string} node_name Main 당 일반적으로 부를 Node Name
+ * @property {string} dl_real_id DB상에서 고유한 Logger ID
+ * @property {string} dl_id Main당 일반적으로 부를 Logger ID
+ * @property {string} dl_name 데이터로거 명
+ * @property {string} place_id 장소 id
+ * @property {string} place_name 장소 명
+ * @property {string} pd_target_name 장소 개요 명
+ * @property {string} nc_target_name 대분류 장치 명
+ * @property {string} nd_target_name Node 장치 실체적 이름
+ * @property {number} is_sensor 센서 여부 (데이터가 수치로 표기되면 센서, 아니면 장치), DB에 센서라면 sensor_data에 저장, 장치라면 device_data에 저장
+ * @property {string} serial_number Data Logger 고유 코드(protocol_info 에 보통 국번으로 들어감)
+ */ 
 
 /**
  * @typedef {Object} defaultManagerConfig

@@ -13,7 +13,7 @@
 /**
  * @desc Socket Server (Web Server)
  * @typedef {Object} transCommandToClient 웹서버 html에서 사용자의 요청에 따라 Socket Client로 명령을 보내기 위한 형식
- * @property {string} commandType 명령 종류 (SINGLE, AUTOMATIC, SCENARIO) --> executeCommandType 
+ * @property {string} commandType 명령 종류 (SINGLE, AUTOMATIC, SCENARIO) --> executeCommandType
  * @property {Object} data 각 메소드에서 사용될 데이터 포맷. commandType 따라 형태라 상이함
  * @example cmdType
  * SINGLE: 장치 단일 제어. executeSingleControl 메소드 사용
@@ -24,7 +24,6 @@
  * AUTOMATIC: savedCommandId, requestCommandType 2개 arg 사용
  * SCENARIO: scenarioId, requestCommandType 2개 arg 사용
  */
-
 
 // 각 노드의 갱신 데이터의 차를 비교하여 동일 데이터라면 전송 X
 /**
@@ -54,8 +53,7 @@
  * @property {string} grade 회원 등급
  * @property {string} address 주소
  * @property {string} tel 전화번호
- */ 
-
+ */
 
 /**
  * @desc Socket Server (Web Server)
@@ -73,6 +71,7 @@
  * @typedef {Object} msDataInfo Main Storage 에서 쓰일 거점 Data 정보
  * @property {dataLoggerInfo[]} dataLoggerList dataLoggerInfo List
  * @property {nodeInfo[]} nodeList nodeInfo List
+ * @property {placeInfo[]} placeList nodeInfo List
  * @property {simpleOrderInfo[]} simpleOrderList 간단한 명령 정보
  * @property {Buffer} statusBoard 현황판 발전 데이터
  * 이하 필요 시 추가
