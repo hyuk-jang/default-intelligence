@@ -592,4 +592,33 @@
  * @property {number} ch_number
  */
 
+/**
+ * @typedef {Object} V_MEMBER
+ * @property {number} member_seq 회원정보 시퀀스
+ * @property {number} main_seq MAIN 시퀀스
+ * @property {string} user_id 아이디' COLLATE 'utf8_general_ci
+ * @property {string} pw_salt 암호화소금' COLLATE 'utf8_general_ci
+ * @property {string} pw_hash 암호화비밀번호' COLLATE 'utf8_general_ci
+ * @property {string} name 이름' COLLATE 'utf8_general_ci
+ * @property {string} nick_name 별칭' COLLATE 'utf8_general_ci
+ * @property {string} grade 회원 등급' COLLATE 'utf8_general_ci
+ * @property {string} address 주소' COLLATE 'utf8_general_ci
+ * @property {string} tel 전화번호' COLLATE 'utf8_general_ci
+ * @property {number} is_deleted 삭제여부
+ * @property {Date} writedate 생성일
+ * @property {Date} updatedate 수정일
+ * @property {number} weather_location_seq 기상청 정보 위치 시퀀스
+ * @property {string} main_uuid uuid' COLLATE 'utf8_general_ci
+ * @property {string} main_name UPSAS 이름' COLLATE 'utf8_general_ci
+ * @property {string} main_address 주소' COLLATE 'utf8_general_ci
+ * @property {number} main_is_deleted 삭제여부
+ * @property {string} province 도' COLLATE 'utf8_general_ci
+ * @property {string} city 시' COLLATE 'utf8_general_ci
+ * @property {string} town 읍' COLLATE 'utf8_general_ci
+ * @property {number} latitude 위도
+ * @property {number} longitude 경도
+ * @property {number} x X
+ * @property {number} y Y
+ */
+
 module;
