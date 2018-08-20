@@ -167,12 +167,6 @@
  * @property {string} nd_target_name Node 장치 실체적 이름
  * @property {number} is_sensor 센서 여부 (데이터가 수치로 표기되면 센서, 아니면 장치), DB에 센서라면 sensor_data에 저장, 장치라면 device_data에 저장
  * @property {string} serial_number Data Logger 고유 코드(protocol_info 에 보통 국번으로 들어감)
- */ 
-
-/**
- * @typedef {Object} defaultManagerConfig
- * @property {dbInfo} dbInfo
- * @property {Array.<defaultControlConfig>} deviceControllerList
  */
 
 /**
@@ -180,6 +174,13 @@
  * @property {number} main_seq 가져올 Main ID
  * @property {number} searchInterval 계측 주기 (1, 60, 600, 3600, ...)
  * @property {dbInfo} dbInfo DB 설정 정보
+ */
+
+/**
+ * @typedef {Object} defaultManagerConfig
+ * @property {dbInfo} dbInfo
+ * @property {string} uuid Main ID
+ * @property {Array.<defaultControlConfig>} deviceControllerList
  */
 
 /**
