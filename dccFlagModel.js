@@ -6,13 +6,13 @@ exports.MODBUS = {
     /**
      * @example
      * index [0]: address {number}: The Data Address of the first register.
-     * index [1]: length {number}: The total number of registers requested.
+     * index [1]: dataLength {number}: The total number of registers requested.
      */
     params: {
       /** address {number}: The Data Address of the first register. */
       address: 0,
-      /** length {number}: The total number of registers requested.  */
-      length: 0
+      /** dataLength {number}: The total number of registers requested.  */
+      dataLength: 0
     }
   },
   /** FC 2 */
@@ -22,13 +22,13 @@ exports.MODBUS = {
     /**
      * @example
      * index [0]: address {number}: The Data Address of the first register.
-     * index [1]: length {number}: The total number of registers requested.
+     * index [1]: dataLength {number}: The total number of registers requested.
      */
     params: {
       /** address {number}: The Data Address of the first register. */
       address: 0,
-      /** length {number}: The total number of registers requested.  */
-      length: 0
+      /** dataLength {number}: The total number of registers requested.  */
+      dataLength: 0
     }
   },
   /** FC 3 */
@@ -38,13 +38,13 @@ exports.MODBUS = {
     /**
      * @example
      * index [0]: address {number}: The Data Address of the first register.
-     * index [1]: length {number}: The total number of registers requested.
+     * index [1]: dataLength {number}: The total number of registers requested.
      */
     params: {
       /** address {number}: The Data Address of the first register. */
       address: 0,
-      /** length {number}: The total number of registers requested.  */
-      length: 0
+      /** dataLength {number}: The total number of registers requested.  */
+      dataLength: 0
     }
   },
   /** FC 4 */
@@ -54,8 +54,8 @@ exports.MODBUS = {
     params: {
       /** address {number}: The Data Address of the first register. */
       address: 0,
-      /** length {number}: The total number of registers requested.  */
-      length: 0
+      /** dataLength {number}: The total number of registers requested.  */
+      dataLength: 0
     }
   },
   /** FC 5 */
