@@ -50,7 +50,7 @@
  * @typedef {Object} decodingProtocolInfo 생성시킬 명령을 호출하는 형식
  * @property {string|Buffer} dialing 생성 시킬 명령 고유 키(각 프로토콜 컨버터마다 존재. 해당 API 참조)
  * @property {string=} address 명령 시작 번지
- * @property {number=} length Body Length
+ * @property {number=} bodyLength Body Length
  * @property {Array.<decodingInfo>} decodingDataList 상세 프로토콜 정보
  */
 
