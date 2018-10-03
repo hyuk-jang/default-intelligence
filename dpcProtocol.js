@@ -1,4 +1,11 @@
 /**
+ * @typedef {Object} generationInfo
+ * @property {string} key 명령 Model Key (일반적으로 Node Definition: 2 Level Key)
+ * @property {number=} value FALSE: 0, TRUE: 1, MEASURE: 2(default), SET: 3, dcmConfig.requestDeviceControlType 값 참조
+ * @property {*=} setValue value 값이 SET일 경우 어떤 값을 Set 할지 여부. 각 Protocol에 따라 달라짐
+ */
+
+/**
  * @typedef {Object} generationCmdFormat
  * @property {number} api_mode: 1,              // [1, 2]; 1 is default, 2 is with escaping (set ATAP=2)
  * @property {number} module: "Any",            // ["802.15.4", "ZNet", "ZigBee", "Any"]; This does nothing, yet!
