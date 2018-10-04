@@ -1,4 +1,44 @@
 /**
+ * @typedef {Object} modbusReadFormat FC1 ~ FC4
+ * @property {number} unitId The slave unit address.
+ * @property {number} address 가져올 시작 주소
+ * @property {number} dataLength 가져올 데이터 개수
+ * @property {number} fnCode FunctionCode(1~4) default 4 (ReadInputRegister)
+ */
+
+/**
+ * @typedef {Object} modbusFC5 Force Single Coil
+ * @property {number} unitId The slave unit address.
+ * @property {number} address 가져올 시작 주소
+ * @property {boolean} state The coil state
+ * @property {number} fnCode FunctionCode: 5
+ */
+
+/**
+ * @typedef {Object} modbusFC15 Force Multiple Coils
+ * @property {number} unitId ModbusRTU 장치 ID
+ * @property {number} address 가져올 시작 주소
+ * @property {boolean[]} stateList The array of states to send to unit.
+ * @property {number} fnCode FunctionCode: 15
+ */
+
+/**
+ * @typedef {Object} modbusFC6 write Single Register
+ * @property {number} unitId ModbusRTU 장치 ID
+ * @property {number} address 가져올 시작 주소
+ * @property {number} value The value to sent to unit.
+ * @property {number} fnCode FunctionCode: 6
+ */
+
+/**
+ * @typedef {Object} writeFC16  write Multiple Registers
+ * @property {number} unitId ModbusRTU 장치 ID
+ * @property {number} address 가져올 시작 주소
+ * @property {number[]} valueList The array of values to sent to unit.
+ * @property {number} fnCode FunctionCode: 16
+ */
+
+/**
  * @typedef {Object} generationInfo
  * @property {string} key 명령 Model Key (일반적으로 Node Definition: 2 Level Key)
  * @property {number=} value FALSE: 0, TRUE: 1, MEASURE: 2(default), SET: 3, dcmConfig.requestDeviceControlType 값 참조
