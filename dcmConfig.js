@@ -91,6 +91,7 @@
  * @property {dbInfo} dbInfo
  * @property {string} uuid 데이터 수집 관리자의 Main UUID, Web Server Socket Server로 접속할 때 식별 및 임시 인증으로 사용
  * @property {number} inquiryIntervalSecond 정기 장치 상태 조회 시간 (sec)
+ * @property {boolean=} hasPassiveClient 수동 클라이언트 여부. 기본 값 false
  * @property {dataLoggerConfig[]} dataLoggerList
  * @property {constructorSocketWithParser} mainSocketInfo Main Socket Server 에 접속하고 명령을 주고 받기 위한 Client 생성 정보
  * @property {constructorSerial=} powerStatusBoardInfo 현황판
@@ -203,7 +204,7 @@
  * @typedef {Object} deviceInfo deviceInfo 생성 자료 구조
  * @property {string} target_id device ID (dialing, id, ...)
  * @property {string} target_category inverter, connector, weather
- * @property {string=} target_name IVT_001, IVT_002, 인버터 1, alias
+ * @property {string=} target_name DLC or PC Name, IVT_001, IVT_002, 인버터 1, alias
  * @property {logOption=} logOption Device Client Controller 객체에서 일어나는 이벤트에 대해 FileSystem 처리할 항목
  * @property {controlInfo} controlInfo Device Client Controller 객체를 제어하는데 있어 운영상 필요한 boolean 값 모음
  * @property {connect_info} connect_info Device Client Controller 라이브러리 생성자에게 넘겨줄 생성 정보
@@ -229,6 +230,7 @@
 
 /**
  * @typedef {Object} connect_info Device Client Controller 라이브러리 생성자에게 넘겨줄 생성 정보
+ * @property {boolean=} hasPassive 수동 Client 여부. 기본 값 false
  * @property {string} type 'socket', 'serial', 'zigbee', ...
  * @property {string=} subType 'parser', 'xbee', ....
  * @property {number=} baudRate
