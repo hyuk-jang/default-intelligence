@@ -83,6 +83,7 @@
  * @typedef {Object} mDataLoggerDeviceInfo 데이터 로거 상세 전보
  * @property {string} serial_number 장치 SN (고유 식별 번호)
  * @property {string} target_code 장치 넘버링(001, 002, 003, ...)
+ * @property {string} target_name 데이터 로거 상세 별칭
  * @property {string} dccId dccConstructorInfo dccId
  * @property {string} dpcId dpcConstructorInfo dpcId
  * @property {string[]} nodeList 데이터 로거가 포함하는 nodeModelInfo.nodeId(def_prefix + '_' + target_code) 목록
@@ -149,7 +150,10 @@
  * @desc DV_PLACE 참조
  * @desc 향후 place_info는 LONGTEXT 형식으로 DB에 삽입
  * @typedef {Object} mPlaceModelInfo 장소 개요 정보
- * @property {string} target_code 장소 넘버링 (001, 002, ...)
+ * @property {string=} target_code 장소 넘버링 (001, 002, ...)
+ * @property {string=} target_name 장소 상세 명
+ * @property {string=} chart_color 차트로 그릴 경우 색상
+ * @property {number=} chart_sort_rank 차트 그려질 순위
  * @property {number=} depth 장소 위치 가중치(가중치가 높을 수록 높은 고도)
  * @property {mPlaceInfo=} place_info 장소 상세 정보. 프로젝트 별 해당 장소에 특정 정보를 담고 싶다면 JSON 형식으로 입력
  * @property {string[]} nodeList 데이터 로거가 포함하는 nodeModelInfo.nodeId(def_prefix + '_' + target_code) 목록
