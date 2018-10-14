@@ -49,7 +49,7 @@
 
 /**
  * @typedef {Object} executeOrderInfo 복합 명령을 내릴 경우
- * @property {string} integratedUuid 통합 명령 UUID로 combinedOrderWrapInfo uuid 사용.
+ * @property {string} integratedUUID 통합 명령 UUID로 combinedOrderWrapInfo uuid 사용.
  * @property {string} requestCommandType  'CONTROL', 'CANCEL', --> 명령 추가, 명령 삭제
  * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} requestCommandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)

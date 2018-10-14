@@ -64,6 +64,7 @@
  * @property {string} name UPSAS 이름
  * @property {string} address 주소
  * @property {string} ip ip
+ * @property {string} map map File Name
  */
 
 /**
