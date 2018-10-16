@@ -89,10 +89,9 @@
 /**
  * @typedef {Object} integratedDataLoggerConfig dataLogger 들을 총 관리하는 객체 설정 변수
  * @property {dbInfo} dbInfo
- * @property {string} uuid 데이터 수집 관리자의 Main UUID, Web Server Socket Server로 접속할 때 식별 및 임시 인증으로 사용
+ * @property {string} uuid 데이터 수집 관리자의 Main UUID, Web Server Socket Server로 접속할 때 식별 인증으로 사용
  * @property {number} inquiryIntervalSecond 정기 장치 상태 조회 시간 (sec)
  * @property {number} inquiryWaitingSecond 정기 장치 상태 응답을 기다리는 시간(sec)
- * @property {boolean=} hasPassiveClient 수동 클라이언트 여부. 기본 값 false
  * @property {dataLoggerConfig[]} dataLoggerList
  * @property {constructorSocketWithParser} mainSocketInfo Main Socket Server 에 접속하고 명령을 주고 받기 위한 Client 생성 정보
  * @property {constructorSerial=} powerStatusBoardInfo 현황판
@@ -183,12 +182,13 @@
  * @typedef {Object} defaultManagerConfig
  * @property {dbInfo} dbInfo
  * @property {string} uuid Main ID
- * @property {Array.<defaultControlConfig>} deviceControllerList
+ * @property {number} inquiryIntervalSecond 정기 장치 상태 조회 시간 (sec)
+ * @property {number} inquiryWaitingSecond 정기 장치 상태 응답을 기다리는 시간(sec)
+ * @property {defaultControlConfig[]} deviceControllerList
  */
 
 /**
  * @typedef {Object} defaultControlConfig
- * @property {boolean} hasDev
  * @property {deviceInfo} deviceInfo
  */
 
