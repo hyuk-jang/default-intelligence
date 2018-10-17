@@ -18,29 +18,56 @@
 /**
  * @typedef {Object} mFrame
  * @property {{width: number, height: number}} mapSize
- * @property {Array.<mSvgModelResource>} svgModelResourceList
+ * @property {mSvgModelResource[]} svgModelResourceList
  */
 
 /**
  * @typedef {Object} mSvgModelResource
  * @property {string} id
- * @property {string} type 'rect', 'line', 'circle', 'rhombus'
+ * @property {string} type 'rect', 'line', 'circle', 'polygon'
  * @property {mElementDrawInfo} elementDrawInfo
  * @example
- * type: rect --> width, height, radius, color
+ * type: rect --> width, height, color
  * type: circle --> radius, color
- * type: ellipse --> width, height, color
- * type: rhombus --> width, height, radius, rotate:45, color
+ * type: polygon --> (x1,y1 x2,y2 x3,y3, x4,y4)
+ * type: line --> (x1,y1 x2,y2)
  */
 
 /**
  * @typedef {Object} mElementDrawInfo
- * @property {number=} width
- * @property {number=} height
- * @property {number=} radius
- * @property {number=} rotate
- * @property {number=} strokeWidth
- * @property {string} color
+ * @property {number=} width 가로
+ * @property {number=} height 세로
+ * @property {number=} radius 반지름
+ * @property {number=} rotate 회전
+ * @property {number=} strokeWidth 선 굵기
+ * @property {string=} image 이미지
+ * @property {string=} color 색깔
+ */
+
+/**
+ * @typedef {Object} mPosition
+ * @property {mSvgPlaceInfo[]} svgPlaceList
+ * @property {mSvgNodeInfo[]} svgNodeList
+ */
+
+/**
+ * @typedef {Object} mSvgPlaceInfo
+ * @property {string} placeClassId
+ * @property {defInfo[]} defList
+ */
+
+/**
+ * @typedef {Object} mSvgNodeInfo
+ * @property {string} nodeClassId
+ * @property {defInfo[]} defList
+ */
+
+/**
+ * @typedef {Object} defInfo
+ * @property {string} id
+ * @property {string=} placeId
+ * @property {string} resourceId
+ * @property {number[]} point
  */
 
 /******************** drawInfo 끝  **********************/
@@ -115,6 +142,8 @@
  * @typedef {Object} mNodeModelInfo 노드 모델 상세 정보
  * @property {string} target_code 노드 넘버링(001, 002, ...)
  * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
+ * @property {number[]=} axisScale Node 좌표 백분율 정보 [x1, y1] or [x1, y1, x2, y2]
+ * @property {number[]=} moveScale Node 별 위치 백분율
  */
 
 /******************** setInfo 끝  **********************/
@@ -126,6 +155,15 @@
  * @property {mPlaceStructureInfo[]} placeRelationList 장소 관계 정보
  * @property {mBrineFlowRelationInfo[]} brineFlowRelationList 염수 이동 관계
  * @property {mBrineFeedRankRelationInfo[]} brineFeedRankRelationList 염수 급수 우선 관계
+ * @property {mBrineFeedRankRelationInfo[]} imgRela 염수 급수 우선 관계
+ * @property {mSvgResourceConnectionInfo[]} svgResourceConnectionList 이미지 관계
+ */
+
+/**
+ * target 과 svgModelResource의 이미지 관계
+ * @typedef {Object} mSvgResourceConnectionInfo
+ * @property {string[]} targetIdList 장소 또는 노드를 가리키는 접두사+number
+ * @property {string[]} resourceIdList svgModelResourceInfo의 resourceId
  */
 
 /**
