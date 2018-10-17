@@ -184,12 +184,7 @@
  * @property {string} uuid Main ID
  * @property {number} inquiryIntervalSecond 정기 장치 상태 조회 시간 (sec)
  * @property {number} inquiryWaitingSecond 정기 장치 상태 응답을 기다리는 시간(sec)
- * @property {defaultControlConfig[]} deviceControllerList
- */
-
-/**
- * @typedef {Object} defaultControlConfig
- * @property {deviceInfo} deviceInfo
+ * @property {deviceInfo[]} deviceConfigList
  */
 
 /**
