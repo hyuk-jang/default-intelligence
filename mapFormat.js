@@ -155,7 +155,7 @@
  * @property {mPlaceStructureInfo[]} placeRelationList 장소 관계 정보
  * @property {mBrineFlowRelationInfo[]} brineFlowRelationList 염수 이동 관계
  * @property {mBrineFeedRankRelationInfo[]} brineFeedRankRelationList 염수 급수 우선 관계
- * @property {mBrineFeedRankRelationInfo[]} imgRela 염수 급수 우선 관계
+ * @property {mBrineDrainRankRelationInfo[]} brineDrainRankRelationList 염수 배수 우선 관계
  * @property {mSvgResourceConnectionInfo[]} svgResourceConnectionList 이미지 관계
  */
 
@@ -217,7 +217,29 @@
 /**
  * @typedef {Object} mBrineFeedRankRelationInfo 급수 우선 순위 정보
  * @property {string} placeId 현재 급수를 진행할려는 장소 ID
- * @property {string[]} placeIdRankList 우선순위에 따른 장소 ID 목록. index가 낮을 수록 우선권을 가짐
+ * @property {mFeedCmdInfo[]} feedCmdList 우선순위에 따른 장소 ID 목록. index가 낮을 수록 우선권을 가짐
+ */
+
+/**
+ * @typedef {Object} mFeedCmdInfo 배수 우선 순위 정보
+ * @property {string} srcPlaceId place Destination
+ * @property {string} cmdId 수행 명령 ID
+ * @property {string} trueList 열려야 하는 장치
+ * @property {string} falseList 닫혀야 하는 장치
+ */
+
+/**
+ * @typedef {Object} mBrineDrainRankRelationInfo 배수 우선 순위 정보
+ * @property {string} placeId 현재 배수를 진행할려는 장소 ID
+ * @property {mDrainCmdInfo[]} drainCmdList 배수 목적지 리스트. index가 낮을 수록 우선권을 가짐
+ */
+
+/**
+ * @typedef {Object} mDrainCmdInfo 배수 우선 순위 정보
+ * @property {string} destPlaceId place Destination
+ * @property {string} cmdId 수행 명령 ID
+ * @property {string} trueList 열려야 하는 장치
+ * @property {string} falseList 닫혀야 하는 장치
  */
 
 /******************** relationInfo 끝  **********************/
