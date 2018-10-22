@@ -18,6 +18,7 @@ require('./dpcProtocol');
 /** Web Server */
 require('./wsOperation');
 require('./wsScheme');
+require('./wsSchemaUPSAS');
 
 /** Map */
 require('./mapFormat');

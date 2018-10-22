@@ -8,7 +8,23 @@
  */
 
 /**
- * @typedef {Object} PW_CONNECTOR_TROUBLE_DATA  접속반 문제 이력
+ * @typedef {Object} CONNECTOR  접속반 정보
+ * @property {number} connector_seq 접속반 정보 시퀀스
+ * @property {string} target_id 접속반 id
+ * @property {string} target_category 접속반 종류
+ * @property {string} target_name 인버터 명
+ * @property {string} connect_type 연결 종류
+ * @property {Buffer} dialing connector 접속 국번(1byte): Modbus RTU 기준
+ * @property {string} code 고유 코드
+ * @property {string} host host
+ * @property {string} port port
+ * @property {number} baud_rate baud_rate
+ * @property {string} director_name 담당자
+ * @property {string} director_tel 연락처
+ */
+
+/**
+ * @typedef {Object} CONNECTOR_TROUBLE_DATA  접속반 문제 이력
  * @property {number} connector_trouble_data_seq 접속반 문제 이력 시퀀스
  * @property {number} connector_seq 접속반 정보 시퀀스
  * @property {number} is_error 고장 여부
@@ -130,27 +146,44 @@
  */
 
 /**
- * @typedef {Object} PW_INVERTER_DATA  인버터 데이터
+ * @typedef {Object} INVERTER  인버터 정보
+ * @property {number} inverter_seq 인버터 정보 시퀀스
+ * @property {string} target_id 인버터 id
+ * @property {string} target_name 인버터 명
+ * @property {string} target_type 0: 단상, 1: 삼상
+ * @property {string} target_category 인버터 회사 프로토콜
+ * @property {string} connect_type 연결 종류
+ * @property {Buffer} dialing inverter 접속 국번(2byte): HexPower 기준
+ * @property {string} host host
+ * @property {string} port port
+ * @property {number} baud_rate baud_rate
+ * @property {string} code 고유 코드
+ * @property {number} amount 단위: Wh (10:1 Scale)
+ * @property {string} director_name 담당자
+ * @property {string} director_tel 연락처
+ * @property {string} chart_color 대시 보드 차트 색상
+ * @property {number} chart_sort_rank 대시 보드 차트 정렬 순위
+ * @property {number} compare_inverter_seq 성능 비교를 위한 인버터
+ */
+
+/**
+ * @typedef {Object} INVERTER_DATA  인버터 데이터
  * @property {number} inverter_data_seq 인버터 데이터 시퀀스
  * @property {number} inverter_seq 인버터 정보 시퀀스
- * @property {number} pv_v PV 전압
- * @property {number} pv_a PV 전류
- * @property {number} pv_kw PV 출력
- * @property {number} grid_rs_v GRID RS선간 전압
- * @property {number} grid_st_v GRID ST 선간 전압
- * @property {number} grid_tr_v GRID TR 선간 전압
- * @property {number} grid_r_a GRID R 상 전류
- * @property {number} grid_s_a GRID S 상 전류
- * @property {number} grid_t_a GRID T 상 전류
- * @property {number} line_f 라인 주파수
- * @property {number} power_f Power Factor
- * @property {number} power_kw 발전 출력
- * @property {number} c_wh Cumulative Power, 단위:Wh
+ * @property {number} in_a 10:1 Scale
+ * @property {number} in_v 10:1 Scale
+ * @property {number} in_w 입력 전력
+ * @property {number} out_a 10:1 Scale
+ * @property {number} out_v 10:1 Scale
+ * @property {number} out_w 출력 전력
+ * @property {number} p_f Power Factor (10:1 Scale)
+ * @property {number} d_wh Daily Power, 단위:Wh (10:1 Scale)
+ * @property {number} c_wh Cumulative Power, 단위:Wh (10:1 Scale)
  * @property {Date} writedate 등록일
  */
 
 /**
- * @typedef {Object} PW_INVERTER_TROUBLE_DATA  인버터 문제 이력
+ * @typedef {Object} INVERTER_TROUBLE_DATA  인버터 문제 이력
  * @property {number} inverter_trouble_data_seq 인버터 문제 이력 시퀀스
  * @property {number} inverter_seq 인버터 정보 시퀀스
  * @property {number} is_error isSystemError
@@ -161,7 +194,7 @@
  */
 
 /**
- * @typedef {Object} WC_KMA_DATA  기상청 일기 예보
+ * @typedef {Object} KMA_DATA  기상청 일기 예보
  * @property {number} kma_data_seq 기상청 일기 예보 시퀀스
  * @property {number} weather_location_seq 기상청 정보 위치 시퀀스
  * @property {number} temp ℃
@@ -179,14 +212,15 @@
  */
 
 /**
- * @typedef {Object} MAIN  지역 정보
+ * @typedef {Object} MAIN  UPSAS 목록 정보
  * @property {number} main_seq MAIN 시퀀스
  * @property {number} weather_location_seq 기상청 정보 위치 시퀀스
  * @property {string} uuid uuid
- * @property {string} name 지역 이름
- * @property {string} map 맵 파일 정보
+ * @property {string} name UPSAS 이름
  * @property {string} address 주소
  * @property {string} ip 아이피
+ * @property {string} push_port 푸시포트
+ * @property {string} cmd_port 명령포트
  * @property {string} gcm_senderid GCM_ID
  * @property {number} is_deleted 삭제여부
  * @property {Date} writedate 생성일
@@ -194,7 +228,7 @@
  */
 
 /**
- * @typedef {Object} MAIN_MAP  지역 맵 상세 정보
+ * @typedef {Object} MAIN_MAP  UPSAS MAP
  * @property {number} main_seq MAIN 시퀀스
  * @property {string} path 경로
  * @property {string} url URL
@@ -220,16 +254,16 @@
  */
 
 /**
- * @typedef {Object} PW_MODULE_DATA  모듈 전력 데이터
+ * @typedef {Object} MODULE_DATA  모듈 전력 데이터
  * @property {number} module_data_seq 접속반 데이터 시퀀스
  * @property {number} photovoltaic_seq 모듈 세부 정보 시퀀스
- * @property {number} amp A
- * @property {number} vol V
+ * @property {number} amp 10:1 Scale
+ * @property {number} vol 10:1 Scale
  * @property {Date} writedate 등록일
  */
 
 /**
- * @typedef {Object} PW_PHOTOVOLTAIC  모듈 정보
+ * @typedef {Object} PHOTOVOLTAIC  모듈 정보
  * @property {number} photovoltaic_seq 모듈 세부 정보 시퀀스
  * @property {string} target_id 모듈 id
  * @property {string} target_name 모듈 명
@@ -243,7 +277,7 @@
  */
 
 /**
- * @typedef {Object} PW_PHOTOVOLTAIC_TROUBLE_DATA  모듈 문제 이력
+ * @typedef {Object} PHOTOVOLTAIC_TROUBLE_DATA  모듈 문제 이력
  * @property {number} photovoltaic_trouble_data_seq 모듈 문제 이력 시퀀스
  * @property {number} photovoltaic_seq 모듈 세부 정보 시퀀스
  * @property {number} is_error 고장 여부
@@ -254,13 +288,21 @@
  */
 
 /**
- * @typedef {Object} PW_RELATION_POWER  태양광 계측 시스템 관계 정보
+ * @typedef {Object} RELATION_POWER  태양광 계측 시스템 관계 정보
  * @property {number} main_seq MAIN 시퀀스
  * @property {number} inverter_seq 인버터 정보 시퀀스
- * @property {number} connector_seq 접속반 정보 시퀀스
  * @property {number} photovoltaic_seq 모듈 세부 정보 시퀀스
+ * @property {number} connector_seq 접속반 정보 시퀀스
  * @property {number} place_seq 장소 정보 시퀀스
  * @property {number} connector_ch 접속반 연결 채널
+ */
+
+/**
+ * @typedef {Object} TEMP_WATER_LEVEL  임시 수위 테이블
+ * @property {number} temp_water_level_seq 임시 수위 테이블 시퀀스
+ * @property {number} inverter_seq 인버터 정보 시퀀스
+ * @property {number} water_level 수위
+ * @property {Date} applydate 적용시간
  */
 
 /**
@@ -281,7 +323,7 @@
  */
 
 /**
- * @typedef {Object} WC_WEATHER_LOCATION  기상청 정보 위치
+ * @typedef {Object} WEATHER_LOCATION  기상청 정보 위치
  * @property {number} weather_location_seq 기상청 정보 위치 시퀀스
  * @property {string} province 도
  * @property {string} city 시
@@ -293,35 +335,19 @@
  */
 
 /**
- * @typedef {Object} PW_INVERTER  인버터 정보
- * @property {number} inverter_seq 인버터 정보 시퀀스
- * @property {string} target_id 인버터 id
- * @property {string} target_name 인버터 명
- * @property {string} target_category 장치 카테고리
- * @property {string} connect_info 접속 정보
- * @property {string} protocol_info 장치 프로토콜 정보
- * @property {string} install_place 설치 장소
- * @property {string} serial_number 고유 코드
- * @property {number} amount 단위: Wh (10:1 Scale)
- * @property {string} director_name 담당자
- * @property {string} director_tel 연락처
- * @property {string} chart_color 대시 보드 차트 색상
- * @property {number} chart_sort_rank 대시 보드 차트 정렬 순위
+ * @typedef {Object} UPSAS_SET_PLACE  UPSAS 설정 장소
+ * @property {number} place_seq 장소 정보 시퀀스
+ * @property {number} set_water_level 설정 수위
+ * @property {number} min_water_level 최저 수위
  */
 
 /**
- * @typedef {Object} PW_CONNECTOR  접속반 정보
- * @property {number} connector_seq 접속반 정보 시퀀스
- * @property {string} target_id 접속반 id
- * @property {string} target_name 접속반 명
- * @property {string} target_category 접속반 종류
- * @property {string} connect_info 장치 접속 정보
- * @property {string} protocol_info 장치 프로토콜 정보
- * @property {string} install_place 설치장소
- * @property {string} serial_number 고유 코드
- * @property {string} model_name 장치 명
- * @property {string} director_name 담당자
- * @property {string} director_tel 연락처
+ * @typedef {Object} UPSAS_PLACE_DATA  UPSAS 장소 데이터
+ * @property {number} upsas_place_data_seq 장소 데이터 시퀀스
+ * @property {number} place_seq 장소 정보 시퀀스
+ * @property {number} water_level 수위
+ * @property {number} salinity 염도
+ * @property {Date} writedate 작성일
  */
 
 /**
@@ -387,29 +413,28 @@
 
 /**
  * @desc VIEW TABLE
- * @typedef {Object} V_DV_NODE_PROFILE 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
+ * @typedef {Object} V_DV_NODE_STATUS 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
  * @property {number} node_seq 노드 정보 시퀀스
- * @property {string} node_real_id
+ * @property {number} node_def_seq 노드 개요 정보 시퀀스
+ * @property {number} node_class_seq 노드 대분류 시퀀스
+ * @property {number} data_logger_seq 데이타 로거 시퀀스
+ * @property {number} main_seq MAIN 시퀀스
  * @property {string} node_id
+ * @property {string} node_real_id
  * @property {string} node_name
- * @property {string} target_code 노드 ID(001, 002, ...)
+ * @property {string} node_data
+ * @property {Date} writedate
+ * @property {string} data_unit cm, kWh, m/s, m 등등
+ * @property {number} is_sensor 센서 여부(0: Device, 1: Sensor)
  * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
- * @property {string} dl_real_id
- * @property {string} dl_id
- * @property {string} nd_target_prefix 해당 프로젝트에서 쓸 접두사
+ * @property {string} n_target_code 노드 ID(001, 002, ...)
+ * @property {string} nc_target_id 노드를 가르키는 고유 명
+ * @property {string} nc_target_name 장치 명(한글)
+ * @property {string} nc_description 부연 설명이 필요한 경우
  * @property {string} nd_target_id 사용 목적에 따라 달리 부를 센서 명으로 데이터 Key를 결정
  * @property {string} nd_target_name 필요시 세부 사용 목적 기술
- * @property {string} nc_target_id 노드를 가르키는 고유 명
- * @property {number} nc_is_sensor 센서 여부(0: Device, 1: Sensor)
- * @property {string} nc_target_name 장치 명(한글)
- * @property {string} nc_data_unit cm, kWh, m/s, m 등등
- * @property {string} nc_description 부연 설명이 필요한 경우
- * @property {string} m_name 지역 이름
- * @property {number} node_def_seq 노드 개요 정보 시퀀스
- * @property {number} node_class_seq 노드 목록 시퀀스
- * @property {number} main_seq MAIN 시퀀스
- * @property {number} data_logger_seq 데이타 로거 시퀀스
- * @property {number} data_logger_def_seq 데이터 로거 개요 시퀀스
+ * @property {string} nd_target_prefix 해당 프로젝트에서 쓸 접두사
+ * @property {string} nd_description 노드 데이터 단위에 대한 부연 설명이 필요한 경우
  */
 
 /**
@@ -420,16 +445,16 @@
  * @property {number} place_class_seq 장소 대분류 시퀀스
  * @property {number} main_seq MAIN 시퀀스
  * @property {string} uuid uuid
- * @property {string} m_name 지역 이름
+ * @property {string} m_name UPSAS 이름
  * @property {string} place_id
  * @property {string} place_real_id
  * @property {string} place_name
  * @property {string} p_target_code 장소 번호
- * @property {string} p_target_name 장소 명
- * @property {number} depth 장소 상대적 위치
+ * @property {string} p_target_name
+ * @property {number} depth 상대 고도 인덱스
  * @property {string} place_info 장소 상세 정보
- * @property {string} chart_color 차트 색상
- * @property {number} chart_sort_rank 차트 정렬 순위
+ * @property {string} chart_color
+ * @property {number} chart_sort_rank
  * @property {string} pd_target_prefix 장소 접두사
  * @property {string} pd_target_id 장소 개요 id
  * @property {string} pd_target_name 이름
@@ -514,104 +539,44 @@
 
 /**
  * @desc VIEW TABLE
- * @typedef {Object} V_MEMBER 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
- * @property {number} member_seq 회원정보 시퀀스
- * @property {number} main_seq MAIN 시퀀스
- * @property {string} user_id 아이디
- * @property {string} pw_salt 암호화소금
- * @property {string} pw_hash 암호화비밀번호
- * @property {string} name 이름
- * @property {string} nick_name 별칭
- * @property {string} grade 회원 등급
- * @property {string} address 주소
- * @property {string} tel 전화번호
- * @property {number} is_deleted 삭제여부
- * @property {Date} writedate 생성일
- * @property {Date} updatedate 수정일
- * @property {number} weather_location_seq 기상청 정보 위치 시퀀스
- * @property {string} main_uuid uuid
- * @property {string} main_name 지역 이름
- * @property {string} main_address 주소
- * @property {number} main_is_deleted 삭제여부
- * @property {string} province 도
- * @property {string} city 시
- * @property {string} town 읍
- * @property {number} latitude 위도
- * @property {number} longitude 경도
- * @property {number} x X
- * @property {number} y Y
- */
-
-/**
- * @desc VIEW TABLE
- * @typedef {Object} V_PW_INVERTER_PROFILE 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
+ * @typedef {Object} V_INVERTER_STATUS 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
  * @property {number} inverter_seq 인버터 정보 시퀀스
  * @property {string} target_id 인버터 id
  * @property {string} target_name 인버터 명
- * @property {string} target_category 장치 카테고리
- * @property {string} connect_info 접속 정보
- * @property {string} protocol_info 장치 프로토콜 정보
- * @property {string} install_place 설치 장소
- * @property {string} serial_number 고유 코드
+ * @property {string} target_type 0: 단상, 1: 삼상
+ * @property {string} target_category 인버터 회사 프로토콜
+ * @property {string} connect_type 연결 종류
+ * @property {Buffer} dialing inverter 접속 국번(2byte): HexPower 기준
+ * @property {string} host host
+ * @property {string} port port
+ * @property {number} baud_rate baud_rate
+ * @property {string} code 고유 코드
  * @property {number} amount 단위: Wh (10:1 Scale)
  * @property {string} director_name 담당자
  * @property {string} director_tel 연락처
  * @property {string} chart_color 대시 보드 차트 색상
  * @property {number} chart_sort_rank 대시 보드 차트 정렬 순위
- * @property {number} photovoltaic_seq 모듈 세부 정보 시퀀스
- * @property {number} connector_seq 접속반 정보 시퀀스
- * @property {number} place_seq 장소 정보 시퀀스
- * @property {number} connector_ch 접속반 연결 채널
- * @property {number} main_seq MAIN 시퀀스
- * @property {number} weather_location_seq 기상청 정보 위치 시퀀스
- * @property {string} uuid uuid
- * @property {string} name 지역 이름
- * @property {string} map 맵 파일 정보
- * @property {string} address 주소
- * @property {number} is_deleted 삭제여부
- * @property {Date} writedate 생성일
- * @property {Date} updatedate 수정일
- */
-
-/**
- * @desc VIEW TABLE
- * @typedef {Object} V_PW_INVERTER_STATUS 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
- * @property {number} place_seq 장소 정보 시퀀스
+ * @property {number} compare_inverter_seq 성능 비교를 위한 인버터
  * @property {number} inverter_data_seq 인버터 데이터 시퀀스
- * @property {number} inverter_seq 인버터 정보 시퀀스
- * @property {number} pv_v
- * @property {number} pv_a
- * @property {number} pv_kw
- * @property {number} grid_rs_v
- * @property {number} grid_st_v
- * @property {number} grid_tr_v
- * @property {number} grid_r_a
- * @property {number} grid_s_a
- * @property {number} grid_t_a
- * @property {number} line_f 라인 주파수
- * @property {number} power_f Power Factor
- * @property {number} power_kw 현재 발전 출력
- * @property {number} power_total_kwh 누적 발전량, 단위:kWh
+ * @property {number} place_seq 장소 정보 시퀀스
+ * @property {number} in_a
+ * @property {number} in_v
+ * @property {number} in_w
+ * @property {number} out_a
+ * @property {number} out_v
+ * @property {number} out_w
+ * @property {number} p_f
+ * @property {number} d_wh
+ * @property {number} c_wh
+ * @property {number} daily_power_wh
  * @property {Date} writedate 등록일
- * @property {number} daily_power_kwh
  * @property {number} pv_amount 단위: kW (10:1 Scale)
- * @property {number} compose_count 직렬구성 개수
  * @property {string} install_place 설치장소
  */
 
 /**
  * @desc VIEW TABLE
- * @typedef {Object} V_PW_MODULE_DATA 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
- * @property {number} photovoltaic_seq 모듈 세부 정보 시퀀스
- * @property {Date} writedate 등록일
- * @property {number} avg_amp
- * @property {number} avg_vol
- * @property {string} hour_time
- */
-
-/**
- * @desc VIEW TABLE
- * @typedef {Object} V_PW_MODULE_STATUS 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
+ * @typedef {Object} V_MODULE_STATUS 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
  * @property {number} photovoltaic_seq 모듈 세부 정보 시퀀스
  * @property {string} target_id 모듈 id
  * @property {string} target_name 모듈 명
@@ -624,14 +589,14 @@
  * @property {number} chart_sort_rank 대시 보드 차트 정렬 순위
  * @property {number} connector_ch 접속반 연결 채널
  * @property {number} place_seq 장소 정보 시퀀스
- * @property {number} amp A
- * @property {number} vol V
+ * @property {number} amp
+ * @property {number} vol
  * @property {Date} writedate 등록일
  */
 
 /**
  * @desc VIEW TABLE
- * @typedef {Object} V_PW_PROFILE 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
+ * @typedef {Object} V_UPSAS_PROFILE 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
  * @property {number} main_seq MAIN 시퀀스
  * @property {number} connector_ch 접속반 연결 채널
  * @property {number} photovoltaic_seq 모듈 세부 정보 시퀀스
@@ -647,17 +612,25 @@
  * @property {number} connector_seq 접속반 정보 시퀀스
  * @property {string} cnt_target_id 접속반 id
  * @property {string} cnt_target_category 접속반 종류
- * @property {string} cnt_target_name 접속반 명
- * @property {string} cnt_connect_info 장치 접속 정보
- * @property {string} cnt_protocol_info 장치 프로토콜 정보
+ * @property {string} cnt_target_name 인버터 명
+ * @property {Buffer} cnt_dialing connector 접속 국번(1byte): Modbus RTU 기준
+ * @property {string} cnt_code 고유 코드
+ * @property {string} cnt_host host
+ * @property {string} cnt_port port
+ * @property {number} cnt_baud_rate baud_rate
  * @property {string} cnt_director_name 담당자
  * @property {string} cnt_director_tel 연락처
  * @property {number} inverter_seq 인버터 정보 시퀀스
  * @property {string} ivt_target_id 인버터 id
- * @property {string} ivt_target_category 장치 카테고리
  * @property {string} ivt_target_name 인버터 명
- * @property {string} ivt_connect_info 접속 정보
- * @property {string} ivt_protocol_info 장치 프로토콜 정보
+ * @property {string} ivt_target_type 0: 단상, 1: 삼상
+ * @property {string} ivt_target_category 인버터 회사 프로토콜
+ * @property {string} ivt_connect_type 연결 종류
+ * @property {Buffer} ivt_dialing inverter 접속 국번(2byte): HexPower 기준
+ * @property {string} ivt_host host
+ * @property {string} ivt_port port
+ * @property {number} ivt_baud_rate baud_rate
+ * @property {string} ivt_code 고유 코드
  * @property {number} ivt_amount 단위: Wh (10:1 Scale)
  * @property {string} ivt_director_name 담당자
  * @property {string} ivt_director_tel 연락처
