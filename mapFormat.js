@@ -17,17 +17,17 @@
 
 /**
  * @typedef {Object} mFrame
- * @property {{width: number, height: number}} mapSize
- * @property {mSvgModelResource[]} svgModelResourceList
+ * @property {{width: number, height: number}} mapSize 전체 svgCanvas의 크기
+ * @property {mSvgModelResource[]} svgModelResourceList svg를 그리기위한 필요 요소 목록
  */
 
 /**
  * @typedef {Object} mSvgModelResource
- * @property {string} id
- * @property {string} type 'rect', 'line', 'circle', 'polygon'
+ * @property {string} id ID
+ * @property {string} type 'rect', 'line', 'circle', 'polygon', 'pattern'
  * @property {mElementDrawInfo} elementDrawInfo
  * @example
- * type: rect --> width, height, color
+ * type: rect, pattern --> width, height, color
  * type: circle --> radius, color
  * type: polygon --> (x1,y1 x2,y2 x3,y3, x4,y4)
  * type: line --> (x1,y1 x2,y2)
@@ -38,36 +38,35 @@
  * @property {number=} width 가로
  * @property {number=} height 세로
  * @property {number=} radius 반지름
- * @property {number=} rotate 회전
- * @property {number=} strokeWidth 선 굵기
- * @property {string=} image 이미지
- * @property {string=} color 색깔
+ * @property {string | string[]} color 단일색 or [기존, 이벤트 효과, 에러]
  */
 
 /**
  * @typedef {Object} mPosition
- * @property {mSvgPlaceInfo[]} svgPlaceList
- * @property {mSvgNodeInfo[]} svgNodeList
+ * @property {mSvgPlaceInfo[]} svgPlaceList 장소 위치 정보와 resource 정보를 포함한 목록
+ * @property {mSvgNodeInfo[]} svgNodeList 노드(or 센서) 위치 정보와 resource 정보를 포함한 목록
  */
 
 /**
- * @typedef {Object} mSvgPlaceInfo
- * @property {string} placeClassId
- * @property {defInfo[]} defList
+ * @typedef {Object} mSvgPlaceInfo 장소 대분류와 위치정보 목록
+ * @property {string} placeClassId 장소 대분류 ID
+ * @property {defInfo[]} defList resource 정보와 위치 정보 
  */
 
 /**
- * @typedef {Object} mSvgNodeInfo
- * @property {string} nodeClassId
- * @property {defInfo[]} defList
+ * @typedef {Object} mSvgNodeInfo 노드(or센서) 대분류와 위치정보 목록
+ * @property {string} nodeClassId 노드(or센서) 대분류 ID
+ * @property {number} is_sensor 0: 장치, 1: 센서, -1: 미분류
+ * @property {defInfo[]} defList resource 정보와 위치 정보 
  */
 
 /**
  * @typedef {Object} defInfo
- * @property {string} id
- * @property {string=} placeId
- * @property {string} resourceId
- * @property {number[]} point
+ * @property {string} id 접두어 + 넘버링
+ * @property {string} name 한글 명칭
+ * @property {string=} placeId 노드(or센서)일 경우 위치한 장소의 ID
+ * @property {string} resourceId 그리기 정보를 찾을 resourceId
+ * @property {number[]} point 위치
  */
 
 /******************** drawInfo 끝  **********************/
@@ -157,6 +156,7 @@
  * @property {mBrineFeedRankRelationInfo[]} brineFeedRankRelationList 염수 급수 우선 관계
  * @property {mBrineDrainRankRelationInfo[]} brineDrainRankRelationList 염수 배수 우선 관계
  * @property {mSvgResourceConnectionInfo[]} svgResourceConnectionList 이미지 관계
+ * @property {string[]} nameExclusionList 이름표시를 제외할 classId 목록
  */
 
 /**
