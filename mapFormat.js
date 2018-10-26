@@ -12,7 +12,7 @@
 /**
  * @typedef {Object} mDrawInfo
  * @property {mFrame} frame
- * @property {mPosition} positionList
+ * @property {mPosition} positionInfo
  */
 
 /**
