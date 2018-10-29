@@ -240,7 +240,7 @@
  * @property {string} mainCategory 장치 종류.
  * @property {string} subCategory 장치 내 세부 프로토콜
  * @property {string} wrapperCategory 명령 요청에 추가적인 frame을 씌울 Wrapping 프로토콜
- * @property {string|Buffer} deviceId 장치 일련번호(S/N)
+ * @property {string|number|Buffer} deviceId 장치 일련번호(S/N)
  * @property {protocolOptionInfo=} protocolOptionInfo 프로토콜 변환 과정에서 생기는 이벤트에 대해서 처리할 옵션 정보
  * @property {Object=} option
  */
