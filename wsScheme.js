@@ -1,4 +1,26 @@
 /**
+ * @typedef {Object} PW_INVERTER_TREND  인버터 데이터
+ * @property {number} inverter_seq 인버터 정보 시퀀스
+ * @property {number} avg_pv_v PV 전압
+ * @property {number} avg_pv_a PV 전류
+ * @property {number} avg_pv_kw PV 출력
+ * @property {number} avg_grid_rs_v GRID RS선간 전압
+ * @property {number} avg_grid_st_v GRID ST 선간 전압
+ * @property {number} avg_grid_tr_v GRID TR 선간 전압
+ * @property {number} avg_grid_r_a GRID R 상 전류
+ * @property {number} avg_grid_s_a GRID S 상 전류
+ * @property {number} avg_grid_t_a GRID T 상 전류
+ * @property {number} avg_line_f 라인 주파수
+ * @property {number} avg_power_f Power Factor
+ * @property {number} avg_power_kw 발전 출력
+ * @property {number} min_c_kwh Cumulative Power, 단위:Wh
+ * @property {number} max_c_kwh Cumulative Power, 단위:Wh
+ * @property {number} interval_power Cumulative Power, 단위:Wh
+ * @property {string} view_date view Date string
+ * @property {string} group_date grouping date string
+ */
+
+/**
  * @typedef {Object} CALENDAR  실험 달력
  * @property {number} calendar_seq 실험 달력 시퀀스
  * @property {number} main_seq MAIN 시퀀스
@@ -145,7 +167,7 @@
  * @property {number} line_f 라인 주파수
  * @property {number} power_f Power Factor
  * @property {number} power_kw 발전 출력
- * @property {number} c_wh Cumulative Power, 단위:Wh
+ * @property {number} power_total_kwh Cumulative Power, 단위:kWh
  * @property {Date} writedate 등록일
  */
 
@@ -635,6 +657,7 @@
  * @property {number} main_seq MAIN 시퀀스
  * @property {number} connector_ch 접속반 연결 채널
  * @property {number} photovoltaic_seq 모듈 세부 정보 시퀀스
+ * @property {string} m_name MAIN name
  * @property {string} pv_target_id 모듈 id
  * @property {string} pv_target_name 모듈 명
  * @property {string} pv_install_place 설치장소

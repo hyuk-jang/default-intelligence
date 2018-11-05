@@ -103,14 +103,33 @@
  * @property {boolean=} hasArea Area로 설정할 여부
  */
 
-
 /**
  * @typedef {Object} calcRowPacketIntervalOption
  * @property {string} calcMaxKey
  * @property {string} calcMinKey
  * @property {string} resultKey
  * @property {string} groupKey
- * @property {{dateKey: string, maxRequiredDateSecondValue: number, minRequiredCountKey: string, minRequiredCountValue: number}} rangeOption
+ * @property {{dateKey: string, maxRequiredDateSecondValue: number=, minRequiredCountKey: string, minRequiredCountValue: number=}} rangeOption
+ */
+
+/**
+ * @desc BiModule.makeDateFormatForReport
+ * @typedef {Object} dateFormatWithSearchRange searchRange와 dateName에 따라서 dateFormat을 정의하여 반환
+ * @property {string} firstGroupByFormat 2중 Query로 데이터를 가지고 올 경우 1번째 Query문의 Grouping Date Format.
+ * @property {string} groupByFormat 최종으로 묶을 데이터 Format
+ * @property {string} selectGroupDate group_date.사용자에게 최종 Grouping 처리한 Date Key를 보여주기 위함
+ * @property {string} selectViewDate view_date. selectGroupDate Format은 너무 길기 때문에 간소화 시킨 Format
+ * @property {number} devideTimeNumber 출력의 평균 값 산출에 사용됨: 1시간에 몇개의 데이터가 포함되는지 여부.
+ * @example
+ * ---> firstGroupByFormat
+ * min --> DATE_FORMAT(${dateName},"%Y-%m-%d %H:%i"),
+ * 이외 --> LEFT(DATE_FORMAT(${dateName},"%Y-%m-%d %H:%i"), 15, 1시간 단위로 요청이 들어올 경우에도 동일
+ * ---> groupByFormat
+ * min10 --> LEFT(DATE_FORMAT(${dateName},"%Y-%m-%d %H:%i"), 15
+ * 이외 --> year: %Y, month: %Y-%m ... 이하 줄임
+ * ---> selectGroupDate
+ * min10 --> CONCAT(LEFT(DATE_FORMAT(${dateName},"%Y-%m-%d %H:%i"), 15), "0")  AS group_date
+ * 이외 --> DATE_FORMAT(${dateName},"${dateFormat}") AS group_date
  */
 
 module;
