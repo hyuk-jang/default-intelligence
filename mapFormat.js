@@ -37,7 +37,8 @@
  * @typedef {Object} mElementDrawInfo
  * @property {number=} width 가로
  * @property {number=} height 세로
- * @property {number=} radius 반지름
+ * @property {number=} radius 반지름, 모서리
+ * @property {number=} opacity 투명도 0: 투명
  * @property {string | string[]} color 단일색 or [기존, 이벤트 효과, 에러]
  */
 
@@ -49,15 +50,15 @@
 
 /**
  * @typedef {Object} mSvgPlaceInfo 장소 대분류와 위치정보 목록
- * @property {string} placeClassId 장소 대분류 ID
- * @property {defInfo[]} defList resource 정보와 위치 정보 
+ * @property {string} placeId 장소 대분류 ID
+ * @property {defInfo[]} defList resource 정보와 위치 정보
  */
 
 /**
  * @typedef {Object} mSvgNodeInfo 노드(or센서) 대분류와 위치정보 목록
- * @property {string} nodeClassId 노드(or센서) 대분류 ID
+ * @property {string} nodeDefId 노드(or센서) 대분류 ID
  * @property {number} is_sensor 0: 장치, 1: 센서, -1: 미분류
- * @property {defInfo[]} defList resource 정보와 위치 정보 
+ * @property {defInfo[]} defList resource 정보와 위치 정보
  */
 
 /**
