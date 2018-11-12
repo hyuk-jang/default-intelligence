@@ -484,6 +484,7 @@
  * @property {string} pd_target_name 이름
  * @property {string} nc_target_name 장치 명(한글)
  * @property {string} nd_target_name 필요시 세부 사용 목적 기술
+ * @property {string} data_unit 데이터 단위
  * @property {number} is_sensor 센서 여부(0: Device, 1: Sensor)
  * @property {string} nd_target_id 사용 목적에 따라 달리 부를 센서 명으로 데이터 Key를 결정
  * @property {string} nc_target_id 노드를 가르키는 고유 명

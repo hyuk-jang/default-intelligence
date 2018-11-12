@@ -1,7 +1,18 @@
 /**
- * @typedef {Object} searchRange searchRange Type
+ * @typedef {Object} searchRangeConfig searchRange를 만들기 위한 설정 정보
  * @property {string} searchType day, month, year, range
  * @property {string} searchInterval min, min10, hour, day, month, year, range
+ * @property {string} searchOption merge, individual
+ * @property {string} strStartDate 시작 일 (YYYY-MM-DD HH:mm:ss) 형식으로 이루어짐
+ * @property {string} strEndDate 종료 일 (YYYY-MM-DD HH:mm:ss) 형식으로 이루어짐
+ */
+
+/**
+ * @typedef {Object} searchRange searchRange Type
+ * @property {string} realSearchType range단위를 환산한 실제 단위 [day, month, year]
+ * @property {string} searchType day, month, year, range
+ * @property {string} searchInterval min, min10, hour, day, month, year, range
+ * @property {string} searchOption merge, individual
  * @property {string=} resultGroupType 최종적으로 데이터를 묶을 데이터 형태 min, min10, hour, day, month, year, range
  * @property {string} strStartDate sql writedate range 사용
  * @property {string} strEndDate sql writedate range 사용
