@@ -491,6 +491,7 @@
  * @property {string} serial_number Data Logger에 접속할 수 있는 ID
  * @property {number} main_seq MAIN 시퀀스
  * @property {number} data_logger_seq 데이타 로거 시퀀스
+ * @property {sensorAvgGroup[]} sensorGroupList Sensor.Util 에서 사용됨. 키 확장을 할 경우.
  */
 
 /**

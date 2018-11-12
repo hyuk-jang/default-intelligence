@@ -1,3 +1,33 @@
+/********** Device Sensor Format Start *********** */
+/**
+ * @typedef {Object} sensorAvgGroup searchRange를 만들기 위한 설정 정보
+ * @property {number} node_seq Device node Seq
+ * @property {string} view_date 차트에 표현할 Date Format
+ * @property {string} group_date 그룹 처리한 Date Format
+ * @property {number} avg_num_data 그룹 평균 결과
+ */
+
+/**
+ * @typedef {Object} sensorReportStorageByPickNdId Sensor Report Storage by Node Definition Id List
+ * @property {string} ndId Device node Seq
+ * @property {string} ndName 차트에 표현할 Date Format
+ * @property {string=} dataUnit 그룹 처리한 Date Format
+ * @property {number[]} mergedAvgList 그룹 평균 결과
+ * @property {number[]} mergedSumList 그룹 합산 결과
+ * @property {V_DV_PLACE_RELATION[]} placeRelationRows 그룹 평균 결과
+ */
+
+/********** Device Sensor Format End *********** */
+
+/**
+ * @typedef {Object} searchRangeConfig searchRange를 만들기 위한 설정 정보
+ * @property {string} searchType day, month, year, range
+ * @property {string} searchInterval min, min10, hour, day, month, year, range
+ * @property {string} searchOption merge, individual
+ * @property {string} strStartDate 시작 일 (YYYY-MM-DD HH:mm:ss) 형식으로 이루어짐
+ * @property {string} strEndDate 종료 일 (YYYY-MM-DD HH:mm:ss) 형식으로 이루어짐
+ */
+
 /**
  * @typedef {Object} searchRangeConfig searchRange를 만들기 위한 설정 정보
  * @property {string} searchType day, month, year, range
