@@ -12,9 +12,17 @@
  * @property {string} ndId Device node Seq
  * @property {string} ndName 차트에 표현할 Date Format
  * @property {string=} dataUnit 그룹 처리한 Date Format
+ * @property {string[]} strGroupDateList 그룹 처리할 String Date List
  * @property {number[]} mergedAvgList 그룹 평균 결과
  * @property {number[]} mergedSumList 그룹 합산 결과
  * @property {V_DV_PLACE_RELATION[]} placeRelationRows 그룹 평균 결과
+ */
+
+/**
+ * @typedef {Object} sensorGroupDateInfo sensor Dom을 표현할 그룹 Date 목록 및 페이지 정보
+ * @property {string[]} strGroupDateList Device node Seq
+ * @property {number=} page 차트에 표현할 Date Format
+ * @property {number=} pageListCount 그룹 처리한 Date Format
  */
 
 /********** Device Sensor Format End *********** */
