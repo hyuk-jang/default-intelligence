@@ -435,6 +435,7 @@
  */
 
 /**
+ * @extends sensorReportStorageList wsOperation.sensorReportStorageByPickNdId
  * @desc VIEW TABLE
  * @typedef {Object} V_DV_PLACE 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
  * @property {number} place_seq 장소 정보 시퀀스
@@ -458,9 +459,11 @@
  * @property {string} pc_target_id 장소 id
  * @property {string} pc_target_name 장소 대분류 명
  * @property {string} pc_description 장소 분류 설명
+ * @property {sensorReportStorageByPickNdId[]} sensorReportStorageList 장소 분류 설명
  */
 
 /**
+ * @extends sensorGroupList wsOperation.sensorAvgGroup
  * @desc VIEW TABLE
  * @typedef {Object} V_DV_PLACE_RELATION 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
  * @property {number} place_relation_seq 센서 관계 시퀀스
