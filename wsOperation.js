@@ -1,21 +1,21 @@
 /********** Device Sensor Format Start *********** */
 /**
- * @typedef {Object} sensorAvgGroup searchRange를 만들기 위한 설정 정보
+ * @typedef {Object} sensorReport searchRange를 만들기 위한 설정 정보
  * @property {number} node_seq Device node Seq
  * @property {string} view_date 차트에 표현할 Date Format
  * @property {string} group_date 그룹 처리한 Date Format
- * @property {number} avg_num_data 그룹 평균 결과
+ * @property {number} avg_data 그룹 평균 결과
+ * @property {number} max_data 그룹 최대 값
  */
 
 /**
- * @typedef {Object} sensorReportStorageByPickNdId Sensor Report Storage by Node Definition Id List
+ * @typedef {Object} nodeDefStorage Sensor Report Storage by Node Definition Id List
  * @property {string} ndId Device node Seq
  * @property {string} ndName 차트에 표현할 Date Format
  * @property {string=} dataUnit 그룹 처리한 Date Format
- * @property {string[]} strGroupDateList 그룹 처리할 String Date List
  * @property {number[]} mergedAvgList 그룹 평균 결과
  * @property {number[]} mergedSumList 그룹 합산 결과
- * @property {V_DV_PLACE_RELATION[]} placeRelationRows 그룹 평균 결과
+ * @property {V_DV_PLACE_RELATION[]} nodePlaceList 그룹 평균 결과
  */
 
 /**
