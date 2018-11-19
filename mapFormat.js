@@ -3,7 +3,7 @@
  * @typedef {Object} mDeviceMap
  * @property {mDrawInfo} drawInfo
  * @property {mSetInfo} setInfo
- * @property {mRealtionInfo} realtionInfo
+ * @property {mRelationInfo} relationInfo
  * @property {mControlInfo} controlInfo
  */
 
@@ -152,13 +152,13 @@
 /******************** relationInfo 시작  **********************/
 
 /**
- * @typedef {Object} mRealtionInfo 관계 정보
+ * @typedef {Object} mRelationInfo 관계 정보
  * @property {mPlaceStructureInfo[]} placeRelationList 장소 관계 정보
  * @property {mBrineFlowRelationInfo[]} brineFlowRelationList 염수 이동 관계
  * @property {mBrineFeedRankRelationInfo[]} brineFeedRankRelationList 염수 급수 우선 관계
  * @property {mBrineDrainRankRelationInfo[]} brineDrainRankRelationList 염수 배수 우선 관계
  * @property {mSvgResourceConnectionInfo[]} svgResourceConnectionList 이미지 관계
- * @property {string[]} nameExclusionList 이름표시를 제외할 classId 목록
+ * @property {string[]} nameExclusionList 이름표시를 제외할 classId 목록 //FIXME:
  */
 
 /**
