@@ -46,6 +46,7 @@
  * @property {number} main_seq MAIN 시퀀스
  * @property {number} data_logger_def_seq 데이터 로거 개요 시퀀스
  * @property {string} serial_number Data Logger에 접속할 수 있는 ID
+ * @property {string=} target_name 데이타 로거 명
  * @property {string} target_code 데이타 로거 식별 번호
  * @property {string} connect_info 장치 접속 정보
  * @property {string} protocol_info 장치 프로토콜 정보

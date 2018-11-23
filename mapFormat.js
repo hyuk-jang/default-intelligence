@@ -86,6 +86,7 @@
 /**
  * @typedef {Object} mDccConstructorInfo 데이터 로거 연결 정보
  * @property {string} dccId ID
+ * @property {string=} dccName DCC 명
  * @property {connect_info} connect_info Device Client Controller 라이브러리 생성자에게 넘겨줄 생성 정보
  * @desc 향후 connect_info LONGTEXT 형식으로 DB에 삽입
  */
@@ -112,7 +113,6 @@
  * @property {string} target_code 장치 넘버링(001, 002, 003, ...)
  * @property {string} target_name 데이터 로거 상세 별칭
  * @property {string} dccId dccConstructorInfo dccId
- * @property {string} dpcId dpcConstructorInfo dpcId
  * @property {string[]} nodeList 데이터 로거가 포함하는 nodeModelInfo.nodeId(def_prefix + '_' + target_code) 목록
  */
 
@@ -133,6 +133,7 @@
  * @property {string} target_prefix 해당 프로젝트에서 쓸 접두사
  * @property {string} target_id 사용 목적에 따라 달리 부를 센서 명으로 데이터 Key를 결정
  * @property {string} target_name 필요시 세부 사용 목적 기술
+ * @property {number} is_avg_center 평균 값(센터) 사용 여부
  * @property {string} description 노드 데이터 단위에 대한 부연 설명이 필요한 경우
  * @property {mNodeModelInfo[]} nodeList 노드 상세 목록
  */
