@@ -90,11 +90,28 @@
  * @typedef {Object} integratedDataLoggerConfig dataLogger 들을 총 관리하는 객체 설정 변수
  * @property {dbInfo} dbInfo
  * @property {string} uuid 데이터 수집 관리자의 Main UUID, Web Server Socket Server로 접속할 때 식별 인증으로 사용
- * @property {number} inquiryIntervalSecond 정기 장치 상태 조회 시간 (sec)
- * @property {number} inquiryWaitingSecond 정기 장치 상태 응답을 기다리는 시간(sec)
+ * @property {inquirySchedulerInfo} inquirySchedulerInfo DBS, DBP에서 정기 계측 조회 옵션을 설정하기 위한 정보
  * @property {dataLoggerConfig[]} dataLoggerList
  * @property {constructorSocketWithParser} mainSocketInfo Main Socket Server 에 접속하고 명령을 주고 받기 위한 Client 생성 정보
  * @property {constructorSerial=} powerStatusBoardInfo 현황판
+ */
+
+/**
+ * @typedef {Object} inquirySchedulerInfo DBS에서 하부 DLC의 상태를 정기 조회할 명령에 대한 정보
+ * @property {string} intervalCronFormat 크론 데이터 형식 (* * * * * *)
+ * @property {number} inquiryWaitingSecond DBP에서 정기 계측 명령 Timeout을 적용할 시간. 무한정 기다릴 수 없는 용도로 사용
+ * @property {number} intervalSaveCnt 정기 계측 횟수 당 저장을 수행할 수
+ * @property {Object} validInfo 현재 시간과의 차를 계산할 정보
+ * @property {string} validInfo.diffType 현재 시간을 기준으로 데이터의 경과된 시간 검증할 데이트 타입
+ * @property {number} validInfo.duration 2분을 벗어나면 데이터 가치가 없음
+ * @example
+ * intervalCronFormat: *(초) *(분) *(시) *(일) *(월) *(주)
+ * Seconds: 0-59
+ * Minutes: 0-59
+ * Hours: 0-23
+ * Day of Month: 1-31
+ * Months: 0-11 (Jan-Dec)
+ * Day of Week: 0-6 (Sun-Sat)
  */
 
 /**
