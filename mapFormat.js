@@ -24,13 +24,14 @@
 /**
  * @typedef {Object} mSvgModelResource
  * @property {string} id ID
- * @property {string} type 'rect', 'line', 'circle', 'polygon', 'pattern'
+ * @property {string} type 'rect', 'line', 'circle', 'polygon', 'pattern', 'image' ...
  * @property {mElementDrawInfo} elementDrawInfo
  * @example
  * type: rect, pattern --> width, height, color
  * type: circle --> radius, color
  * type: polygon --> (x1,y1 x2,y2 x3,y3, x4,y4)
  * type: line --> (x1,y1 x2,y2)
+ * type: image --> width, height, imgUrl
  */
 
 /**
@@ -39,6 +40,7 @@
  * @property {number=} height 세로
  * @property {number=} radius 반지름, 모서리
  * @property {number=} opacity 투명도 0: 투명
+ * @property {string=} imgUrl 이미지 경로
  * @property {string | string[]} color 단일색 or [기존, 이벤트 효과, 에러]
  */
 
