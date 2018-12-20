@@ -88,6 +88,7 @@
 
 /**
  * @typedef {Object} integratedDataLoggerConfig dataLogger 들을 총 관리하는 객체 설정 변수
+ * @property {projectInfo=} projectInfo
  * @property {dbInfo} dbInfo
  * @property {string} uuid 데이터 수집 관리자의 Main UUID, Web Server Socket Server로 접속할 때 식별 인증으로 사용
  * @property {inquirySchedulerInfo} inquirySchedulerInfo DBS, DBP에서 정기 계측 조회 옵션을 설정하기 위한 정보
@@ -95,6 +96,13 @@
  * @property {constructorSocketWithParser} mainSocketInfo Main Socket Server 에 접속하고 명령을 주고 받기 위한 Client 생성 정보
  * @property {constructorSerial=} powerStatusBoardInfo 현황판
  */
+
+/**
+ * @typedef {Object} projectInfo DBS에서 분기 처리할 프로젝트 정보
+ * @property {string=} projectMainId UPSAS, FP, ...
+ * @property {string=} projectSubId Muan, 100kW, ...
+ */
+
 
 /**
  * @typedef {Object} inquirySchedulerInfo DBS에서 하부 DLC의 상태를 정기 조회할 명령에 대한 정보
@@ -170,23 +178,28 @@
 
 /**
  * @typedef {Object} placeInfo
- * @property {number} main_seq Main Sequence
- * @property {number} node_seq node ID (Sequence)
- * @property {number} place_seq place ID (Sequence)
- * @property {number} data_logger_seq Data Logger Sequence
- * @property {string} node_real_id DB상에서 고유한 Node ID
- * @property {string} node_id Main 당 일반적으로 부를 Node ID
- * @property {string} node_name Main 당 일반적으로 부를 Node Name
- * @property {string} dl_real_id DB상에서 고유한 Logger ID
- * @property {string} dl_id Main당 일반적으로 부를 Logger ID
- * @property {string} dl_name 데이터로거 명
- * @property {string} place_id 장소 id
- * @property {string} place_name 장소 명
- * @property {string} pd_target_name 장소 개요 명
- * @property {string} nc_target_name 대분류 장치 명
- * @property {string} nd_target_name Node 장치 실체적 이름
- * @property {number} is_sensor 센서 여부 (데이터가 수치로 표기되면 센서, 아니면 장치), DB에 센서라면 sensor_data에 저장, 장치라면 device_data에 저장
- * @property {string} serial_number Data Logger 고유 코드(protocol_info 에 보통 국번으로 들어감)
+ * @property {number} place_seq 장소 정보 시퀀스
+ * @property {number} place_def_seq 장소 개요 정보 시퀀스
+ * @property {number} place_class_seq 장소 대분류 시퀀스
+ * @property {number} main_seq MAIN 시퀀스
+ * @property {string} uuid uuid
+ * @property {string} m_name 지역 이름
+ * @property {string} place_id
+ * @property {string} place_real_id
+ * @property {string} place_name
+ * @property {string} p_target_code 장소 번호
+ * @property {string} p_target_name 장소 명
+ * @property {number} depth 장소 상대적 위치
+ * @property {string} place_info 장소 상세 정보
+ * @property {string} chart_color 차트 색상
+ * @property {number} chart_sort_rank 차트 정렬 순위
+ * @property {string} pd_target_prefix 장소 접두사
+ * @property {string} pd_target_id 장소 개요 id
+ * @property {string} pd_target_name 이름
+ * @property {string} pc_target_id 장소 id
+ * @property {string} pc_target_name 장소 대분류 명
+ * @property {string} pc_description 장소 분류 설명
+ * @property {nodeInfo[]} nodeList 장소 분류 설명
  */
 
 /**
