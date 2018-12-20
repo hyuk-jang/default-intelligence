@@ -12,13 +12,25 @@
 /**
  * @typedef {Object} mDrawInfo
  * @property {mFrame} frame
- * @property {mPosition} positionInfo
- */
+ * @property {mPosition} positionInfo 
 
 /**
  * @typedef {Object} mFrame
- * @property {{width: number, height: number}} mapSize 전체 svgCanvas의 크기
+ * @property {mMapInfo} mapInfo 전체 svgCanvas의 크기
  * @property {mSvgModelResource[]} svgModelResourceList svg를 그리기위한 필요 요소 목록
+ */
+
+/**
+ * @typedef {Object} mMapInfo
+ * @property {number} width 전체 맵의 가로 길이
+ * @property {number} height 전체 맵의 세로 길이
+ * @property {mBackgroundInfo=} backgroundInfo 배경정보
+ */
+
+/**
+ * @typedef {Object} mBackgroundInfo
+ * @property {string} backgroundData 배경 경로 or base64 데이터
+ * @property {number[]} backgroundPosition 배경의 위치
  */
 
 /**
@@ -27,7 +39,7 @@
  * @property {string} type 'rect', 'line', 'circle', 'polygon', 'pattern', 'image' ...
  * @property {mElementDrawInfo} elementDrawInfo
  * @example
- * type: rect, pattern --> width, height, color
+ * type: rect, pattern --> width, height, color, opacity
  * type: circle --> radius, color
  * type: polygon --> (x1,y1 x2,y2 x3,y3, x4,y4)
  * type: line --> (x1,y1 x2,y2)
