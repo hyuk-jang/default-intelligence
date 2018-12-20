@@ -3,7 +3,7 @@
  * @typedef {Object} mDeviceMap
  * @property {mDrawInfo} drawInfo
  * @property {mSetInfo} setInfo
- * @property {mRealtionInfo} realtionInfo
+ * @property {mRelationInfo} relationInfo
  * @property {mControlInfo} controlInfo
  */
 
@@ -12,25 +12,38 @@
 /**
  * @typedef {Object} mDrawInfo
  * @property {mFrame} frame
- * @property {mPosition} positionInfo
- */
+ * @property {mPosition} positionInfo 
 
 /**
  * @typedef {Object} mFrame
- * @property {{width: number, height: number}} mapSize 전체 svgCanvas의 크기
+ * @property {mMapInfo} mapInfo 전체 svgCanvas의 크기
  * @property {mSvgModelResource[]} svgModelResourceList svg를 그리기위한 필요 요소 목록
+ */
+
+/**
+ * @typedef {Object} mMapInfo
+ * @property {number} width 전체 맵의 가로 길이
+ * @property {number} height 전체 맵의 세로 길이
+ * @property {mBackgroundInfo=} backgroundInfo 배경정보
+ */
+
+/**
+ * @typedef {Object} mBackgroundInfo
+ * @property {string} backgroundData 배경 경로 or base64 데이터
+ * @property {number[]} backgroundPosition 배경의 위치
  */
 
 /**
  * @typedef {Object} mSvgModelResource
  * @property {string} id ID
- * @property {string} type 'rect', 'line', 'circle', 'polygon', 'pattern'
+ * @property {string} type 'rect', 'line', 'circle', 'polygon', 'pattern', 'image' ...
  * @property {mElementDrawInfo} elementDrawInfo
  * @example
- * type: rect, pattern --> width, height, color
+ * type: rect, pattern --> width, height, color, opacity
  * type: circle --> radius, color
  * type: polygon --> (x1,y1 x2,y2 x3,y3, x4,y4)
  * type: line --> (x1,y1 x2,y2)
+ * type: image --> width, height, imgUrl
  */
 
 /**
@@ -39,6 +52,7 @@
  * @property {number=} height 세로
  * @property {number=} radius 반지름, 모서리
  * @property {number=} opacity 투명도 0: 투명
+ * @property {string=} imgUrl 이미지 경로
  * @property {string | string[]} color 단일색 or [기존, 이벤트 효과, 에러]
  */
 
@@ -152,13 +166,13 @@
 /******************** relationInfo 시작  **********************/
 
 /**
- * @typedef {Object} mRealtionInfo 관계 정보
+ * @typedef {Object} mRelationInfo 관계 정보
  * @property {mPlaceStructureInfo[]} placeRelationList 장소 관계 정보
  * @property {mBrineFlowRelationInfo[]} brineFlowRelationList 염수 이동 관계
  * @property {mBrineFeedRankRelationInfo[]} brineFeedRankRelationList 염수 급수 우선 관계
  * @property {mBrineDrainRankRelationInfo[]} brineDrainRankRelationList 염수 배수 우선 관계
  * @property {mSvgResourceConnectionInfo[]} svgResourceConnectionList 이미지 관계
- * @property {string[]} nameExclusionList 이름표시를 제외할 classId 목록
+ * @property {string[]} exclusionTextDefIdList 이름표시를 제외할 classId 목록 //FIXME:
  */
 
 /**
