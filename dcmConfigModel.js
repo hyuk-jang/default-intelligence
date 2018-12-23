@@ -17,6 +17,8 @@ exports.simpleOrderStatus = simpleOrderStatus;
 const nodePickKey = {
   /** Node 데이터 간략화 */
   FOR_DATA: ['node_id', 'node_name', 'data'],
+  /** API Socket Sever 로 보내기 위한 필수 데이터 */
+  FOR_SERVER: ['node_real_id', 'data'],
   /**  DB에 입력하기 위한 Node 정보 */
   FOR_DB: ['node_seq', 'node_id', 'data', 'nc_is_sensor', 'writeDate'],
 };
