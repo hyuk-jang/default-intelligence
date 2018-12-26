@@ -93,6 +93,7 @@
  * @property {MAIN} mainInfo 메인 정보. 입력한 정보를 기반으로 MAIN table 조회 후 main_seq 취득
  * @property {mDccConstructorInfo[]} dccConstructorList DCC 객체 생성 정보 정의 목록
  * @property {mDpcConstructorInfo[]} dpcConstructorList DPC 객체 생성 정보 정의 목록
+ * @property {mRepeatInfo[]} repeatNodeList DPC 객체 생성 정보 정의 목록
  * @property {mDataLoggerStructureInfo[]} dataLoggerStructureList 데이터 로거 구조 목록
  * @property {mNodeStructureInfo[]} nodeStructureList 노드 구조 목록
  */
@@ -113,6 +114,16 @@
  */
 
 /**
+ * @typedef {Object} mRepeatInfo DPC를 생성하기 위한 정보
+ * @property {string} repeatId ID
+ * @property {string} repeatCategory node or prefix
+ * @property {mNodeModelInfo[]|string[]} nodeList
+ * @example
+ * repeatCategory: node -> nodeList 덮어쓰기
+ * repeatCategory: prefix -> nodeList + '_' + target_code 생성 후 덮어쓰기
+ */
+
+/**
  * @desc DV_DATA_LOGGER_DEF 참조
  * @typedef {Object} mDataLoggerStructureInfo 데이터 로거 대분류 구조
  * @property {string} target_prefix 접두어
@@ -127,6 +138,7 @@
  * @property {string} target_code 장치 넘버링(001, 002, 003, ...)
  * @property {string} target_name 데이터 로거 상세 별칭
  * @property {string} dccId dccConstructorInfo dccId
+ * @property {string=} repeatId repeat 저장소에서 가져다 쓸 nodeList. map 재정의시 repeat key 내용으로 nodeList를 덮어씀
  * @property {string[]} nodeList 데이터 로거가 포함하는 nodeModelInfo.nodeId(def_prefix + '_' + target_code) 목록
  */
 
@@ -149,6 +161,7 @@
  * @property {string} target_name 필요시 세부 사용 목적 기술
  * @property {number} is_avg_center 평균 값(센터) 사용 여부
  * @property {string} description 노드 데이터 단위에 대한 부연 설명이 필요한 경우
+ * @property {string=} repeatId repeat 저장소에서 가져다 쓸 nodeList. map 재정의시 repeat key 내용으로 nodeList를 덮어씀
  * @property {mNodeModelInfo[]} nodeList 노드 상세 목록
  */
 
