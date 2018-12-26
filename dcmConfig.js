@@ -103,7 +103,6 @@
  * @property {string=} projectSubId Muan, 100kW, ...
  */
 
-
 /**
  * @typedef {Object} inquirySchedulerInfo DBS에서 하부 DLC의 상태를 정기 조회할 명령에 대한 정보
  * @property {string} intervalCronFormat 크론 데이터 형식 (* * * * * *)
@@ -263,7 +262,7 @@
  * @property {number=} baudRate
  * @property {string=} host 접속 경로(socket 일 경우 사용)
  * @property {number|string=} port 접속 포트
- * @property {Object=} addConfigInfo type, subType의 Contoller에서 요구하는 추가 접속 정보
+ * @property {parserInfo=} addConfigInfo type, subType의 Contoller에서 요구하는 추가 접속 정보
  */
 
 /**

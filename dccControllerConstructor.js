@@ -8,7 +8,13 @@
  * @typedef {Object} constructorSerialWithParser Parser를 붙인 Serial config
  * @property {string} port 접속 Port
  * @property {number} baudRate 보 레이트
- * @property {{parser: string, option:*}} addConfigInfo SerialPort에 Binding 할 Parser 객체
+ * @property {parserInfo=} addConfigInfo SerialPort에 Binding 할 Parser 객체
+ */
+
+/**
+ * @typedef {Object} parserInfo Parser를 붙인 Serial config
+ * @property {string} parser 파서 명(delimiterParser, byteLengthParser, readLineParser, readyParser)
+ * @property {*} option 파서 정보
  * #parser ---> 'delimiterParser', 'byteLengthParser', 'readLineParser', 'readyParser'
  * #option --> 각 Parser Type에 맞는 Option
  * @example

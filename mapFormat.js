@@ -156,6 +156,7 @@
  * @desc DV_NODE 참조
  * @typedef {Object} mNodeModelInfo 노드 모델 상세 정보
  * @property {string} target_code 노드 넘버링(001, 002, ...)
+ * @property {string} target_name 노드 이름
  * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
  * @property {number[]=} axisScale Node 좌표 백분율 정보 [x1, y1] or [x1, y1, x2, y2]
  * @property {number[]=} moveScale Node 별 위치 백분율
