@@ -138,6 +138,8 @@
  * @property {string} target_code 장치 넘버링(001, 002, 003, ...)
  * @property {string} target_name 데이터 로거 상세 별칭
  * @property {string} dccId dccConstructorInfo dccId
+ * @property {string} dpcId DPC 객체 생성 정보 ID
+ * @property {boolean=} isAddSerialNumberToDCC connect_info 를 생성 할 때 serial_number 를 결합하여 생성할지 여부. default false
  * @property {string=} repeatId repeat 저장소에서 가져다 쓸 nodeList. map 재정의시 repeat key 내용으로 nodeList를 덮어씀
  * @property {string[]} nodeList 데이터 로거가 포함하는 nodeModelInfo.nodeId(def_prefix + '_' + target_code) 목록
  */
