@@ -88,19 +88,24 @@
 
 /**
  * @typedef {Object} integratedDataLoggerConfig dataLogger 들을 총 관리하는 객체 설정 변수
- * @property {projectInfo=} projectInfo
+ * @property {projectInfo} projectInfo
  * @property {dbInfo} dbInfo
  * @property {string} uuid 데이터 수집 관리자의 Main UUID, Web Server Socket Server로 접속할 때 식별 인증으로 사용
  * @property {inquirySchedulerInfo} inquirySchedulerInfo DBS, DBP에서 정기 계측 조회 옵션을 설정하기 위한 정보
  * @property {dataLoggerConfig[]} dataLoggerList
- * @property {constructorSocketWithParser} mainSocketInfo Main Socket Server 에 접속하고 명령을 주고 받기 위한 Client 생성 정보
- * @property {constructorSerial=} powerStatusBoardInfo 현황판
  */
 
 /**
  * @typedef {Object} projectInfo DBS에서 분기 처리할 프로젝트 정보
- * @property {string=} projectMainId UPSAS, FP, ...
- * @property {string=} projectSubId Muan, 100kW, ...
+ * @property {string} projectMainId UPSAS, FP, ...
+ * @property {string} projectSubId Muan, 100kW, ...
+ * @property {dbsFeatureConfig} featureConfig
+ */
+
+/**
+ * @typedef {Object} dbsFeatureConfig 생성된 Feature를 구동시킴
+ * @property {connect_info=} apiConfig Web Server API Communication Socket 접속 정보
+ * @property {connect_info=} powerStatusBoardConfig 태양광 현황판 접속 정보
  */
 
 /**
