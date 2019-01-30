@@ -58,12 +58,20 @@
  * @typedef {Object} decodingInfo 수신받은 Buffer 데이터를 Parsing 하는데 필요한 정보
  * @property {string} key baseFormat Key
  * @property {string=} decodingKey 데이터 변환이 필요한 경우
- * @property {number} byte Byte Length
  * @property {number=} startIndex 시작
+ * @property {number=} byte default 1. Byte Length.
  * @property {string} callMethod Protocol Converter에 저장되어 있는 메소드 명
- * @property {boolean=} hasReverse Buffer의 역정렬 여부 (기본값 False)
- * @prop {number=} scale 결과값에 곱할 배율
- * @prop {number=} fixed 소수점 처리 할 자리수
+ * @property {number=} scale 결과값에 곱할 배율
+ * @property {number=} fixed 소수점 처리 할 자리수
+ * @property {boolean=} isLE 소수점 처리 할 자리수
+ * @property {boolean=} isUnsigned 소수점 처리 할 자리수
+ */
+
+/**
+ * @typedef {Object} troubleInfo
+ * @property {string} code
+ * @property {string} msg
+ * @property {number=} isError 에러 여부. 기본 값 1
  */
 
 module;
