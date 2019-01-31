@@ -144,6 +144,7 @@
  * @property {string} dl_id Main당 일반적으로 부를 Logger ID
  * @property {string} dl_name 데이터 로거 명
  * @property {string} data_unit 표기 단위(℃, %, m/s, ppm, ...)
+ * @property {string} data_type ENUM('device','sensor', 'block', 'trouble')
  * @property {number} is_avg_center 중앙 값 사용 여부
  * @property {number} is_sensor 센서 여부 (데이터가 수치로 표기되면 센서, 아니면 장치), DB에 센서라면 sensor_data에 저장, 장치라면 device_data에 저장
  * @property {number} data_logger_index Data Logger에서 수집한 데이터 군 중에서 해당 센서 데이터가 위치하는 인덱스
@@ -162,6 +163,7 @@
  * @property {number} data 노드 데이터
  * @property {function():dataLoggerInfo} getDataLogger 연결된 Data Logger 가져오기
  * @property {Date} writeDate 데이터가 입력된 시간
+ * @property {boolean=} isSubmitDBW dbw 로 데이터를 전송 여부
  */
 
 /**

@@ -1,17 +1,28 @@
+/** 장치를 DB에 입력하는 카테고리 */
+const nodeDataType = {
+  /** 장치 데이터가 제어 데이터. dv_device_data 에 저장 */
+  DEVICE: 'device',
+  /** 센서 데이터. dv_sensor_data 에 저장 */
+  SENSOR: 'sensor',
+  /** Block Data로 데이터를 저장할 경우. block.config 에 따라 저장됨  */
+  BLOCK: 'block',
+  /** 오류 내역을 저장할 경우. block.config 에 따라 저장됨  */
+  TROUBLE: 'trouble'
+};
+exports.nodeDataType = nodeDataType;
 
 /** simpleOrderInfo Status 변경 Key */
 const simpleOrderStatus = {
   /** 신규 등록되었을 경우 */
   NEW: 'NEW',
   /** 명령이 진행되었을 경우 */
-  PROCEED: 'PROCEED', 
+  PROCEED: 'PROCEED',
   /** 명령의 실행이 완료되고  */
   RUNNING: 'RUNNING',
   /** 명령의 실행이 완료되었을 경우 */
   COMPLETE: 'COMPLETE'
 };
 exports.simpleOrderStatus = simpleOrderStatus;
-
 
 /** combinedOrderInfo Key */
 const nodePickKey = {
@@ -20,7 +31,7 @@ const nodePickKey = {
   /** API Socket Sever 로 보내기 위한 필수 데이터 */
   FOR_SERVER: ['node_real_id', 'data'],
   /**  DB에 입력하기 위한 Node 정보 */
-  FOR_DB: ['node_seq', 'node_id', 'data', 'nc_is_sensor', 'writeDate'],
+  FOR_DB: ['node_seq', 'node_id', 'data', 'nc_is_sensor', 'writeDate']
 };
 exports.nodePickKey = nodePickKey;
 
@@ -28,7 +39,7 @@ exports.nodePickKey = nodePickKey;
 const combinedOrderType = {
   /** 명령이 대기열에 올라가있는 리스트, 아직 장치 제어 요청이 일어나기 전 */
   WAIT: 'waitingList',
-  /** 
+  /**
    * 실제 장비로 작업 요청이 들어갔다는 것으로 진행 중
    * dccFlagModel.definedCommandSetMessage.COMMANDSET_EXECUTION_START 가 발생했을 경우
    */
@@ -36,14 +47,13 @@ const combinedOrderType = {
   /**
    * requestCommandType.CONTROL 일 경우 현재 장치에 어떤 명령이 동작되고 있는지 추적할 필요가 있는 경우
    */
-  RUNNING: 'runningList',
+  RUNNING: 'runningList'
 };
 exports.combinedOrderType = combinedOrderType;
 
-
 /** 명령 요청 타입 */
 const requestOrderCommandType = {
-  /** 
+  /**
    * 명령 제어에 사용.
    * combinedOrderStorage의 controlStorage에 저장되고 관리되며 요청 명령이 runningList에 저장됨.
    * @example
@@ -54,19 +64,19 @@ const requestOrderCommandType = {
   CONTROL: 'CONTROL',
   /**
    * TODO: 명령 취소 요청 고민 더 필요
-   * 명령 제어 취소 요청. 
+   * 명령 제어 취소 요청.
    * combinedOrderStorage.controlStorage 에 해당 명령이 존재해야만 삭제 가능
    * @example
-   * controlStorage.waitingList --> 해당 명령 대기열 제거 명령 요청 및 완료 시 
+   * controlStorage.waitingList --> 해당 명령 대기열 제거 명령 요청 및 완료 시
    * controlStorage.proceedingList --> remainList 취소 요청, completeList 복원 요청
    * controlStorage.runningList --> completeList 복원 요청
    */
   CANCEL: 'CANCEL',
-  /** 
+  /**
    * 명령 계측 요청
    * combinedOrderStorage.measureStorage 에 저장되며 완료시 삭제
    */
-  MEASURE: 'MEASURE',
+  MEASURE: 'MEASURE'
 };
 exports.requestOrderCommandType = requestOrderCommandType;
 
@@ -79,16 +89,15 @@ const requestDeviceControlType = {
   /** 장치 Measure */
   MEASURE: 2,
   /** 장치 값 설정 */
-  SET: 3,
+  SET: 3
 };
 exports.requestDeviceControlType = requestDeviceControlType;
-
 
 const requestOrderInfo = {
   /** 명령을 내릴 때 해당 명령의 고유 ID */
   requestCommandId: 'Default',
-  /** 
-   * 명령 추가 삭제에 대한 옵션 내용 
+  /**
+   * 명령 추가 삭제에 대한 옵션 내용
    * @example
    * ADD: 명령 추가
    * CANCEL: 명령 취소
@@ -107,13 +116,13 @@ const requestOrderInfo = {
   controlValue: undefined,
   /** controlValue 가 2일 경우 설정하는 값 */
   controlSetValue: 0,
-  /** 
+  /**
    * Main 당 일반적으로 부를 Node ID
    * @type {string|string[]}
    */
   nodeId: '',
   /** 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3) */
-  rank: 3,
+  rank: 3
 };
 exports.requestOrderInfo = requestOrderInfo;
 
@@ -303,7 +312,6 @@ const defaultManagerConfig = {
 };
 exports.defaultManagerConfig = defaultManagerConfig;
 
-
 /** 센서 장치를 가져올 컨트롤러 생성 정보 */
 const defaultDataLoggerConfig = {
   /** 가져올 Main ID */
@@ -319,7 +327,7 @@ const defaultDataLoggerConfig = {
    */
   searchInterval: 60,
   /** DB 설정 정보 */
-  dbInfo,
+  dbInfo
 };
 exports.defaultDataLoggerConfig = defaultDataLoggerConfig;
 
@@ -350,7 +358,7 @@ const dataLoggerInfo = {
   /** Data Logger Numbering 번호 (001, 002, ...) */
   target_code: '',
   connect_info,
-  protocol_info,
+  protocol_info
 };
 exports.dataLoggerInfo = dataLoggerInfo;
 
@@ -385,7 +393,7 @@ const nodeInfo = {
    * @default 0
    * @example
    * Data Logger Data --> {temp: [36.5, 35.1, 37.5], solar: [851, 768, 956]}
-   * sc_target_id: temp 일 경우 --> 36.5 
+   * sc_target_id: temp 일 경우 --> 36.5
    */
   data_logger_index: 0,
   /**
@@ -408,7 +416,7 @@ const nodeInfo = {
    * ℃, %, m/s, ppm, ...
    */
   nc_data_unit: '',
-  /** 
+  /**
    * Node가 센서인지 장치 인지 여부
    * @desc DB에 센서라면 sensor_data에 저장, 장치라면 device_data에 저장
    */
@@ -437,10 +445,8 @@ const nodeInfo = {
    * @type {Data}
    */
   writeDate: null
-
 };
 exports.nodeInfo = nodeInfo;
-
 
 /** 센서 장치를 가져올 컨트롤러 생성 정보 */
 const dataLoggerConfig = {
@@ -448,10 +454,9 @@ const dataLoggerConfig = {
   hasDev: false,
   deviceInfo,
   dataLoggerInfo,
-  nodeList: [nodeInfo],
+  nodeList: [nodeInfo]
 };
 exports.dataLoggerConfig = dataLoggerConfig;
-
 
 /** dataLogger 들을 총 관리하는 객체 설정 변수 */
 const integratedDataLoggerConfig = {
