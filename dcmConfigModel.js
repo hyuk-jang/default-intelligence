@@ -7,7 +7,9 @@ const nodeDataType = {
   /** Block Data로 데이터를 저장할 경우. block.config 에 따라 저장됨  */
   BLOCK: 'block',
   /** 오류 내역을 저장할 경우. block.config 에 따라 저장됨  */
-  TROUBLE: 'trouble'
+  TROUBLE: 'trouble',
+  /** 데이터 저장을 하지 않는 요소일 경우  */
+  NONE: 'none'
 };
 exports.nodeDataType = nodeDataType;
 
@@ -31,7 +33,7 @@ const nodePickKey = {
   /** API Socket Sever 로 보내기 위한 필수 데이터 */
   FOR_SERVER: ['node_real_id', 'data'],
   /**  DB에 입력하기 위한 Node 정보 */
-  FOR_DB: ['node_seq', 'node_id', 'data', 'nc_is_sensor', 'writeDate']
+  FOR_DB: ['node_seq', 'data', 'writeDate']
 };
 exports.nodePickKey = nodePickKey;
 

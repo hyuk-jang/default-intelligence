@@ -149,8 +149,8 @@
  * @typedef {Object} mNodeStructureInfo 노드 대분류 구조
  * @property {string} target_id 노드를 가르키는 고유 명(temp, reh, solar, co2, ...)
  * @property {string} target_name target_id에 대응하는 이름(온도, 습도, 일사량, 이산화탄소, ...)
- * @property {number} is_sensor 센서 여부(0: Device, 1: Sensor)
- * @property {number=} save_type 0: Device, 1: Sensor, 2: Block, 3: Trouble. 지정하지 않을 경우 is_sensor를 따라감
+ * @property {number} is_sensor 센서 여부(0: Device, 1: Sensor). DBW 에서 센서 종류를 판단하기 위해서 사용
+ * @property {number=} save_db_type 0: Device, 1: Sensor, 2: Block, 3: Trouble. 지정하지 않을 경우 is_sensor를 따라감. DB에 저장할 때 카테고리를 판별하기 위함
  * @property {string=} data_unit 데이터 단위(℃, %, W/m², ppl, ...)
  * @property {string=} description 부연 설명이 필요한 경우
  * @property {mNodeDefInfo[]} defList 노드 개요 정보 목록
