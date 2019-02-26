@@ -696,4 +696,26 @@
  * @property {number} ch_number
  */
 
+/**
+ * @typedef {Object} CAMERA  카메라 관리 정보
+ * @property {number} camera_seq 카메라 시퀀스
+ * @property {number} main_seq MAIN 시퀀스
+ * @property {string} camera_name 카메라 명
+ * @property {string} uri_rtsp_domain RTSP 도메인 명
+ * @property {number} uri_rtsp_port RTSP 포트
+ * @property {string} uri_rtsp_path RTSP 경로
+ * @property {string} uri_snapshot_domain 스냅샷 도메인
+ * @property {number} uri_snapshot_port 스냅샷 포트
+ * @property {string} uri_snapshot_path 스냅샷 경로
+ * @property {number} is_deleted 삭제여부
+ */
+
+/**
+ * @typedef {Object} CAMERA_SNAPSHOT_DATA  카메라 스냅샷 데이터
+ * @property {number} camera_snapshot_data_seq 스냅샷 시퀀스
+ * @property {number} camera_seq 카메라 시퀀스
+ * @property {string} snapshot_uuid 스냅샷 데이터
+ * @property {Date} writedate 작성일
+ */
+
 module;

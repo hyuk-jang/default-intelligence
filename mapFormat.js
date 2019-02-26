@@ -116,7 +116,7 @@
 /**
  * @typedef {Object} mRepeatInfo DPC를 생성하기 위한 정보
  * @property {string} repeatId ID
- * @property {string} repeatCategory node or prefix
+ * @property {string} repeatCategory node or prefix, node: nodeStructureList 에서만 사용
  * @property {mNodeModelInfo[]|string[]} nodeList
  * @example
  * repeatCategory: node -> nodeList 덮어쓰기

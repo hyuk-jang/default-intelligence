@@ -30,6 +30,7 @@
  * @desc Socket Server (Web Server)
  * @typedef {Object} msInfo Main Storage List에서 각각의 거점 별 모든 정보를 가지고 있을 객체 정보
  * @property {msFieldInfo} msFieldInfo 거점 정보
+ * @property {CAMERA[]=} msCameraList 거점 정보
  * @property {net.Socket} msClient 거점 Socket Client 객체
  * @property {msDataInfo} msDataInfo 거점 데이터 저장소 객체
  * @property {msUserInfo[]} msUserList 해당 정보를 확인할 자격을 가진 user 정보
