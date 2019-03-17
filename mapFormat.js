@@ -185,7 +185,8 @@
 /**
  * @typedef {Object} mRelationInfo 관계 정보
  * @property {mPlaceStructureInfo[]} placeRelationList 장소 관계 정보
- * @property {mBrineFlowRelationInfo[]} brineFlowRelationList 염수 이동 관계
+ * @property {mSmartSalternInfo} smartSalternInfo 염전 관계 정보
+ * @property {mPipeConnectionRelationInfo[]} pipeConnectionRelationList 염수 이동 관계
  * @property {mBrineFeedRankRelationInfo[]} brineFeedRankRelationList 염수 급수 우선 관계
  * @property {mBrineDrainRankRelationInfo[]} brineDrainRankRelationList 염수 배수 우선 관계
  * @property {mSvgResourceConnectionInfo[]} svgResourceConnectionList 이미지 관계
@@ -233,18 +234,41 @@
 /**
  * FIXME: 프로젝트 별로 수정
  * @typedef {Object} mPlaceInfo 장소 상세 특화 정보
- * @property {number=} minBrineLevel 최저 인식 수위(cm). 기본적으로 최저 수위에 도달하면 급수를 진행.
- * @property {number=} maxBrineLevel 최대 인식 수위(cm) 해당 장소에서 수용할 수 있는 최대 치 값. 해당 값을 초과하면 진행 중인 급수를 강제로 취소. 추가적인 급수 진행 불가.
- * @property {number=} setBrineLevel 설정 수위(cm). 적정 수위를 유지하기 위한 임계치 값. 해당 값 미만으로 떨어지면 적정 수치로 급수 진행
- * @property {number=} setSalinity 설정된 염도(%). 값이 도달하면 지정된 장소로 연결된 장소로 배수 진행
+ * @property {number} maxWL 해당 장소가 가질 수 있는 최대 수위(cm), 해당 값을 초과하면 진행 중인 급수를 강제로 취소. 추가적인 급수 진행 불가.
+ * @property {number=} minWL default 0 해당 장소에 염수가 없을 경우 표기되는 최소 수위(cm)
+ * @property {string[]} waterSupplyPlaceRankList 급수지 우선 순위 목록
+ * @property {string[]} drainagePlaceRankList 배수지 우선 순위 목록
+ * @property {ssAutoCycleWaterInfo} autoCycleWaterInfo 자동 염수 순환 정보
+ * @property {ssAutoDrainageSalinityInfo} autoDrainageSalinityInfo 염수 도달 시 자동 배수를 시작할 정보
+ * @property {{width: number, height: number, depth: number}} placeSize 장소 크기
  */
 
 /**
- * @typedef {Object} mBrineFlowRelationInfo 염수 이동 관계 정보
- * @property {string} currNodeId 현재 장치 ID (nodeModelInfo.nodeId(def_prefix + '_' + target_code) 목록)
- * @property {string[]} parentNodeIdList 염수를 공급할 수 있는 상위 장치(nodeId) 목록
- * @property {string[]} childrenNodeIdList 염수를 공급할 수 있는 하위 장치(nodeId) 목록
- * @property {string[]} placeIdList 현재 장치를 작동시킴으로써 급수를 진행 할 수 있는 장소(placeId) 목록
+ * @desc Smart Saltern
+ * @typedef {Object} ssAutoCycleWaterInfo 자동 수위 조절
+ * @property {number=} setCycleWL 염수 순환 시 세팅할 염수 수위(cm)
+ * @property {number} belowCycleWL 해당 수치보다 염수 수위가 낮을 경우 배수가 작동할 수위. minWL 이 존재하지 않을 경우 덧물 기능으로 전환(setWL까지 자동 물 주기)
+ * @property {number=} minCycleWL belowWL 배수가 동작할 경우 minWL 수치까지 수위를 뺌
+ */
+
+/**
+ * @desc Smart Saltern
+ * @typedef {Object} ssAutoDrainageSalinityInfo 염도 충족 시 이동할 염수 정보
+ * @property {number} aboveSalinity 해당 수치보다 높을 경우 배수가 작동할 염도(%)
+ * @property {string[]} desList 급수지 우선 순위
+ */
+
+/**
+ * @desc Smart Saltern
+ * @typedef {Object} mSmartSalternInfo 스마트 염전 설정 정보
+ * @property {mPipeConnectionRelationInfo[]} pipeConnectionRelationList 파이프 관계 정보 목록
+ */
+
+/**
+ * @typedef {Object} mPipeConnectionRelationInfo 파이프 관계 정보
+ * @property {string} currNode 현재 장치 ID (nodeModelInfo.nodeId(def_prefix + '_' + target_code) 목록)
+ * @property {string[]} parentNodes 염수를 공급할 수 있는 상위 장치(nodeId) 목록
+ * @property {string[]} childNodes 염수를 공급할 수 있는 하위 장치(nodeId) 목록
  */
 
 /**
