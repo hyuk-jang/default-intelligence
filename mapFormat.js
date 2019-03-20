@@ -190,7 +190,7 @@
  * @property {mBrineFeedRankRelationInfo[]} brineFeedRankRelationList 염수 급수 우선 관계
  * @property {mBrineDrainRankRelationInfo[]} brineDrainRankRelationList 염수 배수 우선 관계
  * @property {mSvgResourceConnectionInfo[]} svgResourceConnectionList 이미지 관계
- * @property {string[]} exclusionTextDefIdList 이름표시를 제외할 classId 목록 //FIXME:
+ * @property {string[]} hiddenTextSvgModelResourceIdList 장소 또는 노드의 텍스트를 숨길 svgModelResouceId
  */
 
 /**
