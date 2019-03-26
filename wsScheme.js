@@ -410,6 +410,24 @@
 
 /**
  * @desc VIEW TABLE
+ * @typedef {Object} V_DV_NODE_DEF 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
+ * @property {number} node_def_seq 노드 개요 정보 시퀀스 
+ * @property {number} node_class_seq 노드 대분류 시퀀스 
+ * @property {string} data_unit cm, kWh, m/s, m 등등 
+ * @property {string} save_db_type DB 저장 분류 
+ * @property {number} is_sensor 센서 여부(0: Device, 1: Sensor) 
+ * @property {number} is_avg_center 중앙 값 사용 여부 
+ * @property {string} nd_target_id 사용 목적에 따라 달리 부를 센서 명으로 데이터 Key를 결정 
+ * @property {string} nd_target_name 필요시 세부 사용 목적 기술 
+ * @property {string} nd_target_prefix 해당 프로젝트에서 쓸 접두사 
+ * @property {string} nd_description 노드 데이터 단위에 대한 부연 설명이 필요한 경우 
+ * @property {string} nc_target_id 노드를 가르키는 고유 명 
+ * @property {string} nc_target_name 장치 명(한글) 
+ * @property {string} nc_description 부연 설명이 필요한 경우 
+ */ 
+
+/**
+ * @desc VIEW TABLE
  * @typedef {Object} V_DV_NODE_PROFILE 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
  * @property {number} node_seq 노드 정보 시퀀스
  * @property {string} node_real_id
