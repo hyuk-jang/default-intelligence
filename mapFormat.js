@@ -37,7 +37,8 @@
  * @typedef {Object} mSvgModelResource
  * @property {string} id ID
  * @property {string} type 'rect', 'line', 'circle', 'polygon', 'pattern', 'image' ...
- * @property {mElementDrawInfo} elementDrawInfo
+ * @property {mElementDrawInfo} elementDrawInfo 그리기 정보
+ * @property {mTextStyleInfo=} textStyleInfo 텍스트 스타일 정보
  * @example
  * type: rect, pattern --> width, height, color, opacity
  * type: circle --> radius, color
@@ -54,6 +55,14 @@
  * @property {number=} opacity 투명도 0: 투명
  * @property {string=} imgUrl 이미지 경로
  * @property {string | string[]} color 단일색 or [기존, 이벤트 효과, 에러]
+ */
+
+/**
+ * @typedef {Object} mTextStyleInfo
+ * @property {string=} color 텍스트 색
+ * @property {number=} fontSize 텍스트 사이즈
+ * @property {string=} leading 텍스트가 그려진 공간의 높이: 글자크기는 변하지 않고 공간의 높이만 변함 (css의 line-height와 같음)
+ * ex) 글자크기= 40px이고 leading= 1.5이면 글자크기 1.5배인 60px의 공간에 40px의 글자가 그려짐
  */
 
 /**
