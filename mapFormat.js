@@ -241,15 +241,23 @@
  */
 
 /**
- * FIXME: 프로젝트 별로 수정
+ 
  * @typedef {Object} mPlaceInfo 장소 상세 특화 정보
- * @property {number} maxWL 해당 장소가 가질 수 있는 최대 수위(cm), 해당 값을 초과하면 진행 중인 급수를 강제로 취소. 추가적인 급수 진행 불가.
- * @property {number=} minWL default 0 해당 장소에 염수가 없을 경우 표기되는 최소 수위(cm)
- * @property {string[]} waterSupplyPlaceRankList 급수지 우선 순위 목록
- * @property {string[]} drainagePlaceRankList 배수지 우선 순위 목록
- * @property {ssAutoCycleWaterInfo} autoCycleWaterInfo 자동 염수 순환 정보
- * @property {ssAutoDrainageSalinityInfo} autoDrainageSalinityInfo 염수 도달 시 자동 배수를 시작할 정보
+ * @property {mCriticalControlInfo[]=} criticalControlList 임계치 명령 목록
  * @property {{width: number, height: number, depth: number}} placeSize 장소 크기
+ */
+
+/**
+ * NOTE: 최대 구동 명령 지속 시간, 수로를 통한 염수 이동 시간 삽입하지 않음. 복잡성 감소를 위함.
+ * @typedef {Object} mCriticalControlInfo 임계치 명령 정보
+ * @property {string} ndId 임계치를 반영할 Node Def ID
+ * @property {number=} maxValue 해당 임계치 Node Def Id의 최대 값
+ * @property {number=} upperLimitValue 상한선. 없을 경우 maxValue 기입.
+ * @property {number=} setValue 설정하고자 하는 Node ID 값
+ * @property {number=} lowerLimitValue 하한선. 없을 경우 minValue 기입
+ * @property {number=} minValue 해당 임계치 Nd Id의 최저 값
+ * @property {string[]=} callPlaceRankList 급수지 우선 순위 목록
+ * @property {string[]=} putPlaceRankList 배수지 우선 순위 목록
  */
 
 /**

@@ -1,4 +1,19 @@
 /** 장치를 DB에 입력하는 카테고리 */
+const controlCriticalKey = {
+  /** 장치 데이터가 제어 데이터. dv_device_data 에 저장 */
+  MAX_VALUE: 'maxInfo',
+  /** 센서 데이터. dv_sensor_data 에 저장 */
+  UPPER_LIMIT_VALUE: 'upperLimitInfo',
+  /** Block Data로 데이터를 저장할 경우. block.config 에 따라 저장됨  */
+  SET_VALUE: 'setInfo',
+  /** 오류 내역을 저장할 경우. block.config 에 따라 저장됨  */
+  LOWER_LIMIT_VALUE: 'lowerLimitInfo',
+  /** 데이터 저장을 하지 않는 요소일 경우  */
+  MIN_VALUE: 'minInfo'
+};
+exports.controlCriticalKey = controlCriticalKey;
+
+/** 장치를 DB에 입력하는 카테고리 */
 const nodeDataType = {
   /** 장치 데이터가 제어 데이터. dv_device_data 에 저장 */
   DEVICE: 'device',

@@ -206,6 +206,7 @@
  * @property {string} pc_target_name 장소 대분류 명
  * @property {string} pc_description 장소 분류 설명
  * @property {nodeInfo[]} nodeList 장소 분류 설명
+ * @property {mPlaceInfo=} autoFlowInfo 스마트 염전 자동 프로세스 제어 정보
  */
 
 /**
@@ -278,6 +279,8 @@
  * @property {string} subCategory 장치 내 세부 프로토콜
  * @property {string} wrapperCategory 명령 요청에 추가적인 frame을 씌울 Wrapping 프로토콜
  * @property {string|number|Buffer} deviceId 장치 일련번호(S/N)
+ * @property {number=} cmdExecTimeoutMs 해당 전송 후 명령 완료 처리될때까지 대기 시간 (ms)
+ * @property {number=} delayExecTimeoutMs 해당 명령을 수행하기 전 timeout 대기 시간(ms)
  * @property {protocolOptionInfo=} protocolOptionInfo 프로토콜 변환 과정에서 생기는 이벤트에 대해서 처리할 옵션 정보
  * @property {Object=} option
  */
