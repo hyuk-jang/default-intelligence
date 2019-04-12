@@ -13,6 +13,17 @@ const controlCriticalKey = {
 };
 exports.controlCriticalKey = controlCriticalKey;
 
+/** DBS 제어 모드 */
+const controlMode = {
+  /** 수동 모드 */
+  MANUAL: 0,
+  /** 자동 모드 */
+  AUTOMATIC: 1,
+  /** 우천 모드  */
+  RAIN: 2
+};
+exports.controlMode = controlMode;
+
 /** 장치를 DB에 입력하는 카테고리 */
 const nodeDataType = {
   /** 장치 데이터가 제어 데이터. dv_device_data 에 저장 */

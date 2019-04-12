@@ -1,4 +1,36 @@
 /**
+ * @desc Command Storage
+ * @typedef {Object} csCommandGoalContraintInfo 명령 달성 제한 조건
+ * @property {number=} limitTimeSec 해당 명령의 최대 수행 가동 시간
+ * @property {Object[]} goalDataList 해당 명령을 통해 얻고자 하는 값 목록
+ * @property {string} goalDataList.nodeId 달성하고자 하는 nodeId
+ * @property {string} goalDataList.goalValue 달성 기준치 값
+ * @property {string} goalDataList.goalRange 기준치 인정 범위.
+ * @example
+ * goalRange: -1 goalValue 보다 작은
+ * goalRange: 0 goalValue 와 같은
+ * goalRange: 1 goalValue 보다 큰
+ */
+
+/**
+ * @desc Command Storage
+ * @typedef {Object} csDeviceControlOverlapInfo 조작 가능한 장치 누적 호출 정보
+ * @property {csControlOverlap[]} automaticOverlapList 자동모드 호출 정보
+ * @property {{nodeId: string, isTrue: boolean}[]} manualOverlapList 수동일 경우에는
+ */
+
+/**
+ * @desc Command Storage
+ * @typedef {Object} csControlOverlap 데이터의 유효성을 인정해주는 시간 간격 정보
+ * @property {string} nodeId Node ID
+ * @property {number} overlapCount 해당 장치에 걸려있는 누적 호출 수
+ * @example
+ * overlapCount = 0 : 아무런 장치에 대한 제약 조건 없음
+ * overlapCount < 0 : 장치에 대한 False 호출 중첩 수 (Close, Off)
+ * overlapCount > 0 : 장치에 대한 True 호출 중첩 수 (Open, On)
+ */
+
+/**
  * @typedef {Object} timeIntervalToValidateInfo 데이터의 유효성을 인정해주는 시간 간격 정보
  * @property {string} diffType 시간 간격 타입(months, weeks, days,	hours, minutes, seconds, and milliseconds)
  * @property {number} duration 지속 시간. 이를 벗어나면 유효한 데이터가 아님
