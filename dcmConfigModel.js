@@ -39,8 +39,8 @@ const nodeDataType = {
 };
 exports.nodeDataType = nodeDataType;
 
-/** simpleOrderInfo Status 변경 Key */
-const simpleOrderStatus = {
+/** contractCmdInfo Status 변경 Key */
+const contractCmdStatus = {
   /** 신규 등록되었을 경우 */
   NEW: 'NEW',
   /** 명령이 진행되었을 경우 */
@@ -50,9 +50,9 @@ const simpleOrderStatus = {
   /** 명령의 실행이 완료되었을 경우 */
   COMPLETE: 'COMPLETE'
 };
-exports.simpleOrderStatus = simpleOrderStatus;
+exports.contractCmdStatus = contractCmdStatus;
 
-/** combinedOrderInfo Key */
+/** complexCmdStorage Key */
 const nodePickKey = {
   /** Node 데이터 간략화 */
   FOR_DATA: ['node_id', 'node_name', 'data'],
@@ -63,8 +63,8 @@ const nodePickKey = {
 };
 exports.nodePickKey = nodePickKey;
 
-/** combinedOrderInfo Key */
-const combinedOrderType = {
+/** complexCmdStorage Key */
+const complexCmdStep = {
   /** 명령이 대기열에 올라가있는 리스트, 아직 장치 제어 요청이 일어나기 전 */
   WAIT: 'waitingList',
   /**
@@ -73,17 +73,17 @@ const combinedOrderType = {
    */
   PROCEED: 'proceedingList',
   /**
-   * requestCommandType.CONTROL 일 경우 현재 장치에 어떤 명령이 동작되고 있는지 추적할 필요가 있는 경우
+   * wrapCmdType.CONTROL 일 경우 현재 장치에 어떤 명령이 동작되고 있는지 추적할 필요가 있는 경우
    */
   RUNNING: 'runningList'
 };
-exports.combinedOrderType = combinedOrderType;
+exports.complexCmdStep = complexCmdStep;
 
 /** 명령 요청 타입 */
-const requestOrderCommandType = {
+const reqWrapCmdType = {
   /**
    * 명령 제어에 사용.
-   * combinedOrderStorage의 controlStorage에 저장되고 관리되며 요청 명령이 runningList에 저장됨.
+   * complexCmdIntegratedStorage의 controlStorage에 저장되고 관리되며 요청 명령이 runningList에 저장됨.
    * @example
    * 장치 제어 요청 --> controlStorage.waitingList 에 저장
    * 실제 장치 요청 시작 --> controlStorage.proceedingList 에 저장
@@ -93,7 +93,7 @@ const requestOrderCommandType = {
   /**
    * TODO: 명령 취소 요청 고민 더 필요
    * 명령 제어 취소 요청.
-   * combinedOrderStorage.controlStorage 에 해당 명령이 존재해야만 삭제 가능
+   * complexCmdIntegratedStorage.controlStorage 에 해당 명령이 존재해야만 삭제 가능
    * @example
    * controlStorage.waitingList --> 해당 명령 대기열 제거 명령 요청 및 완료 시
    * controlStorage.proceedingList --> remainList 취소 요청, completeList 복원 요청
@@ -102,11 +102,11 @@ const requestOrderCommandType = {
   CANCEL: 'CANCEL',
   /**
    * 명령 계측 요청
-   * combinedOrderStorage.measureStorage 에 저장되며 완료시 삭제
+   * complexCmdIntegratedStorage.measureStorage 에 저장되며 완료시 삭제
    */
   MEASURE: 'MEASURE'
 };
-exports.requestOrderCommandType = requestOrderCommandType;
+exports.reqWrapCmdType = reqWrapCmdType;
 
 /** 장치 제어 타입 */
 const requestDeviceControlType = {
@@ -121,9 +121,9 @@ const requestDeviceControlType = {
 };
 exports.requestDeviceControlType = requestDeviceControlType;
 
-const requestOrderInfo = {
+const reqExecCmdInfo = {
   /** 명령을 내릴 때 해당 명령의 고유 ID */
-  requestCommandId: 'Default',
+  wrapCmdId: 'Default',
   /**
    * 명령 추가 삭제에 대한 옵션 내용
    * @example
@@ -131,7 +131,7 @@ const requestOrderInfo = {
    * CANCEL: 명령 취소
    * '', undefined : 계측
    */
-  requestCommandType: '',
+  wrapCmdType: '',
   /** 
    @ Device Protocol Converter에 요청할 명령에 대한 인자값
    * @type {number=} true: Open, On, ... ::: false: Close, Off
@@ -152,7 +152,7 @@ const requestOrderInfo = {
   /** 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3) */
   rank: 3
 };
-exports.requestOrderInfo = requestOrderInfo;
+exports.reqExecCmdInfo = reqExecCmdInfo;
 
 const protocolOptionInfo = {
   /** 전송 데이터가 같으나 파싱이 실패할 경우 데이터 누적을 할지 여부 */

@@ -38,41 +38,41 @@
 
 /**
  * @desc orderLV1
- * @typedef {Object} combinedOrderStorage 복합 명령 현황 저장소
- * @property {combinedOrderInfo} controlStorage 제어 명령 저장소
- * @property {combinedOrderInfo} cancelStorage 취소 명령 저장소
- * @property {combinedOrderInfo} measureStorage 계측 명령 저장소
+ * @typedef {Object} complexCmdIntegratedStorage 복합 명령 현황 저장소
+ * @property {complexCmdStorage} controlStorage 제어 명령 저장소
+ * @property {complexCmdStorage} cancelStorage 취소 명령 저장소
+ * @property {complexCmdStorage} measureStorage 계측 명령 저장소
  */
 
 /**
  * @desc orderLV2
- * @typedef {Object} combinedOrderInfo 복합 명령 관리 구조
- * @property {Array.<combinedOrderWrapInfo>} waitingList 명령 대기
- * @property {Array.<combinedOrderWrapInfo>} proceedingList 명령 요청 중
- * @property {Array.<combinedOrderWrapInfo>=} runningList 실행되고 있는 명령. combinedOrderList의 controlList에서만 쓰임
+ * @typedef {Object} complexCmdStorage 복합 명령 관리 구조
+ * @property {Array.<complexCmdWrapInfo>} waitingList 명령 대기
+ * @property {Array.<complexCmdWrapInfo>} proceedingList 명령 요청 중
+ * @property {Array.<complexCmdWrapInfo>=} runningList 실행되고 있는 명령. complexCmdList의 controlList에서만 쓰임
  */
 
 /**
  * @desc orderLV3
- * @typedef {Object} combinedOrderWrapInfo 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
+ * @typedef {Object} complexCmdWrapInfo 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
  * @property {string} uuid UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
- * @property {string} requestCommandType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
- * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
- * @property {string} requestCommandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
- * @property {Array.<combinedOrderContainerInfo>} orderContainerList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
+ * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
+ * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @property {Array.<complexCmdContainerInfo>} complexCmdContainerList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
  */
 
 /**
  * @desc orderLV4
- * @typedef {Object} combinedOrderContainerInfo 제어 타입에 따른 분류 형식
+ * @typedef {Object} complexCmdContainerInfo 제어 타입에 따른 분류 형식
  * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
  * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
- * @property {Array.<combinedOrderElementInfo>} orderElementList 실제 controlValue 제어를 요청할 목록
+ * @property {Array.<complexCmdEleInfo>} complexEleList 실제 controlValue 제어를 요청할 목록
  */
 
 /**
  * @desc orderLV5
- * @typedef {Object} combinedOrderElementInfo 실제 장치를 제어할 세부 내용
+ * @typedef {Object} complexCmdEleInfo 실제 장치를 제어할 세부 내용
  * @property {boolean} hasComplete 해당 작업 완료 여부
  * @property {string} uuid UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
@@ -80,11 +80,11 @@
  */
 
 /**
- * @typedef {Object} executeOrderInfo 복합 명령을 내릴 경우
- * @property {string} integratedUUID 통합 명령 UUID로 combinedOrderWrapInfo uuid 사용.
- * @property {string} requestCommandType  'CONTROL', 'CANCEL', --> 명령 추가, 명령 삭제
- * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
- * @property {string} requestCommandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @typedef {Object} executeCmdInfo 복합 명령을 내릴 경우
+ * @property {string} integratedUUID 통합 명령 UUID로 complexCmdWrapInfo uuid 사용.
+ * @property {string} wrapCmdType  'CONTROL', 'CANCEL', --> 명령 추가, 명령 삭제
+ * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
  * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값. 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
  * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
  * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
@@ -94,8 +94,8 @@
  */
 
 /**
- * @typedef {Object} requestSingleOrderInfo 단일 명령을 내릴 경우
- * @property {string} requestCommandType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제, 계측 명령 추가
+ * @typedef {Object} reqSingleCmdInfo 단일 명령을 내릴 경우
+ * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제, 계측 명령 추가
  * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
  * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
  * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
@@ -103,15 +103,15 @@
  */
 
 /**
- * @typedef {Object} requestCombinedOrderInfo 복합 명령을 내릴 경우
- * @property {string} requestCommandType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
- * @property {string} requestCommandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
- * @property {string} requestCommandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
- * @property {requestOrderElementInfo[]} requestElementList
+ * @typedef {Object} reqComplexCmdInfo 복합 명령을 내릴 경우
+ * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
+ * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @property {reqCmdEleInfo[]} reqCmdEleList
  */
 
 /**
- * @typedef {Object} requestOrderElementInfo 컨트롤러에 장치로 명령을 내릴때 사용하는 형식
+ * @typedef {Object} reqCmdEleInfo 컨트롤러에 장치로 명령을 내릴때 사용하는 형식
  * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
  * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
  * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID

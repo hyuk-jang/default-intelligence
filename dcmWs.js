@@ -4,10 +4,10 @@
  * @desc Socket Client (Device Client Manager)
  * @typedef {Object} transDataToServerInfo
  * @property {string} commandType 전송 타입, [node: node 정보, command: 명령 정보] --> transmitToServerCommandType
- * @property {nodeInfo[]|simpleOrderInfo[]|Buffer} data 데이터
+ * @property {nodeInfo[]|contractCmdInfo[]|Buffer} data 데이터
  * @example
  * commandType: node --> nodeInfo[]
- * commandType: command --> combinedOrderStorage
+ * commandType: command --> complexCmdIntegratedStorage
  */
 
 /**
@@ -20,9 +20,9 @@
  * AUTOMATIC: 명령 제어. executeSavedCommand 메소드 사용
  * SCENARIO: 시연용으로 제작된 명령 제어. executeScenario 사용
  * @example data
- * SINGLE: requestSingleOrderInfo 1개 arg 사용
- * AUTOMATIC: savedCommandId, requestCommandType 2개 arg 사용
- * SCENARIO: scenarioId, requestCommandType 2개 arg 사용
+ * SINGLE: reqSingleCmdInfo 1개 arg 사용
+ * AUTOMATIC: savedCommandId, wrapCmdType 2개 arg 사용
+ * SCENARIO: scenarioId, wrapCmdType 2개 arg 사용
  */
 
 // 각 노드의 갱신 데이터의 차를 비교하여 동일 데이터라면 전송 X
@@ -73,15 +73,15 @@
  * @property {dataLoggerInfo[]} dataLoggerList dataLoggerInfo List
  * @property {nodeInfo[]} nodeList nodeInfo List
  * @property {placeInfo[]} placeList nodeInfo List
- * @property {simpleOrderInfo[]} simpleOrderList 간단한 명령 정보
+ * @property {contractCmdInfo[]} contractCmdList 간단한 명령 정보
  * @property {Buffer} statusBoard 현황판 발전 데이터
  * 이하 필요 시 추가
  */
 
 /**
- * @typedef {Object} simpleOrderInfo 간단한 명령 정보
- * @property {string} orderCommandType CONTROL, CANCEL, MEASURE [requestOrderCommandType]
- * @property {string} orderStatus waitingList, proceedingList, runningList [combinedOrderType]
+ * @typedef {Object} contractCmdInfo 간단한 명령 정보
+ * @property {string} reqWrapCmdType CONTROL, CANCEL, MEASURE [reqWrapCmdType]
+ * @property {string} complexCmdStep waitingList, proceedingList, runningList [complexCmdStep]
  * @property {string} uuid 유일 키로 해당 명령 고유 ID
  * @property {string} commandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} commandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)

@@ -9,7 +9,7 @@ const transmitToClientCommandType = {
 };
 exports.transmitToClientCommandType = transmitToClientCommandType;
 
-/** simpleOrderInfo Status 변경 Key */
+/** contractCmdInfo Status 변경 Key */
 const transmitToServerCommandType = {
   /** 노드 정보가 업데이트 되었을 경우 */
   NODE: 'NODE',
