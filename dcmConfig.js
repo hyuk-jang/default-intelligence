@@ -1,6 +1,7 @@
 /**
  * @desc Command Storage
  * @typedef {Object} csCommandGoalContraintInfo 명령 달성 제한 조건
+ * @property {string} cmdWrapUUID 해당 명령의 최대 수행 가동 시간
  * @property {number=} limitTimeSec 해당 명령의 최대 수행 가동 시간
  * @property {Object[]} goalDataList 해당 명령을 통해 얻고자 하는 값 목록
  * @property {string} goalDataList.nodeId 달성하고자 하는 nodeId
@@ -24,6 +25,7 @@
  * @typedef {Object} csControlOverlap 데이터의 유효성을 인정해주는 시간 간격 정보
  * @property {string} nodeId Node ID
  * @property {number} overlapCount 해당 장치에 걸려있는 누적 호출 수
+ * @property {number} overlapLockCount goal 목표치가 걸려있는 명령 누적 호출 수
  * @example
  * overlapCount = 0 : 아무런 장치에 대한 제약 조건 없음
  * overlapCount < 0 : 장치에 대한 False 호출 중첩 수 (Close, Off)

@@ -87,4 +87,11 @@
  * @property {string} commandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
  */
 
+/**
+ * @typedef {Object} wsExecCommandInfo 간단한 명령 정보
+ * @property {string} savedCommandId 저장된 CMD ID
+ * @property {string} wrapCmdType CONTROL, CANCEL
+ * @property {csCommandGoalContraintInfo[]=} goalContainerList 유일 키로 해당 명령 고유 ID
+ */
+
 module;
