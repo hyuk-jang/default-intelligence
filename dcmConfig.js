@@ -15,16 +15,33 @@
 
 /**
  * @desc Command Storage
- * @typedef {Object} csDeviceControlOverlapInfo 조작 가능한 장치 누적 호출 정보
- * @property {csControlOverlap[]} automaticOverlapList 자동모드 호출 정보
- * @property {{nodeId: string, isTrue: boolean}[]} manualOverlapList 수동일 경우에는
+ * @typedef {Object} csDeviceOverlapControlList 모든 노드 제어 호출 정보
+ * @property {nodeInfo} nodeInfo 노드 정보
+ * @property {csControlOverlap[]} automaticOverlapList 노드 별 제어 호출 정보 목록
  */
 
 /**
  * @desc Command Storage
- * @typedef {Object} csControlOverlap 데이터의 유효성을 인정해주는 시간 간격 정보
- * @property {string} nodeId Node ID
- * @property {number} overlapCount 해당 장치에 걸려있는 누적 호출 수
+ * @description WCU: Wrap Command UUID
+ * @typedef {Object} csOverlapControlInfo 노드 별 제어 호출 정보
+ * @property {number} controlValue 0,1,2,3 [requestDeviceControlType]
+ * @property {string[]} overlapWCUs 누적 호출 중 WCU List (자동모드에서 사용). 목록 제거 시 복구 명령 생성.
+ * @property {string[]} overlapLockWCUs 조건 명령 호출 중 WCU List(수동, 자동모드에서 사용), 목록 제거시 조건 명령 목록에서 삭제.
+ * @property {string} reservedExecWCU DCC 명령 Stack에 올라간 WCU (수동, 자동모드에서 사용)
+ * @example
+ * controlValue
+ * 0: Close, Off
+ * 1: Open, On
+ * undefined, 2: Status
+ * 3: Set   --> controlSetValue 가 필수적으로 입력, Set은 차후에 처리(FIXME)
+ */
+
+/**
+ * @desc Command Storage
+ * @typedef {Object} csControlOverlap 노드 당 컨트롤 호출 정보
+ * @property {nodeInfo} nodeInfo Node ID
+ * @property {Object} controlValueList 해당 장치에 걸려있는 누적 호출 수
+ * @property {Object} controlValueList 해당 장치에 걸려있는 누적 호출 수
  * @property {number} overlapLockCount goal 목표치가 걸려있는 명령 누적 호출 수
  * @example
  * overlapCount = 0 : 아무런 장치에 대한 제약 조건 없음
