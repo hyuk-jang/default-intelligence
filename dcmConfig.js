@@ -321,6 +321,7 @@
  * @property {number=} baudRate
  * @property {string=} host 접속 경로(socket 일 경우 사용)
  * @property {number|string=} port 접속 포트
+ * @property {number=} retryChance 명령 재시도 횟수(default: 0)
  * @property {parserInfo=} addConfigInfo type, subType의 Contoller에서 요구하는 추가 접속 정보
  */
 
