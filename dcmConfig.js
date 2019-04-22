@@ -1,11 +1,11 @@
 /**
  * @desc Command Storage
  * @typedef {Object} csCommandGoalContraintInfo 명령 달성 제한 조건
- * @property {string} cmdWrapUUID 해당 명령의 최대 수행 가동 시간
+ * @property {string} wrapCmdUUID 해당 명령의 최대 수행 가동 시간
  * @property {number=} limitTimeSec 해당 명령의 최대 수행 가동 시간
  * @property {Object[]} goalDataList 해당 명령을 통해 얻고자 하는 값 목록
  * @property {string} goalDataList.nodeId 달성하고자 하는 nodeId
- * @property {string} goalDataList.goalValue 달성 기준치 값
+ * @property {string|number} goalDataList.goalValue 달성 기준치 값
  * @property {string} goalDataList.goalRange 기준치 인정 범위.
  * @example
  * goalRange: -1 goalValue 보다 작은
@@ -85,7 +85,7 @@
  * @desc orderLV4
  * @typedef {Object} complexCmdContainerInfo 제어 타입에 따른 분류 형식
  * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
- * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
+ * @property {number=} controlSetValue controlValue 가 SET(3)일 경우 설정하는 값
  * @property {Array.<complexCmdEleInfo>} complexEleList 실제 controlValue 제어를 요청할 목록
  */
 
@@ -105,7 +105,7 @@
  * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
  * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값. 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
- * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
+ * @property {number=} controlSetValue controlValue 가 SET(3)일 경우 설정하는 값
  * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  * @property {string} uuid 해당 명령 UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
@@ -116,7 +116,7 @@
  * @typedef {Object} reqSingleCmdInfo 단일 명령을 내릴 경우
  * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제, 계측 명령 추가
  * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
- * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
+ * @property {number=} controlSetValue controlValue 가 SET(3)일 경우 설정하는 값
  * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  */
@@ -132,7 +132,7 @@
 /**
  * @typedef {Object} reqCmdEleInfo 컨트롤러에 장치로 명령을 내릴때 사용하는 형식
  * @property {number=} controlValue Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
- * @property {number=} controlSetValue controlValue 가 2일 경우 설정하는 값
+ * @property {number=} controlSetValue controlValue 가 SET(3)일 경우 설정하는 값
  * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  */
