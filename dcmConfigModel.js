@@ -40,7 +40,7 @@ const nodeDataType = {
 exports.nodeDataType = nodeDataType;
 
 /** contractCmdInfo Status 변경 Key */
-const contractCmdStatus = {
+const contractCmdStep = {
   /** 신규 등록되었을 경우 */
   NEW: 'NEW',
   /** 명령이 진행되었을 경우 */
@@ -50,7 +50,7 @@ const contractCmdStatus = {
   /** 명령의 실행이 완료되었을 경우 */
   COMPLETE: 'COMPLETE'
 };
-exports.contractCmdStatus = contractCmdStatus;
+exports.contractCmdStep = contractCmdStep;
 
 /** complexCmdStorage Key */
 const nodePickKey = {
@@ -82,22 +82,15 @@ exports.complexCmdStep = complexCmdStep;
 /** 명령 요청 타입 */
 const reqWrapCmdType = {
   /**
-   * 명령 제어에 사용.
-   * complexCmdIntegratedStorage의 controlStorage에 저장되고 관리되며 요청 명령이 runningList에 저장됨.
-   * @example
-   * 장치 제어 요청 --> controlStorage.waitingList 에 저장
-   * 실제 장치 요청 시작 --> controlStorage.proceedingList 에 저장
-   * 모든 장치 요청 완료 --> controlStorage.runningList 저장
+   * 명령 제어.
    */
   CONTROL: 'CONTROL',
   /**
-   * TODO: 명령 취소 요청 고민 더 필요
-   * 명령 제어 취소 요청.
-   * complexCmdIntegratedStorage.controlStorage 에 해당 명령이 존재해야만 삭제 가능
-   * @example
-   * controlStorage.waitingList --> 해당 명령 대기열 제거 명령 요청 및 완료 시
-   * controlStorage.proceedingList --> remainList 취소 요청, completeList 복원 요청
-   * controlStorage.runningList --> completeList 복원 요청
+   * 명령 복구.
+   */
+  RESTORE: 'RESTORE',
+  /**
+   * 대기 및 진행 중 명령 취소.
    */
   CANCEL: 'CANCEL',
   /**
@@ -141,8 +134,8 @@ const reqExecCmdInfo = {
    * undefined, 2: Status
    * 3: Set   --> controlSetValue 가 필수적으로 입력
    */
-  controlValue: undefined,
-  /** controlValue 가 2일 경우 설정하는 값 */
+  singleControlType: undefined,
+  /** singleControlType 가 2일 경우 설정하는 값 */
   controlSetValue: 0,
   /**
    * Main 당 일반적으로 부를 Node ID
