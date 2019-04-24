@@ -64,18 +64,27 @@ const nodePickKey = {
 exports.nodePickKey = nodePickKey;
 
 /** complexCmdStorage Key */
+const complexCmdPickKey = {
+  /** Node 데이터 간략화 */
+  FOR_DATA: ['wrapCmdStep', 'wrapCmdUUID', 'wrapCmdType', 'wrapCmdId'],
+  /** API Socket Sever 로 보내기 위한 필수 데이터 */
+  FOR_SERVER: ['wrapCmdId', 'wrapCmdName', 'wrapCmdType', 'wrapCmdStep']
+};
+exports.complexCmdPickKey = complexCmdPickKey;
+
+/** complexCmdStorage Key */
 const complexCmdStep = {
   /** 명령이 대기열에 올라가있는 리스트, 아직 장치 제어 요청이 일어나기 전 */
-  WAIT: 'waitingList',
+  WAIT: 'WAIT',
   /**
    * 실제 장비로 작업 요청이 들어갔다는 것으로 진행 중
    * dccFlagModel.definedCommandSetMessage.COMMANDSET_EXECUTION_START 가 발생했을 경우
    */
-  PROCEED: 'proceedingList',
+  PROCEED: 'PROCEED',
   /**
    * wrapCmdType.CONTROL 일 경우 현재 장치에 어떤 명령이 동작되고 있는지 추적할 필요가 있는 경우
    */
-  RUNNING: 'runningList'
+  RUNNING: 'RUNNING'
 };
 exports.complexCmdStep = complexCmdStep;
 

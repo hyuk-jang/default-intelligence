@@ -80,17 +80,16 @@
 
 /**
  * @typedef {Object} contractCmdInfo 간단한 명령 정보
- * @property {string} reqWrapCmdType CONTROL, CANCEL, MEASURE [reqWrapCmdType]
- * @property {string} complexCmdStep waitingList, proceedingList, runningList [complexCmdStep]
- * @property {string} uuid 유일 키로 해당 명령 고유 ID
- * @property {string} commandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
- * @property {string} commandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @property {string} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
+ * @property {string} wrapCmdStep 'WAIT', 'PROCEED', 'RUNNING'
+ * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
  */
 
 /**
  * @typedef {Object} wsExecCommandInfo 간단한 명령 정보
  * @property {string} savedCommandId 저장된 CMD ID
- * @property {string} wrapCmdType CONTROL, CANCEL
+ * @property {string} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
  * @property {csCommandGoalContraintInfo[]=} goalContainerList 유일 키로 해당 명령 고유 ID
  */
 

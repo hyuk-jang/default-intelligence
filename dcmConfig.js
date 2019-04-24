@@ -65,34 +65,18 @@
  */
 
 /**
- * @desc orderLV1
- * @typedef {Object} complexCmdIntegratedStorage 복합 명령 현황 저장소
- * @property {complexCmdStorage} controlStorage 제어 명령 저장소
- * @property {complexCmdStorage} cancelStorage 취소 명령 저장소
- * @property {complexCmdStorage} measureStorage 계측 명령 저장소
- */
-
-/**
- * @desc orderLV2
- * @typedef {Object} complexCmdStorage 복합 명령 관리 구조
- * @property {Array.<complexCmdWrapInfo>} waitingList 명령 대기
- * @property {Array.<complexCmdWrapInfo>} proceedingList 명령 요청 중
- * @property {Array.<complexCmdWrapInfo>=} runningList 실행되고 있는 명령. complexCmdList의 controlList에서만 쓰임
- */
-
-/**
- * @desc orderLV3
+ * @desc Complex Command LV 1
  * @typedef {Object} complexCmdWrapInfo 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
- * @property {string} wrapCmdStep WAIT, PROCEED, RUNNING
+ * @property {string} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
+ * @property {string} wrapCmdStep 'WAIT', 'PROCEED', 'RUNNING'
  * @property {string} wrapCmdUUID UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
- * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
  * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
  * @property {Array.<complexCmdContainerInfo>} containerCmdList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
  */
 
 /**
- * @desc orderLV4
+ * @desc Complex Command LV 2
  * @typedef {Object} complexCmdContainerInfo 제어 타입에 따른 분류 형식
  * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
  * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
@@ -100,7 +84,7 @@
  */
 
 /**
- * @desc orderLV5
+ * @desc Complex Command LV 3
  * @typedef {Object} complexCmdEleInfo 실제 장치를 제어할 세부 내용
  * @property {boolean} hasComplete 해당 작업 완료 여부
  * @property {string} uuid UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
