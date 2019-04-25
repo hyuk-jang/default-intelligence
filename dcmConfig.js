@@ -15,6 +15,20 @@
 
 /**
  * @desc Command Storage
+ * @typedef {Object} csCommandGoalContraintInfo 명령 달성 제한 조건
+ * @property {number=} limitTimeSec 해당 명령의 최대 수행 가동 시간. 해당 시간이 완료할 때까지 goal을 만족하지 못한다면 복구 명령 요청
+ * @property {Object[]} goalDataList 해당 명령을 통해 얻고자 하는 값 목록
+ * @property {string} goalDataList.nodeId 달성하고자 하는 nodeId
+ * @property {string|number} goalDataList.goalValue 달성 기준치 값
+ * @property {number} goalDataList.goalRange 기준치 인정 범위.
+ * @example
+ * goalRange: 0 goalValue 보다 작은
+ * goalRange: 1 goalValue 와 같은
+ * goalRange: 2 goalValue 보다 큰
+ */
+
+/**
+ * @desc Command Storage
  * @typedef {Object} csOverlapControlStorage 모든 노드 제어 호출 정보
  * @property {nodeInfo} nodeInfo 노드 정보
  * @property {csOverlapControlInfo[]} overlapControlList 노드 별 제어 호출 정보 목록
@@ -72,7 +86,9 @@
  * @property {string} wrapCmdUUID UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
  * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
- * @property {Array.<complexCmdContainerInfo>} containerCmdList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
+ * @property {csCommandGoalContraintInfo=} wrapCmdGoalInfo Automatic Mode Only. 복합 명령이 가지는 목표 데이터 범위 목록. 목표를 달성하면 명령 스택에서 삭제.
+ * @property {complexCmdContainerInfo[]} containerCmdList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
+ * @property {complexCmdContainerInfo[]} realContainerCmdList 실제 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
  */
 
 /**
@@ -80,7 +96,7 @@
  * @typedef {Object} complexCmdContainerInfo 제어 타입에 따른 분류 형식
  * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
  * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
- * @property {Array.<complexCmdEleInfo>} eleCmdList 실제 singleControlType 제어를 요청할 목록
+ * @property {complexCmdEleInfo[]} eleCmdList 실제 singleControlType 제어를 요청할 목록
  */
 
 /**

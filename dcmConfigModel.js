@@ -13,6 +13,17 @@ const controlCriticalKey = {
 };
 exports.controlCriticalKey = controlCriticalKey;
 
+/** 데이터 목표 기준치 범위  */
+const goalDataRange = {
+  /** 기준 값 초과 */
+  UPPER: 2,
+  /** 기준 값 동일 */
+  EQUAL: 1,
+  /** 기준 값 이하  */
+  LOWER: 0
+};
+exports.goalDataRange = goalDataRange;
+
 /** DBS 제어 모드 */
 const controlMode = {
   /** 수동 모드 */
