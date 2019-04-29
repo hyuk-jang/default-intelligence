@@ -25,7 +25,7 @@ const goalDataRange = {
 exports.goalDataRange = goalDataRange;
 
 /** DBS 제어 모드 */
-const controlMode = {
+const controlModeInfo = {
   /** 수동 모드 */
   MANUAL: 0,
   /** 자동 모드 */
@@ -33,7 +33,7 @@ const controlMode = {
   /** 우천 모드  */
   RAIN: 2
 };
-exports.controlMode = controlMode;
+exports.controlModeInfo = controlModeInfo;
 
 /** 장치를 DB에 입력하는 카테고리 */
 const nodeDataType = {

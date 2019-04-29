@@ -42,7 +42,7 @@
  * @property {number|string=} controlSetValue 설정 제어 값
  * @property {string[]} overlapWCUs 누적 호출 중 WCU List (자동모드에서 사용). 목록 제거 시 복구 명령 생성.
  * @property {string[]} overlapLockWCUs 조건 명령 호출 중 WCU List(수동, 자동모드에서 사용), 목록 제거시 조건 명령 목록에서 삭제.
- * @property {string} reservedExecWCU DCC 명령 Stack에 올라간 WCU (수동, 자동모드에서 사용)
+ * @property {string} reservedExecUU DCC 명령 Stack에 올라간 Unit UUID (수동, 자동모드에서 사용)
  * @example
  * singleControlType
  * 0: Close, Off
@@ -81,6 +81,7 @@
 /**
  * @desc Complex Command LV 1
  * @typedef {Object} complexCmdWrapInfo 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
+ * @property {string} controlMode 현재 명령이 요청된 시점의 제어 모드
  * @property {string} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
  * @property {string} wrapCmdStep 'WAIT', 'PROCEED', 'RUNNING'
  * @property {string} wrapCmdUUID UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
@@ -127,7 +128,7 @@
  * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제, 계측 명령 추가
  * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
  * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
- * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
+ * @property {string} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  */
 

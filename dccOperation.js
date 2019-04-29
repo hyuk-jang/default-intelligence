@@ -1,9 +1,9 @@
 /**
  * @typedef {Object} requestCommandSet 요청 명령 자료 구조
- * @property {string} integratedUUID 요청 명령 자료 구조룰 요청하는 통합 UUID
+ * @property {string} wrapCmdUUID 요청 명령 자료 구조룰 요청하는 통합 UUID
  * @property {number} rank 우선순위 (0: 긴급 명령으로 현재 진행되고 있는 명령 무시하고 즉시 해당 명령 수행, 1: 1순위 명령, 2: 2순위 명령 ...) 기본 값 2
- * @property {string} commandId 해당 명령 집합 통합 ID
- * @property {string} commandType 명령 통합의 요청, 삭제 (ADD, CANCEL)
+ * @property {string} commandId wrapCmdId
+ * @property {string} commandType wrapCmdType (CONTROL, RESTORE, CANCEL, MEASURE)
  * @property {string} commandName 해당 명령 집합 단위 이름
  * @property {string} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {string} uuid 명령 유일 ID
@@ -13,10 +13,10 @@
 
 /**
  * @typedef {Object} commandSet 명령 수행 자료 구조
- * @property {string} integratedUUID 요청 명령 자료 구조룰 요청하는 통합 UUID
+ * @property {string} wrapCmdUUID 요청 명령 자료 구조룰 요청하는 통합 UUID
  * @property {number} rank 우선순위 (0: 긴급 명령으로 현재 진행되고 있는 명령 무시하고 즉시 해당 명령 수행, 1: 1순위 명령, 2: 2순위 명령 ...) 기본 값 2
- * @property {string} commandId 해당 명령 통합 ID
- * @property {string} commandType 명령 통합의 요청, 삭제 (ADD, CANCEL)
+ * @property {string} commandId wrapCmdId
+ * @property {string} commandType wrapCmdType (CONTROL, RESTORE, CANCEL, MEASURE)
  * @property {string} commandName 해당 명령 집합 단위 이름
  * @property {string} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {string} uuid 명령 유일 ID
