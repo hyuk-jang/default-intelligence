@@ -83,6 +83,7 @@
  * @property {number} node_def_seq 노드 개요 정보 시퀀스
  * @property {number} data_logger_seq 데이타 로거 시퀀스
  * @property {string} target_code 노드 ID(001, 002, ...)
+ * @property {string=} target_name 노드 단위로 부를 명칭.(A-1, A-2) 등등. 차트를 표현하거나 노드에 의미를 부여할 때 쓰임
  * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
  * @property {string} serial_number 장치 뒷면에 나와있는 S/N
  */
@@ -399,6 +400,7 @@
  * @property {number} is_sensor 센서 여부(0: Device, 1: Sensor)
  * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
  * @property {string} n_target_code 노드 ID(001, 002, ...)
+ * @property {string} n_target_name 노드 ID(001, 002, ...)
  * @property {string} nd_target_id 사용 목적에 따라 달리 부를 센서 명으로 데이터 Key를 결정
  * @property {string} nd_target_name 필요시 세부 사용 목적 기술
  * @property {string} nd_target_prefix 해당 프로젝트에서 쓸 접두사
@@ -411,20 +413,20 @@
 /**
  * @desc VIEW TABLE
  * @typedef {Object} V_DV_NODE_DEF 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
- * @property {number} node_def_seq 노드 개요 정보 시퀀스 
- * @property {number} node_class_seq 노드 대분류 시퀀스 
- * @property {string} data_unit cm, kWh, m/s, m 등등 
- * @property {string} save_db_type DB 저장 분류 
- * @property {number} is_sensor 센서 여부(0: Device, 1: Sensor) 
- * @property {number} is_avg_center 중앙 값 사용 여부 
- * @property {string} nd_target_id 사용 목적에 따라 달리 부를 센서 명으로 데이터 Key를 결정 
- * @property {string} nd_target_name 필요시 세부 사용 목적 기술 
- * @property {string} nd_target_prefix 해당 프로젝트에서 쓸 접두사 
- * @property {string} nd_description 노드 데이터 단위에 대한 부연 설명이 필요한 경우 
- * @property {string} nc_target_id 노드를 가르키는 고유 명 
- * @property {string} nc_target_name 장치 명(한글) 
- * @property {string} nc_description 부연 설명이 필요한 경우 
- */ 
+ * @property {number} node_def_seq 노드 개요 정보 시퀀스
+ * @property {number} node_class_seq 노드 대분류 시퀀스
+ * @property {string} data_unit cm, kWh, m/s, m 등등
+ * @property {string} save_db_type DB 저장 분류
+ * @property {number} is_sensor 센서 여부(0: Device, 1: Sensor)
+ * @property {number} is_avg_center 중앙 값 사용 여부
+ * @property {string} nd_target_id 사용 목적에 따라 달리 부를 센서 명으로 데이터 Key를 결정
+ * @property {string} nd_target_name 필요시 세부 사용 목적 기술
+ * @property {string} nd_target_prefix 해당 프로젝트에서 쓸 접두사
+ * @property {string} nd_description 노드 데이터 단위에 대한 부연 설명이 필요한 경우
+ * @property {string} nc_target_id 노드를 가르키는 고유 명
+ * @property {string} nc_target_name 장치 명(한글)
+ * @property {string} nc_description 부연 설명이 필요한 경우
+ */
 
 /**
  * @desc VIEW TABLE
@@ -491,6 +493,7 @@
  * @property {string} node_id
  * @property {string} node_real_id
  * @property {string} node_name
+ * @property {string} place_node_name
  * @property {string} dl_id
  * @property {string} dl_name
  * @property {string} place_id
