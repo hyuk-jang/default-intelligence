@@ -1,6 +1,6 @@
 /**
  * @desc Command Storage
- * @typedef {Object} csCommandGoalContraintInfo 명령 달성 제한 조건
+ * @typedef {Object} tttt 명령 달성 제한 조건
  * @property {string} wrapCmdUUID 해당 명령의 최대 수행 가동 시간
  * @property {number=} limitTimeSec 해당 명령의 최대 수행 가동 시간
  * @property {Object[]} goalDataList 해당 명령을 통해 얻고자 하는 값 목록
@@ -133,10 +133,20 @@
  */
 
 /**
+ * @typedef {Object} reqFlowCmdInfo 흐름 명령을 내릴 경우
+ * @property {string} wrapCmdType  'CONTROL', 'RESTORE', 'CANCEL',  --> 명령 추가, 명령 복구, 명령 삭제
+ * @property {string} srcPlaceId 시작 장소 ID
+ * @property {string} destPlaceId 목적지 장소 Id
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:2)
+ * @property {csCommandGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
+ */
+
+/**
  * @typedef {Object} reqComplexCmdInfo 복합 명령을 내릴 경우
  * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
  * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @property {csCommandGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
  * @property {reqCmdEleInfo[]} reqCmdEleList
  */
 
@@ -186,6 +196,24 @@
  * Day of Month: 1-31
  * Months: 0-11 (Jan-Dec)
  * Day of Week: 0-6 (Sun-Sat)
+ */
+
+/**
+ * @typedef {Object} flowCmdInfo
+ * @property {string} srcPlaceId 시작 장소 ID
+ * @property {string} srcPlaceName 시작 장소 명
+ * @property {flowCmdDestInfo[]} destList 목적지 장소 목록
+ */
+
+/**
+ * @typedef {Object} flowCmdDestInfo
+ * @property {string} destPlaceId 목적지 장소 Id
+ * @property {string} destPlaceName 목적지 장소 명
+ * @property {string} cmdId 명령 이름 영어(srcPlaceId_TO_destPlaceId)
+ * @property {string} cmdName 명령 이름 한글(srcPlaceId → destPlaceId)
+ * @property {string} actionType common(에뮬레이터, 실제 동작) or controller(실제 동작) or emulator(에뮬레이터)
+ * @property {string[]} trueNodeList Open, On 등 장치 동작 수행
+ * @property {string[]} falseNodeList Close, Off 등 장치 동작 정지
  */
 
 /**

@@ -322,13 +322,13 @@
 
 /**
  * @typedef {Object} mControlInfo 명령 정보
- * @property {mSimpleModeInfo[]} simpleModeList 임시 명령 정보
- * @property {mSettingModeInfo[]} settingModeList 임시 명령 정보
+ * @property {mflowCmdInfo[]} flowCmdList 흐름 명령 정보
+ * @property {mSetCmdInfo[]} setCmdList 설정 명령 정보
  * @property {mTempControlInfo[]} tempControlList 임시 명령 정보
  */
 
 /**
- * @typedef {Object} mSimpleModeInfo 염수 이동 단순 명령
+ * @typedef {Object} mflowCmdInfo 흐름 명령
  * @property {string} srcPlaceId 시작 장소 ID
  * @property {Object[]} destList 목적지 장소 목록
  * @property {string} destList.destPlaceId 목적지 장소 Id
@@ -338,7 +338,7 @@
  */
 
 /**
- * @typedef {Object} mSettingModeInfo 설정 명령(정해진 장치 개폐 명령)
+ * @typedef {Object} mSetCmdInfo 설정 명령(정해진 장치 개폐 명령)
  * @property {string} cmdId 설정 명령 ID
  * @property {string[]} trueNodeList Open, On 등 장치 동작 수행
  * @property {string[]} falseNodeList Close, Off 등 장치 동작 정지
