@@ -15,7 +15,7 @@
 
 /**
  * @desc Command Storage
- * @typedef {Object} csCommandGoalContraintInfo 명령 달성 제한 조건
+ * @typedef {Object} csCmdGoalContraintInfo 명령 달성 제한 조건
  * @property {number=} limitTimeSec 해당 명령의 최대 수행 가동 시간. 해당 시간이 완료할 때까지 goal을 만족하지 못한다면 복구 명령 요청
  * @property {Object[]} goalDataList 해당 명령을 통해 얻고자 하는 값 목록
  * @property {string} goalDataList.nodeId 달성하고자 하는 nodeId
@@ -38,7 +38,7 @@
  * @desc Command Storage
  * @description WCU: Wrap Command UUID
  * @typedef {Object} csOverlapControlInfo 노드 별 제어 호출 정보
- * @property {number} singleControlType 0(False), 1(True), 2(Measure), 3(Set) [requestDeviceControlType]
+ * @property {number} singleControlType 0(False), 1(True), 2(Measure), 3(Set) [reqDeviceControlType]
  * @property {number|string=} controlSetValue 설정 제어 값
  * @property {string[]} overlapWCUs 누적 호출 중 WCU List (자동모드에서 사용). 목록 제거 시 복구 명령 생성.
  * @property {string[]} overlapLockWCUs 조건 명령 호출 중 WCU List(수동, 자동모드에서 사용), 목록 제거시 조건 명령 목록에서 삭제.
@@ -82,12 +82,15 @@
  * @desc Complex Command LV 1
  * @typedef {Object} complexCmdWrapInfo 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
  * @property {string} controlMode 현재 명령이 요청된 시점의 제어 모드
+ * @property {string} wrapCmdFormat 'SINGLE', 'FLOW' 'SET'
  * @property {string} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
  * @property {string} wrapCmdStep 'WAIT', 'PROCEED', 'RUNNING'
  * @property {string} wrapCmdUUID UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
  * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
- * @property {csCommandGoalContraintInfo=} wrapCmdGoalInfo Automatic Mode Only. 복합 명령이 가지는 목표 데이터 범위 목록. 목표를 달성하면 명령 스택에서 삭제.
+ * @property {string=} srcPlaceId FLOW FORMAT 일 경우 출발 장소 ID
+ * @property {string=} destPlaceId FLOW FORMAT 일 경우 출발 장소 ID
+ * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo Automatic Mode Only. 복합 명령이 가지는 목표 데이터 범위 목록. 목표를 달성하면 명령 스택에서 삭제.
  * @property {complexCmdContainerInfo[]} containerCmdList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
  * @property {complexCmdContainerInfo[]} realContainerCmdList 실제 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
  */
@@ -138,15 +141,18 @@
  * @property {string} srcPlaceId 시작 장소 ID
  * @property {string} destPlaceId 목적지 장소 Id
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:2)
- * @property {csCommandGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
+ * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
  */
 
 /**
  * @typedef {Object} reqComplexCmdInfo 복합 명령을 내릴 경우
+ * @property {string} wrapCmdFormat 'SINGLE', 'FLOW' 'SET'
  * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
  * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
- * @property {csCommandGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
+ * @property {string=} srcPlaceId FLOW FORMAT 일 경우 출발 장소 ID
+ * @property {string=} destPlaceId FLOW FORMAT 일 경우 출발 장소 ID
+ * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
  * @property {reqCmdEleInfo[]} reqCmdEleList
  */
 

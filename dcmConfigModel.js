@@ -100,6 +100,23 @@ const complexCmdStep = {
 exports.complexCmdStep = complexCmdStep;
 
 /** 명령 요청 타입 */
+const reqWrapCmdFormat = {
+  /**
+   * 단일 제어 명령.
+   */
+  SINGLE: 'SINGLE',
+  /**
+   * 흐름 명령.
+   */
+  FLOW: 'FLOW',
+  /**
+   * 설정 명령.
+   */
+  SET: 'SET'
+};
+exports.reqWrapCmdFormat = reqWrapCmdFormat;
+
+/** 명령 요청 타입 */
 const reqWrapCmdType = {
   /**
    * 명령 제어.
@@ -122,7 +139,7 @@ const reqWrapCmdType = {
 exports.reqWrapCmdType = reqWrapCmdType;
 
 /** 장치 제어 타입 */
-const requestDeviceControlType = {
+const reqDeviceControlType = {
   /** 장치 Close, Off */
   FALSE: 0,
   /** 장치 Open, On */
@@ -132,7 +149,7 @@ const requestDeviceControlType = {
   /** 장치 값 설정 */
   SET: 3
 };
-exports.requestDeviceControlType = requestDeviceControlType;
+exports.reqDeviceControlType = reqDeviceControlType;
 
 const reqExecCmdInfo = {
   /** 명령을 내릴 때 해당 명령의 고유 ID */

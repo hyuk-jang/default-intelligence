@@ -91,14 +91,14 @@
  * @property {string} wrapCmdId 저장된 CMD ID
  * @property {string} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
  * @property {number=} rank
- * @property {csCommandGoalContraintInfo[]=} goalContainerList 유일 키로 해당 명령 고유 ID
+ * @property {csCmdGoalContraintInfo[]=} goalContainerList 유일 키로 해당 명령 고유 ID
  */
 
 /**
  * @typedef {Object} wsExecCommandInfo 간단한 명령 정보
  * @property {string} savedCommandId 저장된 CMD ID
  * @property {string} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
- * @property {csCommandGoalContraintInfo[]=} goalContainerList 유일 키로 해당 명령 고유 ID
+ * @property {csCmdGoalContraintInfo[]=} goalContainerList 유일 키로 해당 명령 고유 ID
  */
 
 module;
