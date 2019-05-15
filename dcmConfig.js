@@ -17,10 +17,15 @@
  * @desc Command Storage
  * @typedef {Object} csCmdGoalContraintInfo 명령 달성 제한 조건
  * @property {number=} limitTimeSec 해당 명령의 최대 수행 가동 시간. 해당 시간이 완료할 때까지 goal을 만족하지 못한다면 복구 명령 요청
- * @property {Object[]} goalDataList 해당 명령을 통해 얻고자 하는 값 목록
- * @property {string} goalDataList.nodeId 달성하고자 하는 nodeId
- * @property {string|number} goalDataList.goalValue 달성 기준치 값
- * @property {number} goalDataList.goalRange 기준치 인정 범위.
+ * @property {csCmdGoalInfo[]} goalDataList 해당 명령을 통해 얻고자 하는 값 목록
+ */
+
+/**
+ * @desc Command Storage
+ * @typedef {Object} csCmdGoalInfo 명령 달성 제한 조건
+ * @property {string} nodeId 달성하고자 하는 nodeId
+ * @property {string|number} goalValue 달성 기준치 값
+ * @property {number} goalRange 기준치 인정 범위.
  * @example
  * goalRange: 0 goalValue 보다 작은
  * goalRange: 1 goalValue 와 같은
