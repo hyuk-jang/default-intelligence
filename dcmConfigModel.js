@@ -1,5 +1,5 @@
 /** 장치를 DB에 입력하는 카테고리 */
-const controlCriticalKey = {
+const thresholdConfig = {
   /** 장치 데이터가 제어 데이터. dv_device_data 에 저장 */
   MAX_VALUE: 'maxInfo',
   /** 센서 데이터. dv_sensor_data 에 저장 */
@@ -11,7 +11,7 @@ const controlCriticalKey = {
   /** 데이터 저장을 하지 않는 요소일 경우  */
   MIN_VALUE: 'minInfo'
 };
-exports.controlCriticalKey = controlCriticalKey;
+exports.thresholdConfig = thresholdConfig;
 
 /** 데이터 목표 기준치 범위  */
 const goalDataRange = {

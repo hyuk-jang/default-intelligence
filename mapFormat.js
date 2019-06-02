@@ -243,13 +243,13 @@
 /**
  
  * @typedef {Object} mPlaceInfo 장소 상세 특화 정보
- * @property {mCriticalControlInfo[]=} criticalControlList 임계치 명령 목록
+ * @property {mThresholdConfigInfo[]=} thresholdConfigList 임계치 명령 목록
  * @property {{width: number, height: number, depth: number}} placeSize 장소 크기
  */
 
 /**
  * NOTE: 최대 구동 명령 지속 시간, 수로를 통한 염수 이동 시간 삽입하지 않음. 복잡성 감소를 위함.
- * @typedef {Object} mCriticalControlInfo 임계치 명령 정보
+ * @typedef {Object} mThresholdConfigInfo 임계치 명령 정보
  * @property {string} ndId 임계치를 반영할 Node Def ID
  * @property {number=} maxValue 해당 임계치 Node Def Id의 최대 값
  * @property {number=} upperLimitValue 상한선. 없을 경우 maxValue 기입.
