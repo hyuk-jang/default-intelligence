@@ -258,6 +258,7 @@
  * @property {number=} minValue 해당 임계치 Nd Id의 최저 값
  * @property {string[]=} callPlaceRankList 급수지 우선 순위 목록
  * @property {string[]=} putPlaceRankList 배수지 우선 순위 목록
+ * @property {string[]=} groupSrcList 배수 조건을 만족할 경우 함께 배수 명령을 실행할 장소 목록
  */
 
 /**
