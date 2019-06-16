@@ -1,3 +1,15 @@
+/** Place Node의 값에 따른 임계 상태 */
+const placeNodeStatus = {
+  MAX_OVER: 0,
+  UPPER_LIMIT_OVER: 1,
+  NORMAL: 2,
+  LOWER_LIMIT_UNDER: 3,
+  MIN_UNDER: 4,
+  UNKNOWN: 5,
+  ERROR: 6
+};
+exports.placeNodeStatus = placeNodeStatus;
+
 /** 장치를 DB에 입력하는 카테고리 */
 const thresholdConfig = {
   /** 장치 데이터가 제어 데이터. dv_device_data 에 저장 */

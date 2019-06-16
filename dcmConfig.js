@@ -95,7 +95,7 @@
  * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
  * @property {string=} srcPlaceId FLOW FORMAT 일 경우 출발 장소 ID
- * @property {string=} destPlaceId FLOW FORMAT 일 경우 출발 장소 ID
+ * @property {string=} destPlaceId FLOW FORMAT 일 경우 도착 장소 ID
  * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo Automatic Mode Only. 복합 명령이 가지는 목표 데이터 범위 목록. 목표를 달성하면 명령 스택에서 삭제.
  * @property {complexCmdContainerInfo[]} containerCmdList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
  * @property {complexCmdContainerInfo[]} realContainerCmdList 실제 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
