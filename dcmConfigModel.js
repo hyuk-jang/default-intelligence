@@ -1,12 +1,12 @@
 /** Place Node의 값에 따른 임계 상태 */
 const placeNodeStatus = {
-  MAX_OVER: 0,
-  UPPER_LIMIT_OVER: 1,
-  NORMAL: 2,
-  LOWER_LIMIT_UNDER: 3,
-  MIN_UNDER: 4,
-  UNKNOWN: 5,
-  ERROR: 6
+  MAX_OVER: 'MAX_OVER',
+  UPPER_LIMIT_OVER: 'UPPER_LIMIT_OVER',
+  NORMAL: 'NORMAL',
+  LOWER_LIMIT_UNDER: 'LOWER_LIMIT_UNDER',
+  MIN_UNDER: 'MIN_UNDER',
+  UNKNOWN: 'UNKNOWN',
+  ERROR: 'ERROR'
 };
 exports.placeNodeStatus = placeNodeStatus;
 
