@@ -28,11 +28,11 @@ exports.thresholdConfig = thresholdConfig;
 /** 데이터 목표 기준치 범위  */
 const goalDataRange = {
   /** 기준 값 초과 */
-  UPPER: 2,
+  UPPER: 'UPPER',
   /** 기준 값 동일 */
-  EQUAL: 1,
+  EQUAL: 'EQUAL',
   /** 기준 값 이하  */
-  LOWER: 0
+  LOWER: 'LOWER'
 };
 exports.goalDataRange = goalDataRange;
 
