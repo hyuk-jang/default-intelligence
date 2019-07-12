@@ -251,14 +251,22 @@
  * NOTE: 최대 구동 명령 지속 시간, 수로를 통한 염수 이동 시간 삽입하지 않음. 복잡성 감소를 위함.
  * @typedef {Object} mThresholdConfigInfo 임계치 명령 정보
  * @property {string} ndId 임계치를 반영할 Node Def ID
- * @property {number=} maxValue 해당 임계치 Node Def Id의 최대 값
- * @property {number=} upperLimitValue 상한선. 없을 경우 maxValue 기입.
- * @property {number=} setValue 설정하고자 하는 Node ID 값
- * @property {number=} lowerLimitValue 하한선. 없을 경우 minValue 기입
- * @property {number=} minValue 해당 임계치 Nd Id의 최저 값
- * @property {string[]=} callPlaceRankList 급수지 우선 순위 목록
- * @property {string[]=} putPlaceRankList 배수지 우선 순위 목록
- * @property {string[]=} groupSrcList 배수 조건을 만족할 경우 함께 배수 명령을 실행할 장소 목록
+ * @property {mThresholdInfo=} maxValue 해당 임계치 Node Def Id의 최대 값
+ * @property {mThresholdInfo=} upperLimitValue 상한선. 없을 경우 maxValue 기입.
+ * @property {mThresholdInfo=} setValue 설정하고자 하는 Node ID 값
+ * @property {mThresholdInfo=} lowerLimitValue 하한선. 없을 경우 minValue 기입
+ * @property {mThresholdInfo=} minValue 해당 임계치 Nd Id의 최저 값
+ * @property {string[]|string[][]=} callPlaceRankList 급수지 우선 순위 목록
+ * @property {string[]|string[][]=} putPlaceRankList 배수지 우선 순위 목록
+ * @property {string[]=} groupPlaceList mThresholdInfo.isGroup 옵션이 활성화 되어 있을 경우 함께 움직일 장소
+ */
+
+/**
+ * @desc Smart Saltern
+ * @typedef {Object} mThresholdInfo 자동 수위 조절
+ * @property {number} value 임계 값
+ * @property {boolean=} isCall true: 급수 요청, false: 배수 요청, undefined: 아무 것도 하지 않음
+ * @property {boolean=} isGroup 그루핑 해서 이동 여부.
  */
 
 /**
