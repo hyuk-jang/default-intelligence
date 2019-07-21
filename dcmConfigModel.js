@@ -124,7 +124,11 @@ const reqWrapCmdFormat = {
   /**
    * 설정 명령.
    */
-  SET: 'SET'
+  SET: 'SET',
+  /**
+   * 시나리오 명령.
+   */
+  SCENARIO: 'SCENARIO'
 };
 exports.reqWrapCmdFormat = reqWrapCmdFormat;
 

@@ -137,7 +137,7 @@
  * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제, 계측 명령 추가
  * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
  * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
- * @property {string} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
+ * @property {string|string[]} nodeId Node ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  */
 
@@ -146,6 +146,14 @@
  * @property {string} wrapCmdType  'CONTROL', 'RESTORE', 'CANCEL',  --> 명령 추가, 명령 복구, 명령 삭제
  * @property {string} srcPlaceId 시작 장소 ID
  * @property {string} destPlaceId 목적지 장소 Id
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:2)
+ * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
+ */
+
+/**
+ * @typedef {Object} reqSetCmdInfo 설정 명령을 내릴 경우
+ * @property {string} wrapCmdType  'CONTROL', 'RESTORE', 'CANCEL',  --> 명령 추가, 명령 복구, 명령 삭제
+ * @property {string} wrapCmdId 설정 명령 ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:2)
  * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
  */

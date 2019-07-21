@@ -333,15 +333,18 @@
  * @typedef {Object} mControlInfo 명령 정보
  * @property {mflowCmdInfo[]} flowCmdList 흐름 명령 정보
  * @property {mSetCmdInfo[]} setCmdList 설정 명령 정보
+ * @property {mScenarioInfo[]} scenarioCmdList 시나리오 명령 정보
  * @property {mTempControlInfo[]} tempControlList 임시 명령 정보
  */
 
 /**
  * @typedef {Object} mflowCmdInfo 흐름 명령
  * @property {string} srcPlaceId 시작 장소 ID
+ * @property {string=} srcPlaceName 시작 장소 이름, 명시적으로 설정하고자 할 경우
  * @property {Object[]} destList 목적지 장소 목록
  * @property {string} destList.destPlaceId 목적지 장소 Id
- * @property {string} destList.actionType common(에뮬레이터, 실제 동작) or controller(실제 동작) or emulator(에뮬레이터)
+ * @property {string=} destList.destPlaceName 목적지 장소 이름. 명시적으로 설정하고자 할 경우
+ * @property {string=} destList.actionType common(에뮬레이터, 실제 동작) or controller(실제 동작) or emulator(에뮬레이터)
  * @property {string[]} destList.trueNodeList Open, On 등 장치 동작 수행
  * @property {string[]} destList.falseNodeList Close, Off 등 장치 동작 정지
  */
@@ -351,6 +354,26 @@
  * @property {string} cmdId 설정 명령 ID
  * @property {string[]} trueNodeList Open, On 등 장치 동작 수행
  * @property {string[]} falseNodeList Close, Off 등 장치 동작 정지
+ */
+
+/**
+ * @typedef {Object} mScenarioInfo 시나리오 명령 정보(정해둔 시나리오 명령 정보)
+ * @property {string} scenarioId 시나리오 명령 Id
+ * @property {mScenariCmdInfo[]|mScenariCmdInfo[][]|mScenariCmdInfo[][][]} scenarioList 실제 시나리오 명령 목록
+ */
+
+/**
+ * @typedef {Object} mScenariCmdInfo 단일 시나리오 요소 명령 정보
+ * @property {string} wrapCmdFormat 명령 요청 타입
+ * @property {string} wrapCmdType 명령 요청 타입
+ * @property {number=} singleControlType SINGLE Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
+ * @property {number=} singleControlSetValue SINGLE singleControlType 가 SET(3)일 경우 설정하는 값
+ * @property {string|string[]} singleNodeId SINGLE Node ID
+ * @property {string} setCmdId #SET 설정 명령 Id
+ * @property {string} flowSrcPlaceId FLOW 시작 장소 ID
+ * @property {string} flowDestPlaceId FLOW 목적지 장소 Id
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:2)
+ * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
  */
 
 /**
