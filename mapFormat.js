@@ -359,6 +359,7 @@
 /**
  * @typedef {Object} mScenarioInfo 시나리오 명령 정보(정해둔 시나리오 명령 정보)
  * @property {string} scenarioId 시나리오 명령 Id
+ * @property {string} scenarioName 시나리오 명령 이름
  * @property {mScenariCmdInfo[]|mScenariCmdInfo[][]|mScenariCmdInfo[][][]} scenarioList 실제 시나리오 명령 목록
  */
 
