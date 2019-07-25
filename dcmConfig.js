@@ -150,10 +150,11 @@
  * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
  * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값. 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
  * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
- * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  * @property {string} uuid 해당 명령 UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
- * @property {string} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
+ * @property {string|string[]=} dataLoggerId Main 당 일반적으로  혹은 Data Logger ID
+ * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID
+ * @property {string|string[]=} searchId dataLoggerId or nodeId
  */
 
 /**
@@ -183,6 +184,18 @@
  */
 
 /**
+ * @typedef {Object} reqCommandInfo 복합 명령을 내릴 경우
+ * @property {string} wrapCmdFormat 'SINGLE', 'FLOW' 'SET'
+ * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
+ * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @property {string=} srcPlaceId FLOW FORMAT 일 경우 출발 장소 ID
+ * @property {string=} destPlaceId FLOW  FORMAT 일 경우 출발 장소 ID
+ * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
+ * @property {reqCmdEleInfo[]} reqCmdEleList
+ */
+
+/**
  * @typedef {Object} reqComplexCmdInfo 복합 명령을 내릴 경우
  * @property {string} wrapCmdFormat 'SINGLE', 'FLOW' 'SET'
  * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
@@ -198,7 +211,9 @@
  * @typedef {Object} reqCmdEleInfo 컨트롤러에 장치로 명령을 내릴때 사용하는 형식
  * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
  * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
- * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
+ * @property {string|string[]=} dataLoggerId Main 당 일반적으로  혹은 Data Logger ID
+ * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID
+ * @property {string|string[]=} searchId dataLoggerId or nodeId
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  */
 
