@@ -1,3 +1,41 @@
+/** complexCmdStorage Key */
+const commandPickKey = {
+  /** Node 데이터 간략화 */
+  FOR_DATA: ['wrapCmdStep', 'wrapCmdUUID', 'wrapCmdType', 'wrapCmdId'],
+  /** API Socket Sever 로 보내기 위한 필수 데이터 */
+  FOR_SERVER: ['wrapCmdId', 'wrapCmdName', 'wrapCmdType', 'wrapCmdStep']
+};
+exports.commandPickKey = commandPickKey;
+
+/** contractCmdInfo Status 변경 Key */
+const commandEvent = {
+  /** 명령이 대기열에 올라가있는 리스트, 아직 장치 제어 요청이 일어나기 전 */
+  WAIT: 'WAIT',
+  /** 명령이 진행되었을 경우 */
+  PROCEED: 'PROCEED',
+  /** 명령을 진행을 완료하고 Goal 처리를 대기하고 있을 경우  */
+  RUNNING: 'RUNNING',
+  /** Goal 달성 및 사용자의 삭제 요청에 의한 명령 삭제 진행 중일 경우  */
+  CANCELING: 'CANCELING',
+  /** 명령의 추적을 종료할 경우(Goal 달성 및 삭제) */
+  END: 'END'
+};
+exports.commandEvent = commandEvent;
+
+/** Command Step */
+const commandStep = {
+  /** 명령이 대기열에 올라가있는 리스트, 아직 장치 제어 요청이 일어나기 전 */
+  WAIT: 'WAIT',
+  /**
+   * 실제 장비로 작업 요청이 들어갔다는 것으로 진행 중
+   * dccFlagModel.definedCommandSetMessage.COMMANDSET_EXECUTION_START 가 발생했을 경우
+   */
+  PROCEED: 'PROCEED',
+  /** 주어진 명령 요소를 전부 처리하였을 경우 */
+  COMPLETE: 'COMPLETE'
+};
+exports.commandStep = commandStep;
+
 /** Place Node의 값에 따른 임계 상태 */
 const placeNodeStatus = {
   MAX_OVER: 'MAX_OVER',

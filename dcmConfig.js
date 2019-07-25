@@ -85,6 +85,30 @@
  */
 
 /**
+ * @desc Command LV 1
+ * @typedef {Object} commandWrapInfo 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
+ * @property {string} controlMode 현재 명령이 요청된 시점의 제어 모드
+ * @property {string} wrapCmdFormat 'SINGLE', 'FLOW' 'SET'
+ * @property {string} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
+ * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
+ * @property {string=} srcPlaceId FLOW FORMAT 일 경우 출발 장소 ID
+ * @property {string=} destPlaceId FLOW FORMAT 일 경우 도착 장소 ID
+ * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo Automatic Mode Only. 복합 명령이 가지는 목표 데이터 범위 목록. 목표를 달성하면 명령 스택에서 삭제.
+ * @property {CommandContainerInfo[]} containerCmdList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
+ * @property {CommandContainerInfo[]} realContainerCmdList 실제 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
+ */
+
+/**
+ * @desc Complex Command LV 2
+ * @typedef {Object} CommandContainerInfo 제어 타입에 따른 분류 형식
+ * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
+ * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
+ * @property {string[]} nodeIdList Node Id 목록
+ */
+
+/**
  * @desc Complex Command LV 1
  * @typedef {Object} complexCmdWrapInfo 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
  * @property {string} controlMode 현재 명령이 요청된 시점의 제어 모드
