@@ -152,6 +152,10 @@ exports.complexCmdStep = complexCmdStep;
 /** 명령 요청 타입 */
 const reqWrapCmdFormat = {
   /**
+   * 모니터링 제어 명령.
+   */
+  MEASURE: 'MEASURE',
+  /**
    * 단일 제어 명령.
    */
   SINGLE: 'SINGLE',
@@ -188,7 +192,7 @@ const reqWrapCmdType = {
    * 명령 계측 요청
    * complexCmdIntegratedStorage.measureStorage 에 저장되며 완료시 삭제
    */
-  MEASURE: 'MEASURE'
+  // MEASURE: 'MEASURE'
 };
 exports.reqWrapCmdType = reqWrapCmdType;
 

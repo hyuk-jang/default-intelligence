@@ -85,6 +85,31 @@
  */
 
 /**
+ * @typedef {Object} reqCommandInfo 복합 명령을 내릴 경우
+ * @property {string} wrapCmdFormat 'SINGLE', 'FLOW' 'SET'
+ * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
+ * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
+ * @property {string=} srcPlaceId FLOW FORMAT 일 경우 출발 장소 ID
+ * @property {string=} destPlaceId FLOW  FORMAT 일 경우 출발 장소 ID
+ * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
+ * @property {reqCmdEleInfo[]} reqCmdEleList
+ */
+
+// * @property {refineCmdEleInfo[]} refineCmdEleList
+
+/**
+ * @typedef {Object} reqCmdEleInfo 컨트롤러에 장치로 명령을 내릴때 사용하는 형식
+ * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
+ * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
+ * @property {string|string[]=} dataLoggerId Main 당 일반적으로  혹은 Data Logger ID
+ * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID
+ * @property {string[]} searchIdList dataLoggerId or nodeId
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
+ */
+
+/**
  * @desc Command LV 1
  * @typedef {Object} commandWrapInfo 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
  * @property {string} controlMode 현재 명령이 요청된 시점의 제어 모드
@@ -96,13 +121,14 @@
  * @property {string=} srcPlaceId FLOW FORMAT 일 경우 출발 장소 ID
  * @property {string=} destPlaceId FLOW FORMAT 일 경우 도착 장소 ID
  * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo Automatic Mode Only. 복합 명령이 가지는 목표 데이터 범위 목록. 목표를 달성하면 명령 스택에서 삭제.
- * @property {CommandContainerInfo[]} containerCmdList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
- * @property {CommandContainerInfo[]} realContainerCmdList 실제 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
+ * @property {reqCmdEleInfo[]} reqCmdEleList
+ * @property {commandContainerInfo[]} containerCmdList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
+ * @property {commandContainerInfo[]} realContainerCmdList 실제 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
  */
 
 /**
  * @desc Complex Command LV 2
- * @typedef {Object} CommandContainerInfo 제어 타입에 따른 분류 형식
+ * @typedef {Object} commandContainerInfo 제어 타입에 따른 분류 형식
  * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
  * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
  * @property {string[]} nodeIdList Node Id 목록
@@ -158,6 +184,15 @@
  */
 
 /**
+ * @typedef {Object} reqMeasureCmdInfo 계측 명령을 내릴 경우
+ * @property {string} wrapCmdType  'CONTROL', 'CANCEL', --> 명령 추가, 명령 삭제
+ * @property {string} wrapCmdId  명령 Id
+ * @property {string} wrapCmdName  명령 Name
+ * @property {string[]} searchIdList Node IDs or Data Logger Ids
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
+ */
+
+/**
  * @typedef {Object} reqSingleCmdInfo 단일 명령을 내릴 경우
  * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제, 계측 명령 추가
  * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
@@ -184,15 +219,11 @@
  */
 
 /**
- * @typedef {Object} reqCommandInfo 복합 명령을 내릴 경우
- * @property {string} wrapCmdFormat 'SINGLE', 'FLOW' 'SET'
- * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
- * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
- * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
- * @property {string=} srcPlaceId FLOW FORMAT 일 경우 출발 장소 ID
- * @property {string=} destPlaceId FLOW  FORMAT 일 경우 출발 장소 ID
- * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
- * @property {reqCmdEleInfo[]} reqCmdEleList
+ * @typedef {Object} refineCmdEleInfo 컨트롤러에 장치로 명령을 내릴때 사용하는 형식
+ * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
+ * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
+ * @property {string} searchId dataLoggerId or nodeId
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  */
 
 /**
@@ -213,7 +244,7 @@
  * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
  * @property {string|string[]=} dataLoggerId Main 당 일반적으로  혹은 Data Logger ID
  * @property {string|string[]=} nodeId Main 당 일반적으로 부를 Node ID
- * @property {string|string[]=} searchId dataLoggerId or nodeId
+ * @property {string[]} searchIdList dataLoggerId or nodeId
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  */
 

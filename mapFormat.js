@@ -352,6 +352,7 @@
 /**
  * @typedef {Object} mSetCmdInfo 설정 명령(정해진 장치 개폐 명령)
  * @property {string} cmdId 설정 명령 ID
+ * @property {string} cmdName 설정 명령 Name
  * @property {string[]} trueNodeList Open, On 등 장치 동작 수행
  * @property {string[]} falseNodeList Close, Off 등 장치 동작 정지
  */
