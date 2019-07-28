@@ -26,15 +26,18 @@ exports.commandEvent = commandEvent;
 const commandStep = {
   /** 명령이 대기열에 올라가있는 리스트, 아직 장치 제어 요청이 일어나기 전 */
   WAIT: 'WAIT',
-  /**
-   * 실제 장비로 작업 요청이 들어갔다는 것으로 진행 중
-   * dccFlagModel.definedCommandSetMessage.COMMANDSET_EXECUTION_START 가 발생했을 경우
-   */
+  /** 명령이 진행되었을 경우 */
   PROCEED: 'PROCEED',
-  /** 주어진 명령 요소를 전부 처리하였을 경우 */
-  COMPLETE: 'COMPLETE'
+  /** 명령 요청 처리가 완료되었을 경우 */
+  COMPLETE: 'COMPLETE',
+  /** COMPLETE 처리가 되었지만 지켜보고자 할 경우, (Goal 달성 및 실행 중 명령으로 둘 경우 )  */
+  RUNNING: 'RUNNING',
+  /** 명령의 종료할 경우.(Goal 달성 및 삭제) */
+  END: 'END'
 };
 exports.commandStep = commandStep;
+// /** Goal 달성 및 사용자의 삭제 요청에 의한 명령 삭제 진행 중일 경우  */
+// CANCELING: 'CANCELING',
 
 /** Place Node의 값에 따른 임계 상태 */
 const placeNodeStatus = {

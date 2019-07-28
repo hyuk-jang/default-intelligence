@@ -85,6 +85,32 @@
  */
 
 /**
+ * @typedef {Object} cmdStorageSearch 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
+ * @property {string=} controlMode 현재 명령이 요청된 시점의 제어 모드
+ * @property {string=} wrapCmdUuid UUID
+ * @property {string=} wrapCmdFormat 'SINGLE', 'FLOW' 'SET', 'MEASURE
+ * @property {string=} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL' --> 명령 추가, 명령 삭제
+ * @property {string=} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string=} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
+ * @property {string=} srcPlaceId FLOW FORMAT 일 경우 출발 장소 ID
+ * @property {string=} destPlaceId FLOW FORMAT 일 경우 도착 장소 ID
+ * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo Automatic Mode Only. 복합 명령이 가지는 목표 데이터 범위 목록. 목표를 달성하면 명령 스택에서 삭제.
+ * @property {reqCmdEleInfo[]} reqCmdEleList
+ * @property {commandContainerInfo[]} containerCmdList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
+ * @property {commandContainerInfo[]} realContainerCmdList 실제 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
+ */
+
+/**
+ * @typedef {Object} cmdElementSearch 명령 개체를 찾기 위한 옵션
+ * @property {boolean=} isIgnore 무시 여부
+ * @property {string=} cmdEleUuid Command Elements UUID
+ * @property {string=} nodeId UUID
+ * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
+ * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
+ */
+
+/**
  * @typedef {Object} reqCommandInfo 복합 명령을 내릴 경우
  * @property {string} wrapCmdFormat 'SINGLE', 'FLOW' 'SET'
  * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
@@ -128,10 +154,11 @@
 
 /**
  * @desc Complex Command LV 2
- * @typedef {Object} commandContainerInfo 제어 타입에 따른 분류 형식
+ * @typedef {Object} commandContainerInfo 최소 명령 객체 생성 정보. Command Element를 생성
+ * @property {string} nodeId Node Id
  * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
  * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
- * @property {string[]} nodeIdList Node Id 목록
+ * @property {boolean=} isIgnore DLC로의 명령 요청 여부. 기본 값 false
  */
 
 /**
@@ -197,7 +224,7 @@
  * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제, 계측 명령 추가
  * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
  * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
- * @property {string|string[]} nodeId Node ID
+ * @property {string} nodeId Node ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  */
 
