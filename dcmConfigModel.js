@@ -17,6 +17,8 @@ const commandEvent = {
   RUNNING: 'RUNNING',
   /** Goal 달성 및 사용자의 삭제 요청에 의한 명령 삭제 진행 중일 경우  */
   CANCELING: 'CANCELING',
+  /** CANCELING 완료 후 복원 명령이 있을 경우 해당 명령의 완료를 기다리는 경우 */
+  RESTORE: 'RESTORE',
   /** 명령의 추적을 종료할 경우(Goal 달성 및 삭제) */
   END: 'END'
 };
@@ -32,6 +34,10 @@ const commandStep = {
   COMPLETE: 'COMPLETE',
   /** COMPLETE 처리가 되었지만 지켜보고자 할 경우, (Goal 달성 및 실행 중 명령으로 둘 경우 )  */
   RUNNING: 'RUNNING',
+  /** 종전에 요청한 명령을 DLC에 취소를 요청하는 중 */
+  CANCELING: 'CANCELING',
+  /** CANCELING 완료 후 복원 명령이 있을 경우 해당 명령의 완료를 기다리는 경우 */
+  RESTORE: 'RESTORE',
   /** 명령의 종료할 경우.(Goal 달성 및 삭제) */
   END: 'END'
 };
@@ -184,13 +190,9 @@ const reqWrapCmdType = {
    */
   CONTROL: 'CONTROL',
   /**
-   * 명령 복구.
-   */
-  RESTORE: 'RESTORE',
-  /**
    * 대기 및 진행 중 명령 취소.
    */
-  CANCEL: 'CANCEL',
+  CANCEL: 'CANCEL'
   /**
    * 명령 계측 요청
    * complexCmdIntegratedStorage.measureStorage 에 저장되며 완료시 삭제
