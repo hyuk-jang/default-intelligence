@@ -159,6 +159,7 @@
  * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
  * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
  * @property {boolean=} isIgnore DLC로의 명령 요청 여부. 기본 값 false
+ * @property {boolean=} isLive commandElement 객체의 명령 취소 여부. 기본 값 false
  */
 
 /**
@@ -221,16 +222,17 @@
 
 /**
  * @typedef {Object} reqSingleCmdInfo 단일 명령을 내릴 경우
- * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제, 계측 명령 추가
+ * @property {string} wrapCmdType  'CONTROL', 'CANCEL' --> 명령 추가, 명령 삭제
  * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
  * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
  * @property {string} nodeId Node ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
+ * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
  */
 
 /**
  * @typedef {Object} reqFlowCmdInfo 흐름 명령을 내릴 경우
- * @property {string} wrapCmdType  'CONTROL', 'RESTORE', 'CANCEL',  --> 명령 추가, 명령 복구, 명령 삭제
+ * @property {string} wrapCmdType  'CONTROL', 'CANCEL',  --> 명령 추가, 명령 삭제
  * @property {string} srcPlaceId 시작 장소 ID
  * @property {string} destPlaceId 목적지 장소 Id
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:2)
@@ -239,10 +241,17 @@
 
 /**
  * @typedef {Object} reqSetCmdInfo 설정 명령을 내릴 경우
- * @property {string} wrapCmdType  'CONTROL', 'RESTORE', 'CANCEL',  --> 명령 추가, 명령 복구, 명령 삭제
+ * @property {string} wrapCmdType  'CONTROL', 'CANCEL',  --> 명령 추가, 명령 삭제
  * @property {string} wrapCmdId 설정 명령 ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:2)
  * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
+ */
+
+/**
+ * @typedef {Object} reqScenarioCmdInfo 시나리오 명령을 내릴 경우
+ * @property {string} wrapCmdType  'CONTROL', 'CANCEL',  --> 명령 추가, 명령 삭제
+ * @property {string} wrapCmdId 시나리오 ID
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:2)
  */
 
 /**

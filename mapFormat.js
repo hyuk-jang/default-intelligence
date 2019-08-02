@@ -368,12 +368,12 @@
  * @typedef {Object} mScenariCmdInfo 단일 시나리오 요소 명령 정보
  * @property {string} wrapCmdFormat 명령 요청 타입
  * @property {string} wrapCmdType 명령 요청 타입
- * @property {number=} singleControlType SINGLE Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
- * @property {number=} singleControlSetValue SINGLE singleControlType 가 SET(3)일 경우 설정하는 값
- * @property {string|string[]} singleNodeId SINGLE Node ID
+ * @property {number=} singleControlType #SINGLE Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
+ * @property {number=} singleControlSetValue #SINGLE singleControlType 가 SET(3)일 경우 설정하는 값
+ * @property {string|string[]} singleNodeId #SINGLE Node ID
  * @property {string} setCmdId #SET 설정 명령 Id
- * @property {string} flowSrcPlaceId FLOW 시작 장소 ID
- * @property {string} flowDestPlaceId FLOW 목적지 장소 Id
+ * @property {string} flowSrcPlaceId #FLOW 시작 장소 ID
+ * @property {string} flowDestPlaceId #FLOW 목적지 장소 Id
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:2)
  * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
  */
