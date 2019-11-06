@@ -127,7 +127,9 @@ const nodePickKey = {
   /** Node 데이터 간략화 */
   FOR_DATA: ['node_id', 'node_name', 'data'],
   /** API Socket Sever 로 보내기 위한 필수 데이터 */
-  FOR_SERVER: ['node_real_id', 'data'],
+  // FOR_SERVER: ['node_real_id', 'data'],
+  FOR_SERVER: { node_real_id: 'nri', data: 'd' },
+  FOR_USER: { node_id: 'ni', nd_target_name: 'ntn', data: 'd', place_name_list: 'pnl' },
   /**  DB에 입력하기 위한 Node 정보 */
   FOR_DB: ['node_seq', 'data', 'writeDate']
 };

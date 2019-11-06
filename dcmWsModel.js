@@ -1,5 +1,7 @@
 /** Socket Server에서 Socket Client로 명령을 요청하고자 할 때의 명령 식별 타입 */
 const transmitToClientCommandType = {
+  /** 명령 */
+  CMD: 'CMD',
   /** 단일 제어 모드 */
   SINGLE: 'SINGLE',
   /** 명령 제어 모드 */

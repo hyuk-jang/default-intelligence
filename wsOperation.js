@@ -1,3 +1,40 @@
+/********** API Control Start *********** */
+/**
+ * @typedef {Object} wsControlCmdAPI DBS로 명령을 전송하기 위한 형식
+ * @property {string=} WCF Wrap Cmd Format (MEASURE[default], SINGLE, SET, FLOW, SCENARIO)
+ * @property {string=} WCT Wrap Cmd Type (CONTROL[default], CANCEL)
+ * @property {string} WCI 고유 ID
+ * @property {wrapCmdGoalInfo=} WCG 명령 달성 제한 조건
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (0, 1, 2, 3[default])
+ * @property {number=} NI Node ID (SCT 가 SET(3)일 경우 설정하는 값)
+ * @property {number=} SCT Single Control Type (0: Close, 1: Open, 2: Status[default], 3: Set)
+ * @property {number=} CSV Control Set Value (SCT 가 SET(3)일 경우 설정하는 값)
+ * @example
+ * SCT (Single Control Type)
+ * 0: Close, Off
+ * 1: Open, On
+ * undefined, 2: Status
+ * 3: Set   --> controlSetValue 가 필수적으로 입력
+ */
+
+/**
+ * @typedef {Object} wsGenerateControlCmdAPI Web Browser 에서 생성되는 명령 형식
+ * @property {string=} cmdFormat Wrap Cmd Format (MEASURE[default], SINGLE, SET, FLOW, SCENARIO)
+ * @property {string=} cmdType Wrap Cmd Type (CONTROL[default], CANCEL)
+ * @property {string} cmdId 고유 ID
+ * @property {wrapCmdGoalInfo=} cmdGoal 명령 달성 제한 조건
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (0, 1, 2, 3[default])
+ * @property {string=} nodeId Node ID
+ * @property {number=} singleControlType 제어 분류  (0: Close, 1: Open, 2: Status[default], 3: Set)
+ * @property {number=} controlSetValue 제어 값 (SCT 가 SET(3)일 경우 설정하는 값)
+ * @example
+ * SCT (Single Control Type)
+ * 0: Close, Off
+ * 1: Open, On
+ * undefined, 2: Status
+ * 3: Set   --> controlSetValue 가 필수적으로 입력
+ */
+
 /********** Device Sensor Format Start *********** */
 /**
  * @typedef {Object} sensorReport searchRange를 만들기 위한 설정 정보
@@ -171,7 +208,7 @@
  * @property {string} groupByFormat 최종으로 묶을 데이터 Format
  * @property {string} selectGroupDate group_date.사용자에게 최종 Grouping 처리한 Date Key를 보여주기 위함
  * @property {string} selectViewDate view_date. selectGroupDate Format은 너무 길기 때문에 간소화 시킨 Format
- * @property {number} devideTimeNumber 출력의 평균 값 산출에 사용됨: 1시간에 몇개의 데이터가 포함되는지 여부.
+ * @property {number} divideTimeNumber 출력의 평균 값 산출에 사용됨: 1시간에 몇개의 데이터가 포함되는지 여부.
  * @example
  * ---> firstGroupByFormat
  * min --> DATE_FORMAT(${dateName},"%Y-%m-%d %H:%i"),

@@ -34,51 +34,6 @@
  */
 
 /**
- * @desc Command Storage
- * @typedef {Object} csOverlapControlStorage 모든 노드 제어 호출 정보
- * @property {nodeInfo} nodeInfo 노드 정보
- * @property {csOverlapControlInfo[]} overlapControlList 노드 별 제어 호출 정보 목록
- */
-
-/**
- * @desc Command Storage
- * @description WCU: Wrap Command UUID
- * @typedef {Object} csOverlapControlInfo 노드 별 제어 호출 정보
- * @property {number} singleControlType 0(False), 1(True), 2(Measure), 3(Set) [reqDeviceControlType]
- * @property {number|string=} controlSetValue 설정 제어 값
- * @property {string[]} overlapWCUs 누적 호출 중 WCU List (자동모드에서 사용). 목록 제거 시 복구 명령 생성.
- * @property {string[]} overlapLockWCUs 조건 명령 호출 중 WCU List(수동, 자동모드에서 사용), 목록 제거시 조건 명령 목록에서 삭제.
- * @property {string} reservedExecUU DCC 명령 Stack에 올라간 Unit UUID (수동, 자동모드에서 사용)
- * @example
- * singleControlType
- * 0: Close, Off
- * 1: Open, On
- * undefined, 2: Status
- * 3: Set   --> controlSetValue 가 필수적으로 입력, Set은 차후에 처리(FIXME)
- */
-
-/**
- * @desc Command Storage
- * @typedef {Object} csOverlapControlHandleConfig Overlap Control 을 조회하거나 생성할 때 필요한 옵션
- * @property {string=} nodeId 찾을려는 노드. By nodeId (nodeId or nodeInfo Use)
- * @property {nodeInfo=} nodeInfo 찾을려는 노드. By nodeInfo (nodeId or nodeInfo Use)
- * @property {string} singleControlType 0(False), 1(True), 2(Measure), 3(Set)
- * @property {number|string=} controlSetValue,
- */
-
-/**
- * @desc Command Storage
- * @typedef {Object} csControlOverlap 노드 당 컨트롤 호출 정보
- * @property {nodeInfo} nodeInfo Node ID
- * @property {Object} singleControlTypeList 해당 장치에 걸려있는 누적 호출 수
- * @property {number} overlapLockCount goal 목표치가 걸려있는 명령 누적 호출 수
- * @example
- * overlapCount = 0 : 아무런 장치에 대한 제약 조건 없음
- * overlapCount < 0 : 장치에 대한 False 호출 중첩 수 (Close, Off)
- * overlapCount > 0 : 장치에 대한 True 호출 중첩 수 (Open, On)
- */
-
-/**
  * @typedef {Object} timeIntervalToValidateInfo 데이터의 유효성을 인정해주는 시간 간격 정보
  * @property {string} diffType 시간 간격 타입(months, weeks, days,	hours, minutes, seconds, and milliseconds)
  * @property {number} duration 지속 시간. 이를 벗어나면 유효한 데이터가 아님
@@ -163,40 +118,6 @@
  */
 
 /**
- * @desc Complex Command LV 1
- * @typedef {Object} complexCmdWrapInfo 복합 명령을 내릴 경우 포맷(자동 명령, 순회 계측 명령, ...)
- * @property {string} controlMode 현재 명령이 요청된 시점의 제어 모드
- * @property {string} wrapCmdFormat 'SINGLE', 'FLOW' 'SET'
- * @property {string} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
- * @property {string} wrapCmdStep 'WAIT', 'PROCEED', 'RUNNING'
- * @property {string} wrapCmdUUID UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
- * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
- * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
- * @property {string=} srcPlaceId FLOW FORMAT 일 경우 출발 장소 ID
- * @property {string=} destPlaceId FLOW FORMAT 일 경우 도착 장소 ID
- * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo Automatic Mode Only. 복합 명령이 가지는 목표 데이터 범위 목록. 목표를 달성하면 명령 스택에서 삭제.
- * @property {complexCmdContainerInfo[]} containerCmdList 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
- * @property {complexCmdContainerInfo[]} realContainerCmdList 실제 명령을 내릴 목록(여는 목록, 닫는 목록, ...)
- */
-
-/**
- * @desc Complex Command LV 2
- * @typedef {Object} complexCmdContainerInfo 제어 타입에 따른 분류 형식
- * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 1: Open, On, ... ::: 0: Close, Off, undefind: Status
- * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
- * @property {complexCmdEleInfo[]} eleCmdList 실제 singleControlType 제어를 요청할 목록
- */
-
-/**
- * @desc Complex Command LV 3
- * @typedef {Object} complexCmdEleInfo 실제 장치를 제어할 세부 내용
- * @property {boolean} hasComplete 해당 작업 완료 여부
- * @property {string} uuid UUID. 유일 키로 명령 요청 시 동적으로 생성 및 부여
- * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
- * @property {string=} nodeId Main 당 일반적으로 부를 Node ID 혹은 Data Logger ID
- */
-
-/**
  * @typedef {Object} executeCmdInfo 복합 명령을 내릴 경우
  * @property {string} wrapCmdUUID 통합 명령 UUID로 complexCmdWrapInfo uuid 사용.
  * @property {string} wrapCmdType  'CONTROL', 'CANCEL', --> 명령 추가, 명령 삭제
@@ -225,7 +146,7 @@
  * @property {string} wrapCmdType  'CONTROL', 'CANCEL' --> 명령 추가, 명령 삭제
  * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
  * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
- * @property {string} nodeId Node ID
+ * @property {string|string[]} nodeId Node ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
  */
@@ -252,26 +173,6 @@
  * @property {string} wrapCmdType  'CONTROL', 'CANCEL',  --> 명령 추가, 명령 삭제
  * @property {string} wrapCmdId 시나리오 ID
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:2)
- */
-
-/**
- * @typedef {Object} refineCmdEleInfo 컨트롤러에 장치로 명령을 내릴때 사용하는 형식
- * @property {number=} singleControlType Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
- * @property {number=} controlSetValue singleControlType 가 SET(3)일 경우 설정하는 값
- * @property {string} searchId dataLoggerId or nodeId
- * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
- */
-
-/**
- * @typedef {Object} reqComplexCmdInfo 복합 명령을 내릴 경우
- * @property {string} wrapCmdFormat 'SINGLE', 'FLOW' 'SET'
- * @property {string} wrapCmdType  'CONTROL', 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
- * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
- * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
- * @property {string=} srcPlaceId FLOW FORMAT 일 경우 출발 장소 ID
- * @property {string=} destPlaceId FLOW  FORMAT 일 경우 출발 장소 ID
- * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
- * @property {reqCmdEleInfo[]} reqCmdEleList
  */
 
 /**
