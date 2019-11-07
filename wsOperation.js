@@ -27,6 +27,8 @@
  * @property {string=} nodeId Node ID
  * @property {number=} singleControlType 제어 분류  (0: Close, 1: Open, 2: Status[default], 3: Set)
  * @property {number=} controlSetValue 제어 값 (SCT 가 SET(3)일 경우 설정하는 값)
+ * @property {string=} SPI FLOW FORMAT 일 경우 출발 장소 ID
+ * @property {string=} DPI FLOW FORMAT 일 경우 도착 장소 ID
  * @example
  * SCT (Single Control Type)
  * 0: Close, Off

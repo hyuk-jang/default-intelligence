@@ -73,7 +73,7 @@
  * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3)
  * @property {string=} srcPlaceId FLOW FORMAT 일 경우 출발 장소 ID
- * @property {string=} destPlaceId FLOW  FORMAT 일 경우 출발 장소 ID
+ * @property {string=} destPlaceId FLOW  FORMAT 일 경우 도착 장소 ID
  * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
  * @property {reqCmdEleInfo[]} reqCmdEleList
  */
