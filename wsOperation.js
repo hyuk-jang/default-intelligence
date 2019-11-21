@@ -9,6 +9,8 @@
  * @property {number=} NI Node ID (SCT 가 SET(3)일 경우 설정하는 값)
  * @property {number=} SCT Single Control Type (0: Close, 1: Open, 2: Status[default], 3: Set)
  * @property {number=} CSV Control Set Value (SCT 가 SET(3)일 경우 설정하는 값)
+ * @property {string=} SPI FLOW FORMAT 일 경우 출발 장소 ID
+ * @property {string=} DPI FLOW FORMAT 일 경우 도착 장소 ID
  * @example
  * SCT (Single Control Type)
  * 0: Close, Off
