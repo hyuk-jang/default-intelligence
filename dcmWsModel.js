@@ -13,6 +13,8 @@ exports.transmitToClientCommandType = transmitToClientCommandType;
 
 /** contractCmdInfo Status 변경 Key */
 const transmitToServerCommandType = {
+  /** 현재 수행 중인 명령 모드 */
+  CONTROL_MODE: 'CONTROL_MODE',
   /** 노드 정보가 업데이트 되었을 경우 */
   NODE: 'NODE',
   /** 명령 정보가 업데이트 되었을 경우 */
@@ -108,7 +110,7 @@ const wsPlaceRelationPickKey = {
     /** 센서 여부 */
     is_sensor: 'is',
     /** 장소 Def id */
-    pd_target_id: 'pdti',
+    // pd_target_id: 'pdti',
     /** 장소 Def 이름 */
     pd_target_name: 'pdtn',
     /** 장소 Detail 이름 */
