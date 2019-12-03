@@ -1,29 +1,3 @@
-/** complexCmdStorage Key */
-const commandPickKey = {
-  /** Node 데이터 간략화 */
-  FOR_DATA: ['wrapCmdStep', 'wrapCmdUUID', 'wrapCmdType', 'wrapCmdId'],
-  /** API Socket Sever 로 보내기 위한 필수 데이터 */
-  FOR_SERVER: ['wrapCmdId', 'wrapCmdName', 'wrapCmdType', 'wrapCmdStep']
-};
-exports.commandPickKey = commandPickKey;
-
-/** contractCmdInfo Status 변경 Key */
-const commandEvent = {
-  /** 명령이 대기열에 올라가있는 리스트, 아직 장치 제어 요청이 일어나기 전 */
-  WAIT: 'WAIT',
-  /** 명령이 진행되었을 경우 */
-  PROCEED: 'PROCEED',
-  /** 명령을 진행을 완료하고 Goal 처리를 대기하고 있을 경우  */
-  RUNNING: 'RUNNING',
-  /** Goal 달성 및 사용자의 삭제 요청에 의한 명령 삭제 진행 중일 경우  */
-  CANCELING: 'CANCELING',
-  /** CANCELING 완료 후 복원 명령이 있을 경우 해당 명령의 완료를 기다리는 경우 */
-  RESTORE: 'RESTORE',
-  /** 명령의 추적을 종료할 경우(Goal 달성 및 삭제) */
-  END: 'END'
-};
-exports.commandEvent = commandEvent;
-
 /** Command Step */
 const commandStep = {
   /** 명령이 대기열에 올라가있는 리스트, 아직 장치 제어 요청이 일어나기 전 */
@@ -39,7 +13,7 @@ const commandStep = {
   /** CANCELING 완료 후 복원 명령이 있을 경우 해당 명령의 완료를 기다리는 경우 */
   RESTORE: 'RESTORE',
   /** 명령의 종료할 경우.(Goal 달성 및 삭제) */
-  END: 'END'
+  END: 'END',
 };
 exports.commandStep = commandStep;
 // /** Goal 달성 및 사용자의 삭제 요청에 의한 명령 삭제 진행 중일 경우  */
@@ -53,7 +27,7 @@ const placeNodeStatus = {
   LOWER_LIMIT_UNDER: 'LOWER_LIMIT_UNDER',
   MIN_UNDER: 'MIN_UNDER',
   UNKNOWN: 'UNKNOWN',
-  ERROR: 'ERROR'
+  ERROR: 'ERROR',
 };
 exports.placeNodeStatus = placeNodeStatus;
 
@@ -68,7 +42,7 @@ const thresholdConfig = {
   /** 오류 내역을 저장할 경우. block.config 에 따라 저장됨  */
   LOWER_LIMIT_VALUE: 'lowerLimitInfo',
   /** 데이터 저장을 하지 않는 요소일 경우  */
-  MIN_VALUE: 'minInfo'
+  MIN_VALUE: 'minInfo',
 };
 exports.thresholdConfig = thresholdConfig;
 
@@ -79,20 +53,9 @@ const goalDataRange = {
   /** 기준 값 동일 */
   EQUAL: 'EQUAL',
   /** 기준 값 이하  */
-  LOWER: 'LOWER'
+  LOWER: 'LOWER',
 };
 exports.goalDataRange = goalDataRange;
-
-/** DBS 제어 모드 */
-const controlModeInfo = {
-  /** 수동 모드 */
-  MANUAL: 0,
-  /** 자동 모드 */
-  AUTOMATIC: 1,
-  /** 우천 모드  */
-  RAIN: 2
-};
-exports.controlModeInfo = controlModeInfo;
 
 /** 장치를 DB에 입력하는 카테고리 */
 const nodeDataType = {
@@ -105,24 +68,20 @@ const nodeDataType = {
   /** 오류 내역을 저장할 경우. block.config 에 따라 저장됨  */
   TROUBLE: 'trouble',
   /** 데이터 저장을 하지 않는 요소일 경우  */
-  NONE: 'none'
+  NONE: 'none',
 };
 exports.nodeDataType = nodeDataType;
 
-/** contractCmdInfo Status 변경 Key */
-const contractCmdStep = {
-  /** 신규 등록되었을 경우 */
-  NEW: 'NEW',
-  /** 명령이 진행되었을 경우 */
-  PROCEED: 'PROCEED',
-  /** 명령의 실행이 완료되고  */
-  RUNNING: 'RUNNING',
-  /** 명령의 실행이 완료되었을 경우 */
-  COMPLETE: 'COMPLETE'
-};
-exports.contractCmdStep = contractCmdStep;
-
 /** complexCmdStorage Key */
+const commandPickKey = {
+  /** Node 데이터 간략화 */
+  FOR_DATA: ['wrapCmdStep', 'wrapCmdUUID', 'wrapCmdType', 'wrapCmdId'],
+  /** API Socket Sever 로 보내기 위한 필수 데이터 */
+  FOR_SERVER: ['wrapCmdFormat', 'wrapCmdId', 'wrapCmdName', 'wrapCmdType', 'wrapCmdStep'],
+};
+exports.commandPickKey = commandPickKey;
+
+/** Node Pick Key */
 const nodePickKey = {
   /** Node 데이터 간략화 */
   FOR_DATA: ['node_id', 'node_name', 'data'],
@@ -131,34 +90,9 @@ const nodePickKey = {
   FOR_SERVER: { node_real_id: 'nri', data: 'd' },
   FOR_USER: { node_id: 'ni', nd_target_name: 'ntn', data: 'd', place_name_list: 'pnl' },
   /**  DB에 입력하기 위한 Node 정보 */
-  FOR_DB: ['node_seq', 'data', 'writeDate']
+  FOR_DB: ['node_seq', 'data', 'writeDate'],
 };
 exports.nodePickKey = nodePickKey;
-
-/** complexCmdStorage Key */
-const complexCmdPickKey = {
-  /** Node 데이터 간략화 */
-  FOR_DATA: ['wrapCmdStep', 'wrapCmdUUID', 'wrapCmdType', 'wrapCmdId'],
-  /** API Socket Sever 로 보내기 위한 필수 데이터 */
-  FOR_SERVER: ['wrapCmdId', 'wrapCmdName', 'wrapCmdType', 'wrapCmdStep']
-};
-exports.complexCmdPickKey = complexCmdPickKey;
-
-/** complexCmdStorage Key */
-const complexCmdStep = {
-  /** 명령이 대기열에 올라가있는 리스트, 아직 장치 제어 요청이 일어나기 전 */
-  WAIT: 'WAIT',
-  /**
-   * 실제 장비로 작업 요청이 들어갔다는 것으로 진행 중
-   * dccFlagModel.definedCommandSetMessage.COMMANDSET_EXECUTION_START 가 발생했을 경우
-   */
-  PROCEED: 'PROCEED',
-  /**
-   * wrapCmdType.CONTROL 일 경우 현재 장치에 어떤 명령이 동작되고 있는지 추적할 필요가 있는 경우
-   */
-  RUNNING: 'RUNNING'
-};
-exports.complexCmdStep = complexCmdStep;
 
 /** 명령 요청 타입 */
 const reqWrapCmdFormat = {
@@ -181,7 +115,7 @@ const reqWrapCmdFormat = {
   /**
    * 시나리오 명령.
    */
-  SCENARIO: 'SCENARIO'
+  SCENARIO: 'SCENARIO',
 };
 exports.reqWrapCmdFormat = reqWrapCmdFormat;
 
@@ -194,7 +128,7 @@ const reqWrapCmdType = {
   /**
    * 대기 및 진행 중 명령 취소.
    */
-  CANCEL: 'CANCEL'
+  CANCEL: 'CANCEL',
   /**
    * 명령 계측 요청
    * complexCmdIntegratedStorage.measureStorage 에 저장되며 완료시 삭제
@@ -212,7 +146,7 @@ const reqDeviceControlType = {
   /** 장치 Measure */
   MEASURE: 2,
   /** 장치 값 설정 */
-  SET: 3
+  SET: 3,
 };
 exports.reqDeviceControlType = reqDeviceControlType;
 
@@ -245,13 +179,13 @@ const reqExecCmdInfo = {
    */
   nodeId: '',
   /** 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:3) */
-  rank: 3
+  rank: 3,
 };
 exports.reqExecCmdInfo = reqExecCmdInfo;
 
 const protocolOptionInfo = {
   /** 전송 데이터가 같으나 파싱이 실패할 경우 데이터 누적을 할지 여부 */
-  hasTrackingData: false
+  hasTrackingData: false,
 };
 exports.protocolOptionInfo = protocolOptionInfo;
 
@@ -278,7 +212,7 @@ const protocol_info = {
    * '001', Buffer('001')
    */
   deviceId: '',
-  protocolOptionInfo
+  protocolOptionInfo,
 };
 exports.protocol_info = protocol_info;
 
@@ -289,7 +223,7 @@ const controlInfo = {
   /** 에러가 발생하였을 경우 다음 명령 진행을 멈출지 여부 */
   hasErrorHandling: false,
   /** 장치의 연결이 끊겼을 경우 자동으로 재접속을 수행할지 여부 */
-  hasReconnect: false
+  hasReconnect: false,
 };
 exports.controlInfo = controlInfo;
 
@@ -328,7 +262,7 @@ const connect_info = {
   /**
    * @type {Object} subType이 존재할 경우 그에 해당하는 추가 접속 정보
    */
-  addConfigInfo: {}
+  addConfigInfo: {},
 };
 exports.connect_info = connect_info;
 
@@ -374,7 +308,7 @@ const logOption = {
    */
   hasCommanderResponse: false,
   /** 수신받은 데이터 */
-  hasReceiveData: false
+  hasReceiveData: false,
 };
 exports.logOption = logOption;
 
@@ -398,7 +332,7 @@ const deviceInfo = {
   logOption,
   controlInfo,
   connect_info,
-  protocol_info
+  protocol_info,
 };
 exports.deviceInfo = deviceInfo;
 
@@ -407,7 +341,7 @@ const defaultControlConfig = {
   /** true 일 경우 Echo Server 구동 */
   hasDev: false,
   /** 장치와의 연결 성공 */
-  deviceInfo
+  deviceInfo,
 };
 exports.defaultControlConfig = defaultControlConfig;
 
@@ -422,7 +356,7 @@ const dbInfo = {
   /** 사용할 port */
   port: 3306,
   /** 사용할 database */
-  database: ''
+  database: '',
 };
 exports.dbInfo = dbInfo;
 
@@ -431,7 +365,7 @@ const defaultManagerConfig = {
   /** DB 설정 정보 */
   dbInfo,
   /** 장치와의 연결 성공 */
-  deviceControllerList: [defaultControlConfig]
+  deviceControllerList: [defaultControlConfig],
 };
 exports.defaultManagerConfig = defaultManagerConfig;
 
@@ -450,7 +384,7 @@ const defaultDataLoggerConfig = {
    */
   searchInterval: 60,
   /** DB 설정 정보 */
-  dbInfo
+  dbInfo,
 };
 exports.defaultDataLoggerConfig = defaultDataLoggerConfig;
 
@@ -481,7 +415,7 @@ const dataLoggerInfo = {
   /** Data Logger Numbering 번호 (001, 002, ...) */
   target_code: '',
   connect_info,
-  protocol_info
+  protocol_info,
 };
 exports.dataLoggerInfo = dataLoggerInfo;
 
@@ -567,7 +501,7 @@ const nodeInfo = {
    * 데이터가 입력된 시간
    * @type {Data}
    */
-  writeDate: null
+  writeDate: null,
 };
 exports.nodeInfo = nodeInfo;
 
@@ -577,13 +511,13 @@ const dataLoggerConfig = {
   hasDev: false,
   deviceInfo,
   dataLoggerInfo,
-  nodeList: [nodeInfo]
+  nodeList: [nodeInfo],
 };
 exports.dataLoggerConfig = dataLoggerConfig;
 
 /** dataLogger 들을 총 관리하는 객체 설정 변수 */
 const integratedDataLoggerConfig = {
   dbInfo,
-  dataLoggerList: [dataLoggerConfig]
+  dataLoggerList: [dataLoggerConfig],
 };
 exports.integratedDataLoggerConfig = integratedDataLoggerConfig;
