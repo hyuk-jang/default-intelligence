@@ -70,12 +70,22 @@
 /**
  * @desc Socket Server (Web Server)
  * @typedef {Object} msDataInfo Main Storage 에서 쓰일 거점 Data 정보
+ * @property {wsModeInfo} modeInfo dataLoggerInfo List
  * @property {dataLoggerInfo[]} dataLoggerList dataLoggerInfo List
  * @property {nodeInfo[]} nodeList nodeInfo List
  * @property {V_DV_PLACE_RELATION[]} placeRelList nodeInfo List
  * @property {contractCmdInfo[]} contractCmdList 간단한 명령 정보
  * @property {Buffer} statusBoard 현황판 발전 데이터
  * 이하 필요 시 추가
+ */
+
+/**
+ * @typedef {Object} wsModeInfo 간단한 명령 정보
+ * @property {operationConfig} operationConfig 현재 수행 중인 구동 모드 설정 정보
+ * @property {operationConfig[]=} operationConfigList 초기 1회에 한해서 보내줌. 구동 모드 목록
+ * @example
+ * controlModeInfo.id ==> 'MANUAL', 'SCENARIO', 'POWER_OPTIMIZE', ... ETC
+ * cmdStrategy ==> 'MANUAL', 'OVERLAP_COUNT'
  */
 
 /**

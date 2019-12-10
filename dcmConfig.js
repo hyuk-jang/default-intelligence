@@ -1,16 +1,11 @@
 /**
- * @desc Command Storage
- * @typedef {Object} tttt 명령 달성 제한 조건
- * @property {string} wrapCmdUUID 해당 명령의 최대 수행 가동 시간
- * @property {number=} limitTimeSec 해당 명령의 최대 수행 가동 시간
- * @property {Object[]} goalDataList 해당 명령을 통해 얻고자 하는 값 목록
- * @property {string} goalDataList.nodeId 달성하고자 하는 nodeId
- * @property {string|number} goalDataList.goalValue 달성 기준치 값
- * @property {string} goalDataList.goalRange 기준치 인정 범위.
+ * @typedef {Object} operationConfig 간단한 명령 정보
+ * @property {string} algorithmId 제어 알고리즘 ID (Algorithm ID)
+ * @property {string} algorithmName 제어 알고리즘 Name
+ * @property {string} cmdStrategy 명령 전략
  * @example
- * goalRange: -1 goalValue 보다 작은
- * goalRange: 0 goalValue 와 같은
- * goalRange: 1 goalValue 보다 큰
+ * controlModeInfo.id ==> 'MANUAL', 'SCENARIO', 'POWER_OPTIMIZE', ... ETC
+ * cmdStrategy ==> 'MANUAL', 'OVERLAP_COUNT'
  */
 
 /**
