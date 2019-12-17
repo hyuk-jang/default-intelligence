@@ -1,3 +1,10 @@
+/** cmdStrategyType */
+const cmdStrategyType = {
+  MANUAL: 'MANUAL',
+  OVERLAP_COUNT: 'OVERLAP_COUNT'
+};
+exports.cmdStrategyType = cmdStrategyType;
+
 /** Command Step */
 const commandStep = {
   /** 명령이 대기열에 올라가있는 리스트, 아직 장치 제어 요청이 일어나기 전 */

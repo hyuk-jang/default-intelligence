@@ -81,7 +81,7 @@
 
 /**
  * @typedef {Object} wsModeInfo 간단한 명령 정보
- * @property {operationConfig} operationConfig 현재 수행 중인 구동 모드 설정 정보
+ * @property {string} algorithmId 알고리즘 ID
  * @property {operationConfig[]=} operationConfigList 초기 1회에 한해서 보내줌. 구동 모드 목록
  * @example
  * controlModeInfo.id ==> 'MANUAL', 'SCENARIO', 'POWER_OPTIMIZE', ... ETC
