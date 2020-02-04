@@ -1,7 +1,7 @@
 /** cmdStrategyType */
 const cmdStrategyType = {
   MANUAL: 'MANUAL',
-  OVERLAP_COUNT: 'OVERLAP_COUNT'
+  OVERLAP_COUNT: 'OVERLAP_COUNT',
 };
 exports.cmdStrategyType = cmdStrategyType;
 
@@ -84,7 +84,14 @@ const commandPickKey = {
   /** Node 데이터 간략화 */
   FOR_DATA: ['wrapCmdStep', 'wrapCmdUUID', 'wrapCmdType', 'wrapCmdId'],
   /** API Socket Sever 로 보내기 위한 필수 데이터 */
-  FOR_SERVER: ['wrapCmdFormat', 'wrapCmdId', 'wrapCmdName', 'wrapCmdType', 'wrapCmdStep'],
+  FOR_SERVER: [
+    'wrapCmdUUID',
+    'wrapCmdFormat',
+    'wrapCmdId',
+    'wrapCmdName',
+    'wrapCmdType',
+    'wrapCmdStep',
+  ],
 };
 exports.commandPickKey = commandPickKey;
 
