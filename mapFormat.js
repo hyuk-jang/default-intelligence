@@ -158,6 +158,7 @@
  * @typedef {Object} mNodeStructureInfo 노드 대분류 구조
  * @property {string} target_id 노드를 가르키는 고유 명(temp, reh, solar, co2, ...)
  * @property {string} target_name target_id에 대응하는 이름(온도, 습도, 일사량, 이산화탄소, ...)
+ * @property {number=} is_submit_api Default: 1, Class 단위에서의 API 전송 여부 정의. 세부적으로 지정하고자 할 경우 Def 사용. 0 or 1의 값을 기입하면 Def 까지 일괄 적용, API Server로 Node 데이터를 Socket 통신으로 전송할 지 여부
  * @property {number} is_sensor 센서 여부(0: Device, 1: Sensor). DBW 에서 센서 종류를 판단하기 위해서 사용
  * @property {number=} save_db_type 0: Device, 1: Sensor, 2: Block, 3: Trouble. 지정하지 않을 경우 is_sensor를 따라감. DB에 저장할 때 카테고리를 판별하기 위함
  * @property {string=} data_unit 데이터 단위(℃, %, W/m², ppl, ...)
@@ -171,6 +172,7 @@
  * @property {string} target_prefix 해당 프로젝트에서 쓸 접두사
  * @property {string} target_id 사용 목적에 따라 달리 부를 센서 명으로 데이터 Key를 결정
  * @property {string} target_name 필요시 세부 사용 목적 기술
+ * @property {number=} is_submit_api Default: 1, API Server로 Node 데이터를 Socket 통신으로 전송할 지 여부
  * @property {number} is_avg_center 평균 값(센터) 사용 여부
  * @property {string} description 노드 데이터 단위에 대한 부연 설명이 필요한 경우
  * @property {string=} repeatId repeat 저장소에서 가져다 쓸 nodeList. map 재정의시 repeat key 내용으로 nodeList를 덮어씀
@@ -243,21 +245,30 @@
 /**
  
  * @typedef {Object} mPlaceInfo 장소 상세 특화 정보
- * @property {mCriticalControlInfo[]=} criticalControlList 임계치 명령 목록
+ * @property {mThresholdConfigInfo[]=} thresholdConfigList 임계치 명령 목록
  * @property {{width: number, height: number, depth: number}} placeSize 장소 크기
  */
 
 /**
  * NOTE: 최대 구동 명령 지속 시간, 수로를 통한 염수 이동 시간 삽입하지 않음. 복잡성 감소를 위함.
- * @typedef {Object} mCriticalControlInfo 임계치 명령 정보
+ * @typedef {Object} mThresholdConfigInfo 임계치 명령 정보
  * @property {string} ndId 임계치를 반영할 Node Def ID
- * @property {number=} maxValue 해당 임계치 Node Def Id의 최대 값
- * @property {number=} upperLimitValue 상한선. 없을 경우 maxValue 기입.
- * @property {number=} setValue 설정하고자 하는 Node ID 값
- * @property {number=} lowerLimitValue 하한선. 없을 경우 minValue 기입
- * @property {number=} minValue 해당 임계치 Nd Id의 최저 값
- * @property {string[]=} callPlaceRankList 급수지 우선 순위 목록
- * @property {string[]=} putPlaceRankList 배수지 우선 순위 목록
+ * @property {mThresholdInfo=} maxValue 해당 임계치 Node Def Id의 최대 값
+ * @property {mThresholdInfo=} upperLimitValue 상한선. 없을 경우 maxValue 기입.
+ * @property {mThresholdInfo=} setValue 설정하고자 하는 Node ID 값
+ * @property {mThresholdInfo=} lowerLimitValue 하한선. 없을 경우 minValue 기입
+ * @property {mThresholdInfo=} minValue 해당 임계치 Nd Id의 최저 값
+ * @property {string[]|string[][]=} callPlaceRankList 급수지 우선 순위 목록
+ * @property {string[]|string[][]=} putPlaceRankList 배수지 우선 순위 목록
+ * @property {string[]=} groupPlaceList mThresholdInfo.isGroup 옵션이 활성화 되어 있을 경우 함께 움직일 장소
+ */
+
+/**
+ * @desc Smart Saltern
+ * @typedef {Object} mThresholdInfo 자동 수위 조절
+ * @property {number} value 임계 값
+ * @property {boolean=} isCall true: 급수 요청, false: 배수 요청, undefined: 아무 것도 하지 않음
+ * @property {boolean=} isGroup 그루핑 해서 이동 여부.
  */
 
 /**
@@ -322,26 +333,51 @@
 
 /**
  * @typedef {Object} mControlInfo 명령 정보
- * @property {mSimpleModeInfo[]} simpleModeList 임시 명령 정보
- * @property {mSettingModeInfo[]} settingModeList 임시 명령 정보
+ * @property {mflowCmdInfo[]} flowCmdList 흐름 명령 정보
+ * @property {mSetCmdInfo[]} setCmdList 설정 명령 정보
+ * @property {mScenarioInfo[]} scenarioCmdList 시나리오 명령 정보
  * @property {mTempControlInfo[]} tempControlList 임시 명령 정보
  */
 
 /**
- * @typedef {Object} mSimpleModeInfo 염수 이동 단순 명령
+ * @typedef {Object} mflowCmdInfo 흐름 명령
  * @property {string} srcPlaceId 시작 장소 ID
+ * @property {string=} srcPlaceName 시작 장소 이름, 명시적으로 설정하고자 할 경우
  * @property {Object[]} destList 목적지 장소 목록
  * @property {string} destList.destPlaceId 목적지 장소 Id
- * @property {string} destList.actionType common(에뮬레이터, 실제 동작) or controller(실제 동작) or emulator(에뮬레이터)
+ * @property {string=} destList.destPlaceName 목적지 장소 이름. 명시적으로 설정하고자 할 경우
+ * @property {string=} destList.actionType common(에뮬레이터, 실제 동작) or controller(실제 동작) or emulator(에뮬레이터)
  * @property {string[]} destList.trueNodeList Open, On 등 장치 동작 수행
  * @property {string[]} destList.falseNodeList Close, Off 등 장치 동작 정지
  */
 
 /**
- * @typedef {Object} mSettingModeInfo 설정 명령(정해진 장치 개폐 명령)
+ * @typedef {Object} mSetCmdInfo 설정 명령(정해진 장치 개폐 명령)
  * @property {string} cmdId 설정 명령 ID
+ * @property {string} cmdName 설정 명령 Name
  * @property {string[]} trueNodeList Open, On 등 장치 동작 수행
  * @property {string[]} falseNodeList Close, Off 등 장치 동작 정지
+ */
+
+/**
+ * @typedef {Object} mScenarioInfo 시나리오 명령 정보(정해둔 시나리오 명령 정보)
+ * @property {string} scenarioId 시나리오 명령 Id
+ * @property {string} scenarioName 시나리오 명령 이름
+ * @property {mScenariCmdInfo[]|mScenariCmdInfo[][]|mScenariCmdInfo[][][]} scenarioList 실제 시나리오 명령 목록
+ */
+
+/**
+ * @typedef {Object} mScenariCmdInfo 단일 시나리오 요소 명령 정보
+ * @property {string} wrapCmdFormat 명령 요청 타입
+ * @property {string} wrapCmdType 명령 요청 타입
+ * @property {number=} singleControlType #SINGLE Device Protocol Converter에 요청할 명령에 대한 인자값 0: 장치 Close, Off, 1: 장치 Open, On, 2: 장치 Measure, 3: 장치 값 설정
+ * @property {number=} singleControlSetValue #SINGLE singleControlType 가 SET(3)일 경우 설정하는 값
+ * @property {string|string[]} singleNodeId #SINGLE Node ID
+ * @property {string} setCmdId #SET 설정 명령 Id
+ * @property {string} flowSrcPlaceId #FLOW 시작 장소 ID
+ * @property {string} flowDestPlaceId #FLOW 목적지 장소 Id
+ * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:2)
+ * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
  */
 
 /**

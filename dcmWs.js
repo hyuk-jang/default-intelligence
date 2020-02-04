@@ -4,10 +4,10 @@
  * @desc Socket Client (Device Client Manager)
  * @typedef {Object} transDataToServerInfo
  * @property {string} commandType 전송 타입, [node: node 정보, command: 명령 정보] --> transmitToServerCommandType
- * @property {nodeInfo[]|simpleOrderInfo[]|Buffer} data 데이터
+ * @property {nodeInfo[]|contractCmdInfo[]|Buffer} data 데이터
  * @example
  * commandType: node --> nodeInfo[]
- * commandType: command --> combinedOrderStorage
+ * commandType: command --> complexCmdIntegratedStorage
  */
 
 /**
@@ -20,9 +20,9 @@
  * AUTOMATIC: 명령 제어. executeSavedCommand 메소드 사용
  * SCENARIO: 시연용으로 제작된 명령 제어. executeScenario 사용
  * @example data
- * SINGLE: requestSingleOrderInfo 1개 arg 사용
- * AUTOMATIC: savedCommandId, requestCommandType 2개 arg 사용
- * SCENARIO: scenarioId, requestCommandType 2개 arg 사용
+ * SINGLE: reqSingleCmdInfo 1개 arg 사용
+ * AUTOMATIC: savedCommandId, wrapCmdType 2개 arg 사용
+ * SCENARIO: scenarioId, wrapCmdType 2개 arg 사용
  */
 
 // 각 노드의 갱신 데이터의 차를 비교하여 동일 데이터라면 전송 X
@@ -70,21 +70,93 @@
 /**
  * @desc Socket Server (Web Server)
  * @typedef {Object} msDataInfo Main Storage 에서 쓰일 거점 Data 정보
+ * @property {wsModeInfo} modeInfo dataLoggerInfo List
  * @property {dataLoggerInfo[]} dataLoggerList dataLoggerInfo List
  * @property {nodeInfo[]} nodeList nodeInfo List
- * @property {placeInfo[]} placeList nodeInfo List
- * @property {simpleOrderInfo[]} simpleOrderList 간단한 명령 정보
+ * @property {V_DV_PLACE_RELATION[]} placeRelList nodeInfo List
+ * @property {contractCmdInfo[]} contractCmdList 간단한 명령 정보
  * @property {Buffer} statusBoard 현황판 발전 데이터
  * 이하 필요 시 추가
  */
 
 /**
- * @typedef {Object} simpleOrderInfo 간단한 명령 정보
- * @property {string} orderCommandType CONTROL, CANCEL, MEASURE [requestOrderCommandType]
- * @property {string} orderStatus waitingList, proceedingList, runningList [combinedOrderType]
- * @property {string} uuid 유일 키로 해당 명령 고유 ID
- * @property {string} commandId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
- * @property {string} commandName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @typedef {Object} wsModeInfo 간단한 명령 정보
+ * @property {string} algorithmId 알고리즘 ID
+ * @property {operationConfig[]=} operationConfigList 초기 1회에 한해서 보내줌. 구동 모드 목록
+ * @example
+ * controlModeInfo.id ==> 'MANUAL', 'SCENARIO', 'POWER_OPTIMIZE', ... ETC
+ * cmdStrategy ==> 'MANUAL', 'OVERLAP_COUNT'
+ */
+
+/**
+ * @typedef {Object} contractCmdInfo 간단한 명령 정보
+ * @property {string} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
+ * @property {string} wrapCmdStep 'WAIT', 'PROCEED', 'RUNNING'
+ * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ */
+
+/**
+ * @typedef {Object} wsExecCmdInfo 명령 정보
+ * @property {string} wrapCmdId 저장된 CMD ID
+ * @property {string} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
+ * @property {number=} rank
+ * @property {csCmdGoalContraintInfo[]=} goalContainerList 유일 키로 해당 명령 고유 ID
+ */
+
+/**
+ * @typedef {Object} wsNodeInfo 웹에서 사용되는 노드 정보
+ * @property {number} node_seq node ID (Sequence)
+ * @property {string} nri [node_real_id] DB상에서 고유한 Node ID
+ * @property {string} ni [node_id] Main 당 일반적으로 부를 Node ID
+ * @property {string} nn [node_name] Main 당 일반적으로 부를 Node Name
+ * @property {string} du [data_unit] 표기 단위(℃, %, m/s, ppm, ...)
+ * @property {number} is [is_sensor] 센서 여부 (데이터가 수치로 표기되면 센서, 아니면 장치), DB에 센서라면 sensor_data에 저장, 장치라면 device_data에 저장
+ * @property {string} ntc [n_target_code] Node Numbering 번호 (001, 002, ...)
+ * @property {string} ndti [nd_target_id] Node 실제 데이터 Key로 DeviceProtocolConverter Data Key에 사용
+ * @property {string} ndtn [nd_target_name] Node 장치 실체적 이름
+ * @property {string} ncti [nc_target_id] Node Unique Key 로 사용되는 ID
+ * @property {string} nctn [nc_target_name] 대분류 장치 명
+ * @property {number} ms [main_seq] Main Sequence
+ * @property {number} d [data] 노드 데이터
+ * @property {function():dataLoggerInfo} getDataLogger 연결된 Data Logger 가져오기
+ * @property {boolean=} isSubmitDBW dbw 로 데이터를 전송 여부
+ */
+
+/**
+ * @typedef {Object} wsPlaceRelInfo 웹에서 사용되는 노드 정보
+ * @property {number} place_seq 장소 정보 시퀀스
+ * @property {number} place_def_seq 장소 개요 정보 시퀀스
+ * @property {number} place_class_seq 장소 대분류 시퀀스
+ * @property {number} ns [node_seq] 노드 정보 시퀀스
+ * @property {string} ni [node_id]
+ * @property {string} nn [node_name]
+ * @property {number} is [is_sensor] 센서 여부(0: Device, 1: Sensor)
+ * @property {number} ms [main_seq] Main Sequence
+ * @property {string} mn [m_name] 지역 이름
+ * @property {string} uuid uuid
+ * @property {string} pi [place_id]
+ * @property {string} pri [place_real_id]
+ * @property {string} pn [place_name]
+ * @property {string} ptc [p_target_code] 장소 번호
+ * @property {string} ptn [p_target_name] 장소 명
+ * @property {number} depth 장소 상대적 위치
+ * @property {string} place_info 장소 상세 정보
+ * @property {string} chart_color 차트 색상
+ * @property {number} chart_sort_rank 차트 정렬 순위
+ * @property {string} pd_target_prefix 장소 접두사
+ * @property {string} pdti [pd_target_id] 장소 개요 id
+ * @property {string} pdtn [pd_target_name] 이름
+ * @property {string} pcti [pc_target_id] 장소 id
+ * @property {string} pctn [pc_target_name] 장소 대분류 명
+ *
+ */
+
+/**
+ * @typedef {Object} wsExecCommandInfo 간단한 명령 정보
+ * @property {string} savedCommandId 저장된 CMD ID
+ * @property {string} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
+ * @property {csCmdGoalContraintInfo[]=} goalContainerList 유일 키로 해당 명령 고유 ID
  */
 
 module;

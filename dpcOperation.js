@@ -10,7 +10,7 @@
  * @property {stirng} commandId 요청 ID를 그대로 반환
  * @property {stirng=} uuid 고유 식별 ID를 그대로 반환
  * @property {number} isError 명령 수행 실패 여부(해당 Key가 있으면 Response, 없으면 Request로 식별함)
- * @property {string} errorStack hasError가 true일 경우 해당 Error Stack
+ * @property {string} message 세부 메시지
  * @property {*} contents 정상적인 응답인 경우 응답 결과를 넣고자 할 경우 넣어서 반환
  */
 
