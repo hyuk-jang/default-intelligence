@@ -48,6 +48,7 @@
  * @desc Socket Server (Web Server)
  * @typedef {Object} sessionUserInfo MEMBER table에서 특정 key 기반으로 가져온 req.user에 저장된 사용자 정보
  * @property {number} main_seq MAIN 시퀀스
+ * @property {number} member_seq MEMBER 시퀀스
  * @property {string} user_id 아이디
  * @property {string} name 이름
  * @property {string} nick_name 별칭
@@ -75,6 +76,8 @@
  * @property {nodeInfo[]} nodeList nodeInfo List
  * @property {V_DV_PLACE_RELATION[]} placeRelList nodeInfo List
  * @property {contractCmdInfo[]} contractCmdList 간단한 명령 정보
+ * @property {DV_CONTROL_CMD_HISTORY[]} controlEventHistoryRows 실행중인 제어 이력 정보
+ * @property {{user: sessionUserInfo, timer: setTimeout, reqCmdInfo: defaultFormatToRequest}[]} reqCmdList 사용자가 요청 중인 명령
  * @property {Buffer} statusBoard 현황판 발전 데이터
  * 이하 필요 시 추가
  */
@@ -90,10 +93,13 @@
 
 /**
  * @typedef {Object} contractCmdInfo 간단한 명령 정보
- * @property {string} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL', 'MEASURE' --> 명령 추가, 명령 삭제
- * @property {string} wrapCmdStep 'WAIT', 'PROCEED', 'RUNNING'
- * @property {string} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
- * @property {string} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @property {string=} wrapCmdUUID 통합 명령 UUID
+ * @property {string=} wrapCmdFormat 'SINGLE', 'FLOW' 'SET', 'MEASURE
+ * @property {string=} wrapCmdType 'CONTROL', 'RESTORE' 'CANCEL' --> 명령 추가, 명령 삭제
+ * @property {string=} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
+ * @property {string=} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
+ * @property {string=} wrapCmdStep WAIT, PROCESS, COMPLETE, CANCELING, END ...
+
  */
 
 /**
