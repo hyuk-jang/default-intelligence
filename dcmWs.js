@@ -77,7 +77,7 @@
  * @property {V_DV_PLACE_RELATION[]} placeRelList nodeInfo List
  * @property {contractCmdInfo[]} contractCmdList 간단한 명령 정보
  * @property {DV_CONTROL_CMD_HISTORY[]} controlEventHistoryRows 실행중인 제어 이력 정보
- * @property {{user: sessionUserInfo, timer: setTimeout, reqCmdInfo: defaultFormatToRequest}[]} reqCmdList 사용자가 요청 중인 명령
+ * @property {{user: sessionUserInfo, timer: setTimeout, socket: net.Socket, reqCmdInfo: defaultFormatToRequest}[]} reqCmdList 사용자가 요청 중인 명령
  * @property {Buffer} statusBoard 현황판 발전 데이터
  * 이하 필요 시 추가
  */

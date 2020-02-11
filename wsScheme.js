@@ -1,26 +1,4 @@
 /**
- * @typedef {Object} PW_INVERTER_TREND  인버터 데이터
- * @property {number} inverter_seq 인버터 정보 시퀀스
- * @property {number} avg_pv_v PV 전압
- * @property {number} avg_pv_a PV 전류
- * @property {number} avg_pv_kw PV 출력
- * @property {number} avg_grid_rs_v GRID RS선간 전압
- * @property {number} avg_grid_st_v GRID ST 선간 전압
- * @property {number} avg_grid_tr_v GRID TR 선간 전압
- * @property {number} avg_grid_r_a GRID R 상 전류
- * @property {number} avg_grid_s_a GRID S 상 전류
- * @property {number} avg_grid_t_a GRID T 상 전류
- * @property {number} avg_line_f 라인 주파수
- * @property {number} avg_power_f Power Factor
- * @property {number} avg_power_kw 발전 출력
- * @property {number} min_c_kwh Cumulative Power, 단위:Wh
- * @property {number} max_c_kwh Cumulative Power, 단위:Wh
- * @property {number} interval_power Cumulative Power, 단위:Wh
- * @property {string} view_date view Date string
- * @property {string} group_date grouping date string
- */
-
-/**
  * @typedef {Object} CALENDAR  실험 달력
  * @property {number} calendar_seq 실험 달력 시퀀스
  * @property {number} main_seq MAIN 시퀀스
@@ -239,9 +217,12 @@
  * @property {string} grade 회원 등급
  * @property {string} address 주소
  * @property {string} tel 전화번호
- * @property {number} is_deleted 삭제여부
+ * @property {number} is_deleted 탈퇴 여부
  * @property {Date} writedate 생성일
  * @property {Date} updatedate 수정일
+ * @property {number} login_fail_count 로그인 실패 횟수
+ * @property {number} is_account_lock 계정 잠김 여부
+ * @property {Date} lastest_login_date 최근 로그인 날짜
  */
 
 /**
@@ -394,27 +375,105 @@
 /**
  * @typedef {Object} DV_CONTROL_EVENT  제어 이벤트
  * @property {number} control_event_seq 제어 이벤트 시퀀스
- * @property {number} main_seq MAIN 시퀀스
+ * @property {number} member_seq 회원정보 시퀀스
+ * @property {number} control_cmd_seq 제어 명령 시퀀스
  * @property {string} event_name 이벤트 명
  * @property {string} event_repeat_type 이벤트 반복 타입
  * @property {Date} event_start_date 이벤트 시작 시간
- * @property {number} event_duration_sec 이벤트 지속 시간(초)
+ * @property {string} cmd_type 명령 타입
+ * @property {number} limit_time_sec 명령 최대 수행 시간
+ * @property {string} goal_data 명령 달성 제한 목록
+ * @property {string} single_control_type CF가 SINGLE일 경우에만 사용
+ * @property {number} control_set_value CF가 SINGLE일 경우에만 사용
  * @property {number} is_complete 이벤트 완료 여부
+ * @property {Date} writedate 작성일
+ */
+
+/**
+ * @typedef {Object} DV_CONTROL_CMD_HISTORY  제어 명령 히스토리
+ * @property {number} control_cmd_history_seq 제어 명령 히스토리 시퀀스
+ * @property {number} main_seq MAIN 시퀀스
+ * @property {number} member_seq 회원정보 시퀀스
+ * @property {string} cmd_uuid 명령 고유 ID
+ * @property {string} cmd_format 명령 형식
+ * @property {string} cmd_id 명령 ID
+ * @property {string} cmd_name 명령 이름
+ * @property {string} cmd_type 명령 타입
+ * @property {string} single_control_type CF가 SINGLE일 경우에만 사용
+ * @property {number} control_set_value CF가 SINGLE일 경우에만 사용
+ * @property {number} limit_time_sec 명령 최대 수행 시간
+ * @property {string} goal_data 명령 달성 제한 목록
+ * @property {string} msg 새 컬럼
+ * @property {Date} start_date 실행 시각
+ * @property {Date} end_date 완료일
+ */
+
+/**
+ * @typedef {Object} CAMERA  카메라 관리 정보
+ * @property {number} camera_seq 카메라 시퀀스
+ * @property {number} main_seq MAIN 시퀀스
+ * @property {string} camera_name 카메라 명
+ * @property {string} uri_rtsp_domain RTSP 도메인 명
+ * @property {number} uri_rtsp_port RTSP 포트
+ * @property {string} uri_rtsp_path RTSP 경로
+ * @property {string} uri_snapshot_domain 스냅샷 도메인
+ * @property {number} uri_snapshot_port 스냅샷 포트
+ * @property {string} uri_snapshot_path 스냅샷 경로
+ * @property {number} is_deleted 삭제여부
+ */
+
+/**
+ * @typedef {Object} CAMERA_SNAPSHOT_DATA  카메라 스냅샷 데이터
+ * @property {number} camera_snapshot_data_seq 스냅샷 시퀀스
+ * @property {number} camera_seq 카메라 시퀀스
+ * @property {string} snapshot_uuid 스냅샷 파일 명
+ * @property {Date} writedate 작성일
+ */
+
+/**
+ * @typedef {Object} FARM_SENSOR_DATA  농병 센서 데이터
+ * @property {number} farm_sensor_data_seq 스마트 염전 센서 데이터 시퀀스
+ * @property {number} place_seq 장소 정보 시퀀스
+ * @property {number} pv_rear_temp 모듈 후면 온도
+ * @property {number} pv_under_solar 모듈 하부 일사량
+ * @property {number} inclined_solar 경사 일사량
+ * @property {number} lux 조도
+ * @property {number} co2 이산화탄소
+ * @property {number} soil_ec 토양 EC
+ * @property {number} soil_temp 토양 온도
+ * @property {number} soil_reh 토양 습도
+ * @property {number} oa_temp 외기 온도
+ * @property {number} oa_reh 외기 습도
+ * @property {number} horizontal_solar 수평 일사량
+ * @property {number} oa_ws 풍속
+ * @property {number} oa_wd 풍향
+ * @property {number} oa_r1 1시간 강우량
+ * @property {number} oa_is_rain 강수 여부
+ * @property {Date} writedate 입력 시간
+ */
+
+/**
+ * @typedef {Object} MEMBER_EDIT_HISTORY  회원 정보 변경 이력
+ * @property {number} member_edit_history_seq 회원 수정 이력 시퀀스
+ * @property {number} member_seq 회원정보 시퀀스
+ * @property {number} editor_seq 수정 관리자 시퀀스
+ * @property {string} edit_column_id 회원 정보 컬럼 ID
+ * @property {string} edit_column_name 회원 정보 컬럼 명
+ * @property {string} prev_value 이전 값
+ * @property {string} curr_value 현재 값
+ * @property {Date} updatedate 수정일
  */
 
 /**
  * @typedef {Object} DV_CONTROL_CMD  제어 명령
  * @property {number} control_cmd_seq 제어 명령 시퀀스
- * @property {number} control_event_seq 제어 이벤트 시퀀스
+ * @property {number} main_seq MAIN 시퀀스
  * @property {string} cmd_format 명령 형식
- * @property {string} cmd_type 명령 타입
  * @property {string} cmd_id 명령 ID
- * @property {string} cmd_goal 명령 목표
- * @property {string} node_id CF가 SINGLE일 경우에만 사용
- * @property {string} single_control_type CF가 SINGLE일 경우에만 사용
- * @property {number} control_set_value CF가 SINGLE일 경우에만 사용
+ * @property {string} cmd_name 명령 이름
  * @property {string} src_place_id CF가 FLOW일 경우에만 사용
  * @property {string} dest_place_id CF가 FLOW일 경우에만 사용
+ * @property {string} cmd_element_list 세부 명령 목록
  */
 
 /**
@@ -785,28 +844,6 @@
  * @property {number} avg_amp
  * @property {number} avg_vol
  * @property {string} hour_time
- */
-
-/**
- * @typedef {Object} CAMERA  카메라 관리 정보
- * @property {number} camera_seq 카메라 시퀀스
- * @property {number} main_seq MAIN 시퀀스
- * @property {string} camera_name 카메라 명
- * @property {string} uri_rtsp_domain RTSP 도메인 명
- * @property {number} uri_rtsp_port RTSP 포트
- * @property {string} uri_rtsp_path RTSP 경로
- * @property {string} uri_snapshot_domain 스냅샷 도메인
- * @property {number} uri_snapshot_port 스냅샷 포트
- * @property {string} uri_snapshot_path 스냅샷 경로
- * @property {number} is_deleted 삭제여부
- */
-
-/**
- * @typedef {Object} CAMERA_SNAPSHOT_DATA  카메라 스냅샷 데이터
- * @property {number} camera_snapshot_data_seq 스냅샷 시퀀스
- * @property {number} camera_seq 카메라 시퀀스
- * @property {string} snapshot_uuid 스냅샷 데이터
- * @property {Date} writedate 작성일
  */
 
 module;
