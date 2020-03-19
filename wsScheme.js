@@ -828,6 +828,8 @@
  * @property {string} ivt_target_id 인버터 id
  * @property {string} ivt_target_category 장치 카테고리
  * @property {string} ivt_target_name 인버터 명
+ * @property {string} ivt_install_place 설치장소
+ * @property {string} ivt_serial_number 시리얼 번호
  * @property {string} ivt_connect_info 접속 정보
  * @property {string} ivt_protocol_info 장치 프로토콜 정보
  * @property {number} ivt_amount 단위: kW (1:1 Scale)
