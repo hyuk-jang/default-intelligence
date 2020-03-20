@@ -144,6 +144,7 @@
  * @desc DV_DATA_LOGGER 참조
  * @typedef {Object} mDataLoggerDeviceInfo 데이터 로거 상세 전보
  * @property {string} serial_number 장치 SN (고유 식별 번호)
+ * @property {string|number|Buffer=} subDeviceId 장치 부식별 번호
  * @property {string} target_code 장치 넘버링(001, 002, 003, ...)
  * @property {string} target_name 데이터 로거 상세 별칭
  * @property {string} dccId dccConstructorInfo dccId
