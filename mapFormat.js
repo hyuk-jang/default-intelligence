@@ -152,6 +152,7 @@
  * @property {boolean=} isAddSerialNumberToDCC connect_info 를 생성 할 때 serial_number 를 결합하여 생성할지 여부. default false
  * @property {string=} repeatId repeat 저장소에서 가져다 쓸 nodeList. map 재정의시 repeat key 내용으로 nodeList를 덮어씀
  * @property {string[]} nodeList 데이터 로거가 포함하는 nodeModelInfo.nodeId(def_prefix + '_' + target_code) 목록
+ * @property {boolean=} is_deleted 장치 계측 여부
  */
 
 /**
@@ -186,8 +187,16 @@
  * @property {string} target_code 노드 넘버링(001, 002, ...)
  * @property {string} target_name 노드 이름
  * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
+ * @property {vnExpressionInfo=} vn_expression_info 가상 노드 계산식.
  * @property {number[]=} axisScale Node 좌표 백분율 정보 [x1, y1] or [x1, y1, x2, y2]
  * @property {number[]=} moveScale Node 별 위치 백분율
+ */
+
+/**
+ * @desc DV_NODE 참조
+ * @typedef {Object} vnExpressionInfo 가상노드 계산식
+ * @property {string} expression 계산식  ex (WL_003/WL_005) * 3
+ * @property {number=} toFixed default: 1, 소수점 자리 수
  */
 
 /******************** setInfo 끝  **********************/
@@ -378,7 +387,15 @@
  * @property {string} flowSrcPlaceId #FLOW 시작 장소 ID
  * @property {string} flowDestPlaceId #FLOW 목적지 장소 Id
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (Default:2)
+ * @property {mScenarioImgDisplayInfo[]=} imgDisplayList 시나리오 이미지 뷰 정보 목록
  * @property {csCmdGoalContraintInfo=} wrapCmdGoalInfo 명령 달성 제한 조건
+ */
+
+/**
+ * @typedef {Object} mScenarioImgDisplayInfo 시나리오 이미지 뷰 정보
+ * @property {string} cmdStep 실행할 명령 단계
+ * @property {string} imgId 처리할 이미지 Id
+ * @property {number=} isAppear 기본 값: 1, 1은 나타남, 0은 사라짐
  */
 
 /**
