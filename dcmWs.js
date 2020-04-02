@@ -76,6 +76,7 @@
  * @property {nodeInfo[]} nodeList nodeInfo List
  * @property {V_DV_PLACE_RELATION[]} placeRelList nodeInfo List
  * @property {contractCmdInfo[]} contractCmdList 간단한 명령 정보
+ * @property {wsSvgImgInfo[]} svgImgList 진행 중인 이미지 목록
  * @property {DV_CONTROL_CMD_HISTORY[]} controlEventHistoryRows 실행중인 제어 이력 정보
  * @property {{user: sessionUserInfo, timer: setTimeout, socket: net.Socket, reqCmdInfo: defaultFormatToRequest}[]} reqCmdList 사용자가 요청 중인 명령
  * @property {Buffer} statusBoard 현황판 발전 데이터
@@ -99,7 +100,13 @@
  * @property {string=} wrapCmdId 명령을 내릴 때 해당 명령의 고유 ID(mode5, mode3, ...)
  * @property {string=} wrapCmdName 명령을 내릴 때 부를 이름(증발지1 -> 저수지1, ...)
  * @property {string=} wrapCmdStep WAIT, PROCESS, COMPLETE, CANCELING, END ...
+ */
 
+/**
+ * @typedef {Object} wsSvgImgInfo SVG 에서 추가적으로 이미지를 보여줄 정보
+ * @property {string} wrapCmdId 래핑 명령 Id
+ * @property {string} cmdId 명령 Id
+ * @property {string} imgId 보여줄 이미지 Id
  */
 
 /**

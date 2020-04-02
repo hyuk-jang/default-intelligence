@@ -13,16 +13,18 @@ exports.transmitToClientCommandType = transmitToClientCommandType;
 
 /** contractCmdInfo Status 변경 Key */
 const transmitToServerCommandType = {
+  /**  client 인증을 하고자 할 경우 */
+  CERTIFICATION: 'CERTIFICATION',
   /** 현재 수행 중인 명령 모드 */
   MODE: 'MODE',
   /** 노드 정보가 업데이트 되었을 경우 */
   NODE: 'NODE',
   /** 명령 정보가 업데이트 되었을 경우 */
   COMMAND: 'COMMAND',
+  /** 이미지 정보가 업데이트 되었을 경우 */
+  SVG_IMG: 'SVG_IMG',
   /** 현황판 데이터를 요청할 경우  */
   STAUTS: 'STAUTS',
-  /**  client 인증을 하고자 할 경우 */
-  CERTIFICATION: 'CERTIFICATION',
   /**  현황판 출력 데이터를 얻고자 할 경우 */
   POWER_BOARD: 'POWER_BOARD',
 };
