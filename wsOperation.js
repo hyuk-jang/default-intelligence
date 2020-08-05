@@ -1,6 +1,7 @@
 /********** API Control Start *********** */
 /**
  * @typedef {Object} wsControlCmdAPI DBS로 명령을 전송하기 위한 형식
+ * @property {string=} WCU Wrap Cmd UUID 명령 UUID
  * @property {string=} WCF Wrap Cmd Format (MEASURE[default], SINGLE, SET, FLOW, SCENARIO)
  * @property {string=} WCT Wrap Cmd Type (CONTROL[default], CANCEL)
  * @property {string} WCI 고유 ID
