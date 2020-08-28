@@ -5,6 +5,52 @@
  * @property {mSetInfo} setInfo
  * @property {mRelationInfo} relationInfo
  * @property {mControlInfo} controlInfo
+ * @property {mConfigInfo} configInfo
+ */
+
+/******************** 정의 시작  **********************/
+/**
+ * @typedef {Object} mdSvgPlaceInfo Map Define Svg Place
+ * @property {mPlaceModelInfo} placeInfo svg 포지션 정보
+ * @property {svgModelInfo} svgModelInfo Svg 리소스 정보
+ */
+
+/**
+ * @typedef {Object} mdPlaceInfo
+ * @property {string} placeId
+ * @property {string} placeName
+ * @property {string[]} nodeList
+ * @property {number[]} point 최종 적으로 나올 좌표 정보
+ * @property {mSvgModelResource} svgModelResource
+ * @property {SVG} svgEleBg SVG 생성 엘리먼트 정보
+ */
+
+/**
+ * @typedef {Object} mdNodeInfo
+ * @property {string} ncId Node Class Target Id (1 Depth)
+ * @property {string} ndName Node Define Target Name (2 Depth) 화면에 표시해 줄때
+ * @property {string} nodeId Node Id (3 Depth)
+ * @property {string} nodeName Node Name (3 Depth)
+ * @property {string|number} nodeData 노드 현재 데이터
+ * @property {string=} controlType 제어 타입 (0: On/Off<default>, 1: Set, 2: [0, 1])
+ * @property {number} isSensor 센서 여부
+ * @property {string} dataUnit 데이터 단위
+ * @property {string} placeId node가 그려질 placeId
+ * @property {number[]} axisScale
+ * @property {number[]} moveScale
+ * @property {number[]} point 최종 적으로 나올 좌표 정보
+ * @property {mdPlaceInfo} mdPlaceInfo placeId에 관련된 mdPlaceInfo
+ * @property {mSvgModelResource} svgModelResource
+ * @property {SVG} svgEleBg SVG 생성 엘리먼트 정보
+ * @property {SVG.<Tspan>} svgEleName SVG 생성 엘리먼트 정보
+ * @property {SVG.<Tspan>} svgEleData SVG 생성 엘리먼트 정보
+ * @property {SVG.<Tspan>} svgEleDataUnit SVG 생성 엘리먼트 정보
+ */
+
+/**
+ * @typedef {Object} svgModelInfo
+ * @property {number[]} point 위치
+ * @property {mSvgModelResource} mSvgModelResource
  */
 
 /******************** drawInfo 시작  **********************/
@@ -51,41 +97,41 @@
  * @typedef {Object} mElementDrawInfo
  * @property {number=} width 가로
  * @property {number=} height 세로
+ * @property {Object} strokeInfo Border
+ * @property {string=} strokeInfo.color 선 색 default: #f06
+ * @property {number=} strokeInfo.width Border 굵기 default: 0.5
+ * @property {string=} strokeInfo.linecap rect(default), round
  * @property {number=} radius 반지름, 모서리
- * @property {number=} opacity 투명도 0: 투명
+ * @property {number=} opacity 0: Transparent, 1: 원색(default)
  * @property {string=} imgUrl 이미지 경로
  * @property {string | string[]} color 단일색 or [기존, 이벤트 효과, 에러]
  */
 
 /**
  * @typedef {Object} mTextStyleInfo
- * @property {string=} color 텍스트 색
- * @property {number=} fontSize 텍스트 사이즈
- * @property {string=} leading 텍스트가 그려진 공간의 높이: 글자크기는 변하지 않고 공간의 높이만 변함 (css의 line-height와 같음)
+ * @property {string=} color Title 텍스트 색 (default: #000)
+ * @property {string=} dataColor Title 텍스트 색 (default: #000)
+ * @property {number=} fontSize 텍스트 사이즈(default: 10)
+ * @property {string=} leading default(1.2) 텍스트가 그려진 공간의 높이: 글자크기는 변하지 않고 공간의 높이만 변함 (css의 line-height와 같음)
+ * @property {*=} transform 텍스트가 그려진 공간의 높이: 글자크기는 변하지 않고 공간의 높이만 변함 (css의 line-height와 같음)
+ * @property {number[]=} axisScale 텍스트 중심축 좌표(default: [0.5, 0.5])
  * ex) 글자크기= 40px이고 leading= 1.5이면 글자크기 1.5배인 60px의 공간에 40px의 글자가 그려짐
  */
 
 /**
  * @typedef {Object} mPosition
- * @property {mSvgPlaceInfo[]} svgPlaceList 장소 위치 정보와 resource 정보를 포함한 목록
- * @property {mSvgNodeInfo[]} svgNodeList 노드(or 센서) 위치 정보와 resource 정보를 포함한 목록
+ * @property {mSvgPositionInfo[]} svgPlaceList 장소 위치 정보와 resource 정보를 포함한 목록
+ * @property {mSvgPositionInfo[]} svgNodeList 노드(or 센서) 위치 정보와 resource 정보를 포함한 목록
  */
 
 /**
  * @typedef {Object} mSvgPlaceInfo 장소 대분류와 위치정보 목록
  * @property {string} placeId 장소 대분류 ID
- * @property {defInfo[]} defList resource 정보와 위치 정보
+ * @property {mSvgPositionInfo[]} svgPositonList resource 정보와 위치 정보
  */
 
 /**
- * @typedef {Object} mSvgNodeInfo 노드(or센서) 대분류와 위치정보 목록
- * @property {string} nodeDefId 노드(or센서) 대분류 ID
- * @property {number} is_sensor 0: 장치, 1: 센서, -1: 미분류
- * @property {defInfo[]} defList resource 정보와 위치 정보
- */
-
-/**
- * @typedef {Object} defInfo
+ * @typedef {Object} mSvgPositionInfo
  * @property {string} id 접두어 + 넘버링
  * @property {string} name 한글 명칭
  * @property {string=} placeId 노드(or센서)일 경우 위치한 장소의 ID
@@ -93,6 +139,19 @@
  * @property {number[]} point 위치
  */
 
+/**
+ * @typedef {Object} svgNodePosOpt SVG Node를 위치시키기 위한 옵션
+ * @property {string} placeId relationInfo의 pTargetPrefix + placeCode
+ * @property {string} resourceId 그리기 정보를 찾을 resourceId
+ * @property {number[]=} axisScale Node 좌표 백분율 정보 [x1, y1] or [x1, y1, x2, y2]
+ * @property {number[]=} moveScale Node 별 위치 백분율
+ */
+
+/**
+ * @typedef {Object} svgPlaceInfo
+ * @property {string} resourceId 그리기 정보를 찾을 resourceId
+ * @property {number[]} point 위치
+ */
 /******************** drawInfo 끝  **********************/
 
 /******************** setInfo 시작  **********************/
@@ -161,11 +220,16 @@
  * @property {string} target_id 노드를 가르키는 고유 명(temp, reh, solar, co2, ...)
  * @property {string} target_name target_id에 대응하는 이름(온도, 습도, 일사량, 이산화탄소, ...)
  * @property {number=} is_submit_api Default: 1, Class 단위에서의 API 전송 여부 정의. 세부적으로 지정하고자 할 경우 Def 사용. 0 or 1의 값을 기입하면 Def 까지 일괄 적용, API Server로 Node 데이터를 Socket 통신으로 전송할 지 여부
- * @property {number} is_sensor 센서 여부(0: Device, 1: Sensor). DBW 에서 센서 종류를 판단하기 위해서 사용
+ * @property {number} is_sensor 센서 여부(0: Device, 1: Sensor<default>). DBW 에서 센서 종류를 판단하기 위해서 사용
  * @property {number=} save_db_type 0: Device, 1: Sensor, 2: Block, 3: Trouble. 지정하지 않을 경우 is_sensor를 따라감. DB에 저장할 때 카테고리를 판별하기 위함
  * @property {string=} data_unit 데이터 단위(℃, %, W/m², ppl, ...)
  * @property {string=} description 부연 설명이 필요한 경우
+ * @property {string=} controlType 제어 타입 (0: On/Off<default>, 1: Set, 2: [0, 1])
  * @property {mNodeDefInfo[]} defList 노드 개요 정보 목록
+ * @example
+ * controlType: 0 >> Web에서 Confirm 목록에 On/Off/Cancel
+ * controlType: 1 >> Web에서 Confirm 목록에 Set/Cancel
+ * controlType: 2 >> Web에서 Confirm 목록에 On/Off/Set/Cancel
  */
 
 /**
@@ -178,7 +242,12 @@
  * @property {number} is_avg_center 평균 값(센터) 사용 여부
  * @property {string} description 노드 데이터 단위에 대한 부연 설명이 필요한 경우
  * @property {string=} repeatId repeat 저장소에서 가져다 쓸 nodeList. map 재정의시 repeat key 내용으로 nodeList를 덮어씀
+ * @property {string=} controlType 제어 타입 (0: On/Off<default>, 1: Set, 2: [0, 1])
  * @property {mNodeModelInfo[]} nodeList 노드 상세 목록
+ * @example
+ * controlType: 0 >> Web에서 Confirm 목록에 On/Off/Cancel
+ * controlType: 1 >> Web에서 Confirm 목록에 Set/Cancel
+ * controlType: 2 >> Web에서 Confirm 목록에 On/Off/Set/Cancel
  */
 
 /**
@@ -187,9 +256,38 @@
  * @property {string} target_code 노드 넘버링(001, 002, ...)
  * @property {string} target_name 노드 이름
  * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
+ * @property {svgNodePosOpt=} svgNodePosOpt SVG Node를 위치시키기 위한 옵션
+ */
+/**
+ * @desc DV_NODE 참조
+ * @typedef {Object} mNodeModelInfo1 노드 모델 상세 정보
+ * @property {string} target_code 노드 넘버링(001, 002, ...)
+ * @property {string} target_name 노드 이름
+ * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
  * @property {vnExpressionInfo=} vn_expression_info 가상 노드 계산식.
  * @property {number[]=} axisScale Node 좌표 백분율 정보 [x1, y1] or [x1, y1, x2, y2]
  * @property {number[]=} moveScale Node 별 위치 백분율
+ */
+
+/**
+ * Map
+ * @desc mNodeStorage 참조
+ * @typedef {Object} mNodeStorageInfo 노드 상세 정보
+ * @property {string} isSensor 센서 여부
+ * @property {string} nodeName 노드 이름(WD_001, P_001)
+ * @property {string} target_code 노드 넘버링(001, 002, ...)
+ * @property {string} target_name 노드 이름
+ * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
+ * @property {number[]=} axisScale Node 좌표 백분율 정보 [x1, y1] or [x1, y1, x2, y2]
+ * @property {number[]=} moveScale Node 별 위치 백분율
+ */
+
+/**
+ * Map
+ * @desc mSvgStorage 참조
+ * @typedef {Object} mSvgStorageInfo 노드 상세 정보
+ * @property {mSvgPositionInfo} svgPositionInfo svg 포지션 정보
+ * @property {mSvgModelResource} svgResourceInfo Svg 리소스 정보
  */
 
 /**
@@ -250,6 +348,7 @@
  * @property {number=} depth 장소 위치 가중치(가중치가 높을 수록 높은 고도)
  * @property {mPlaceInfo=} place_info 장소 상세 정보. 프로젝트 별 해당 장소에 특정 정보를 담고 싶다면 JSON 형식으로 입력
  * @property {string[]} nodeList 데이터 로거가 포함하는 nodeModelInfo.nodeId(def_prefix + '_' + target_code) 목록
+ * @property {svgPlaceInfo=} svgPositionInfo SVG 위치 정보
  */
 
 /**
@@ -406,5 +505,66 @@
  */
 
 /******************** controlInfo 끝  **********************/
+
+/******************** 설정 정보 시작  **********************/
+/**
+ * @typedef {Object} mConfigInfo 명령 정보
+ * @property {deviceCmdInfo[]} deviceCmdList 장치 노드 제어 방법 목록
+ * @property {mflowCmdInfo[]} nodeType Device or Sensor or None
+ * @property {mSetCmdInfo[]} dataRange TRUE, FALSE 식별
+ * @property {mScenarioInfo[]} controlConfirm 시나리오 명령 정보
+ * @property {mTempControlInfo[]} tempControlList 임시 명령 정보
+ */
+
+/**
+ * @typedef {Object} deviceCmdInfo 명령 정보
+ * @property {string=} deviceCmdName 장치 노드 제어 이름
+ * @property {string[]} applyDeviceList 적용할 장치 목록(Node Class Id)
+ * @property {dCmdScenarioInfo} dCmdScenarioInfo 장치 명령 시나리오 정보
+ */
+
+/**
+ * @typedef {Object} dCmdScenarioInfo 명령 정보
+ * @property {string} scenarioMsg 장치 제어 명령 다이어로그 메시지 Title
+ * @property {number=} isSetValue default: 0, 설정 값 입력 화면 여부
+ * @property {setValueInfo=} setValueInfo 입력 값 제약 정보
+ * @property {dConfirmInfo[]} confirmList 제어 명령 종류
+ */
+
+/**
+ * @typedef {Object} setValueInfo
+ * @property {string} msg 입력값 앞쪽에 나타낼 Msg
+ * @property {string} min 입력값 하한선
+ * @property {string} max 입력값 상한선
+ * 
+ 
+ */
+
+/**
+ * @typedef {Object} dConfirmInfo 장치 노드 제어 정보
+ * @property {string} enName On, Off, Open, Close
+ * @property {string} krName 동작, 정지, 열기, 닫기
+ * @property {number=} controlValue 제어 값(0: False, 1: True, 2: Set, 3: Measure, Custom...)
+ * @property {dCmdScenarioInfo=} nextStepInfo 다음 단계가 존재 시
+ * @example
+ * {
+ *  enName: 'Move',
+ *  krName: '이동',
+ *  nextStepInfo: {
+ *    confirmMsg: '이동 방향을 선택하세요',
+ *    confirmList: [
+ *      {
+ *      }
+ *    ]
+ *  }
+ *  nextStepList: [{
+ *    enName: 'left',
+ *    krName: '좌',
+ *    controlValue: 11,
+ *
+ *
+ * }]
+ * }
+ */
 
 module;
