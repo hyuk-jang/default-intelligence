@@ -97,14 +97,34 @@
  * @typedef {Object} mElementDrawInfo
  * @property {number=} width 가로
  * @property {number=} height 세로
- * @property {Object} strokeInfo Border
- * @property {string=} strokeInfo.color 선 색 default: #f06
- * @property {number=} strokeInfo.width Border 굵기 default: 0.5
- * @property {string=} strokeInfo.linecap rect(default), round
  * @property {number=} radius 반지름, 모서리
  * @property {number=} opacity 0: Transparent, 1: 원색(default)
- * @property {string=} imgUrl 이미지 경로
- * @property {string | string[]} color 단일색 or [기존, 이벤트 효과, 에러]
+ * @property {string | string[]} color 단일색 or [기본, 제어]
+ * @property {string} errColor 오류일 경우 색상. 기본값 Red
+ * @property {mStrokeInfo} strokeInfo Border
+ * @property {mPatternInfo=} patternInfo
+ */
+
+/**
+ * @typedef {Object} mStrokeInfo Map Resource Stroke
+ * @property {string=} color 선 색 default: #f06
+ * @property {number=} width Border 굵기 default: 0.5
+ * @property {string=} linecap rect(default), round
+ */
+
+/**
+ * @typedef {Object} mPatternInfo Map Resource Pattern
+ * @property {number[]} patternSize 패턴 1개당 가지는 Size
+ * @property {mElePatternInfo[]} patternList 세부 패턴 정보
+ */
+
+/**
+ * @typedef {Object} mElePatternInfo Map Resource Pattern
+ * @property {string} patternType rect, circle, image, ...
+ * @property {number[]=} size Rect [Width, Height]
+ * @property {number=} radius 반지름
+ * @property {string} fill 색상 or ImgURL
+ * @property {number[]=} move 이동할 좌표[width, height]
  */
 
 /**
