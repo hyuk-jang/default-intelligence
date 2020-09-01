@@ -32,14 +32,14 @@
  * @property {string} nodeId Node Id (3 Depth)
  * @property {string} nodeName Node Name (3 Depth)
  * @property {string|number} nodeData 노드 현재 데이터
- * @property {string=} controlType 제어 타입 (0: On/Off<default>, 1: Set, 2: [0, 1])
  * @property {number} isSensor 센서 여부
  * @property {string} dataUnit 데이터 단위
- * @property {string} placeId node가 그려질 placeId
  * @property {number[]} axisScale
  * @property {number[]} moveScale
  * @property {number[]} point 최종 적으로 나올 좌표 정보
- * @property {mdPlaceInfo} mdPlaceInfo placeId에 관련된 mdPlaceInfo
+ * @property {string} placeIdList node를 소유하고 있는 Place Id 목록
+ * @property {string} placeNameList node를 소유하고 있는 Place Name 목록
+ * @property {mdPlaceInfo=} mdPlaceInfo placeId에 관련된 mdPlaceInfo
  * @property {mSvgModelResource} svgModelResource
  * @property {SVG} svgEleBg SVG 생성 엘리먼트 정보
  * @property {SVG.<Tspan>} svgEleName SVG 생성 엘리먼트 정보
