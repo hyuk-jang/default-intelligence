@@ -79,6 +79,14 @@ const nodeDataType = {
 };
 exports.nodeDataType = nodeDataType;
 
+/** SVG 텍스트 tSpan text-ahcnor 속성 */
+const textAnchorType = {
+  START: 'start',
+  MIDDLE: 'middle',
+  END: 'end',
+};
+exports.textAnchorType = textAnchorType;
+
 /** complexCmdStorage Key */
 const commandPickKey = {
   /** Node 데이터 간략화 */

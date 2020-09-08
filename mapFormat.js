@@ -85,7 +85,6 @@
  * @property {string} type 'rect', 'line', 'circle', 'polygon', 'pattern', 'image' ...
  * @property {mElementDrawInfo} elementDrawInfo 그리기 정보
  * @property {mTextStyleInfo=} textStyleInfo 텍스트 스타일 정보
- * @example
  * type: rect, pattern --> width, height, color, opacity
  * type: circle --> radius, color
  * type: polygon --> (x1,y1 x2,y2 x3,y3, x4,y4)
@@ -129,12 +128,15 @@
 
 /**
  * @typedef {Object} mTextStyleInfo
+ * @property {boolean=} isHiddenTitle Title 숨김 여부 (default: false)
+ * @property {boolean=} isTitleWrap Title 줄바꿈 여부 (default: true)
  * @property {string=} color Title 텍스트 색 (default: #000)
  * @property {string=} dataColor Title 텍스트 색 (default: #000)
  * @property {number=} fontSize 텍스트 사이즈(default: 10)
  * @property {string=} leading default(1.2) 텍스트가 그려진 공간의 높이: 글자크기는 변하지 않고 공간의 높이만 변함 (css의 line-height와 같음)
  * @property {*=} transform 텍스트가 그려진 공간의 높이: 글자크기는 변하지 않고 공간의 높이만 변함 (css의 line-height와 같음)
  * @property {number[]=} axisScale 텍스트 중심축 좌표(default: [0.5, 0.5])
+ * @property {number=} anchor 0: start, 1: middle(default), 2: end
  * ex) 글자크기= 40px이고 leading= 1.5이면 글자크기 1.5배인 60px의 공간에 40px의 글자가 그려짐
  */
 
@@ -161,7 +163,7 @@
 
 /**
  * @typedef {Object} svgNodePosOpt SVG Node를 위치시키기 위한 옵션
- * @property {string} placeId relationInfo의 pTargetPrefix + placeCode
+ * @property {string} placeId relationInfo의 pTargetPrefix + placeCode, 없으면 relationInfo 에서 찾음
  * @property {string} resourceId 그리기 정보를 찾을 resourceId
  * @property {number[]=} axisScale Node 좌표 백분율 정보 [x1, y1] or [x1, y1, x2, y2]
  * @property {number[]=} moveScale Node 별 위치 백분율
@@ -206,7 +208,6 @@
  * @property {string} repeatId ID
  * @property {string} repeatCategory node or prefix, node: nodeStructureList 에서만 사용
  * @property {mNodeModelInfo[]|string[]} nodeList
- * @example
  * repeatCategory: node -> nodeList 덮어쓰기
  * repeatCategory: prefix -> nodeList + '_' + target_code 생성 후 덮어쓰기
  */
@@ -244,12 +245,7 @@
  * @property {number=} save_db_type 0: Device, 1: Sensor, 2: Block, 3: Trouble. 지정하지 않을 경우 is_sensor를 따라감. DB에 저장할 때 카테고리를 판별하기 위함
  * @property {string=} data_unit 데이터 단위(℃, %, W/m², ppl, ...)
  * @property {string=} description 부연 설명이 필요한 경우
- * @property {string=} controlType 제어 타입 (0: On/Off<default>, 1: Set, 2: [0, 1])
  * @property {mNodeDefInfo[]} defList 노드 개요 정보 목록
- * @example
- * controlType: 0 >> Web에서 Confirm 목록에 On/Off/Cancel
- * controlType: 1 >> Web에서 Confirm 목록에 Set/Cancel
- * controlType: 2 >> Web에서 Confirm 목록에 On/Off/Set/Cancel
  */
 
 /**
@@ -262,12 +258,7 @@
  * @property {number} is_avg_center 평균 값(센터) 사용 여부
  * @property {string} description 노드 데이터 단위에 대한 부연 설명이 필요한 경우
  * @property {string=} repeatId repeat 저장소에서 가져다 쓸 nodeList. map 재정의시 repeat key 내용으로 nodeList를 덮어씀
- * @property {string=} controlType 제어 타입 (0: On/Off<default>, 1: Set, 2: [0, 1])
  * @property {mNodeModelInfo[]} nodeList 노드 상세 목록
- * @example
- * controlType: 0 >> Web에서 Confirm 목록에 On/Off/Cancel
- * controlType: 1 >> Web에서 Confirm 목록에 Set/Cancel
- * controlType: 2 >> Web에서 Confirm 목록에 On/Off/Set/Cancel
  */
 
 /**
@@ -566,7 +557,6 @@
  * @property {string} krName 동작, 정지, 열기, 닫기
  * @property {number=} controlValue 제어 값(0: False, 1: True, 2: Set, 3: Measure, Custom...)
  * @property {dCmdScenarioInfo=} nextStepInfo 다음 단계가 존재 시
- * @example
  * {
  *  enName: 'Move',
  *  krName: '이동',
