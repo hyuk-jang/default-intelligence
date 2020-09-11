@@ -28,6 +28,7 @@
 /**
  * @typedef {Object} mdNodeInfo
  * @property {string} ncId Node Class Target Id (1 Depth)
+ * @property {string} ncName Node Class Target Name (1 Depth)
  * @property {string} ndName Node Define Target Name (2 Depth) 화면에 표시해 줄때
  * @property {string} nodeId Node Id (3 Depth)
  * @property {string} nodeName Node Name (3 Depth)
@@ -575,6 +576,35 @@
  *
  * }]
  * }
+ */
+
+/**
+ * DBS에서 장치 개별 제어시 controlValue 식별을 위함
+ * @typedef {Map<string, dControlValueStorage>} dControlNodeStorage
+ * @example
+ * key: nodeId
+ * value: dControlIdenInfo
+ *
+ */
+
+/**
+ * DBS에서 장치 개별 제어시 controlValue 식별을 위함
+ * @typedef {Map<number, dControlIdenInfo>} dControlValueStorage
+ *
+ */
+
+/**
+ * DBS에서 장치 개별 제어시 controlValue 식별을 위함
+ * @typedef {Object} dControlIdenInfo
+ * @property {string=} deviceCmdName 장치 노드 제어 이름
+ * @property {string} scenarioMsg 장치 제어 명령 다이어로그 메시지 Title
+ * @property {number=} isSetValue default: 0, 설정 값 입력 화면 여부
+ * @property {setValueInfo=} setValueInfo 입력 값 제약 정보
+ * @property {string} enName On, Off, Open, Close
+ * @property {string} krName 동작, 정지, 열기, 닫기
+ * @property {number=} controlValue 제어 값(0: False, 1: True, 2: Set, 3: Measure, Custom...)
+ *
+ *
  */
 
 module;
