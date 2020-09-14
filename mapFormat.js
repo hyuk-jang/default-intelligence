@@ -9,6 +9,32 @@
  */
 
 /******************** 정의 시작  **********************/
+
+/**
+ * @typedef {Map<string, mdPlaceRelHeadInfo>} mdPlaceRelHeadStorage Map Place Relation Class 관계
+ * @example
+ * key: pcId
+ */
+
+/**
+ * @typedef {Object} mdPlaceRelHeadInfo Map Define Svg Place
+ * @property {string} pcId
+ * @property {string} pcName
+ * @property {mdPlaceRelTailStorage} mdPlaceRelTailStorage
+ */
+
+/**
+ * @typedef {Map<string, mdPlaceRelTailInfo>} mdPlaceRelTailStorage Map Define Svg Place
+ */
+
+/**
+ * @typedef {Object} mdPlaceRelTailInfo Map Define Svg Place
+ * @property {string} pcId
+ * @property {string} pId
+ * @property {string} pName
+ * @property {Function<mdNodeInfo[]>} getNodeList
+ */
+
 /**
  * @typedef {Object} mdSvgPlaceInfo Map Define Svg Place
  * @property {mPlaceModelInfo} placeInfo svg 포지션 정보
