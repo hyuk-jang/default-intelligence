@@ -294,6 +294,7 @@
  * @property {string} target_code 노드 넘버링(001, 002, ...)
  * @property {string} target_name 노드 이름
  * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
+ * @property {string=} data_index 해당 센서를 계측 및 제어할 경우 Index가 필요할 경우
  * @property {svgNodePosOpt=} svgNodePosOpt SVG Node를 위치시키기 위한 옵션
  */
 /**

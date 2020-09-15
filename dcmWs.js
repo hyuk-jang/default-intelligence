@@ -182,6 +182,7 @@
  * @property {string} targetCode
  * @property {string} nodeId
  * @property {number} dlIdx
+ * @property {number} dIdx
  * @property {*} data
  */
 

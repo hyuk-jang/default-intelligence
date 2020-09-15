@@ -63,6 +63,7 @@
  * @property {string} target_code 노드 ID(001, 002, ...)
  * @property {string} target_name 노드 이름
  * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
+ * @property {number} data_index 해당 센서를 계측 및 제어할 경우 Index가 필요할 경우 사용
  * @property {string} serial_number 장치 뒷면에 나와있는 S/N
  */
 
@@ -530,6 +531,7 @@
  * @property {number} is_submit_api
  * @property {number} is_avg_center 데이터 중심 추출 여부
  * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
+ * @property {number} data_index 해당 센서를 계측 및 제어할 경우 Index가 필요할 경우
  * @property {string} n_target_code 노드 ID(001, 002, ...)
  * @property {string} n_target_name 노드 이름
  * @property {string} nd_target_id 사용 목적에 따라 달리 부를 센서 명으로 데이터 Key를 결정
