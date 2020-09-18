@@ -11,12 +11,6 @@
 /******************** 정의 시작  **********************/
 
 /**
- * @typedef {Map<string, mdPlaceRelHeadInfo>} mdPlaceRelHeadStorage Map Place Relation Class 관계
- * @example
- * key: pcId
- */
-
-/**
  * @typedef {Object} mdPlaceRelHeadInfo Map Define Svg Place
  * @property {string} pcId
  * @property {string} pcName
@@ -42,7 +36,7 @@
  */
 
 /**
- * @typedef {Object} mdPlaceInfo
+ * @typedef {Object} mdPlaceInfo placeId에 대응하는 value 정보
  * @property {string} placeId
  * @property {string} placeName
  * @property {string[]} nodeList
@@ -72,6 +66,19 @@
  * @property {SVG.<Tspan>} svgEleName SVG 생성 엘리먼트 정보
  * @property {SVG.<Tspan>} svgEleData SVG 생성 엘리먼트 정보
  * @property {SVG.<Tspan>} svgEleDataUnit SVG 생성 엘리먼트 정보
+ */
+
+/**
+ * @typedef {Object} mdCmdInfo
+ * @property {string} cmdFormat SINGLE, SET, FLOW, SCENARIO
+ * @property {string} cmdId CF에 맞는 식별 Id
+ * @property {string} cmdName 명령 이름
+ * @property {number[]} axisScale
+ * @property {number[]} moveScale
+ * @property {number[]} point 최종 적으로 나올 좌표 정보
+ * @property {mdPlaceInfo} mdPlaceInfo
+ * @property {mSvgModelResource} svgModelResource
+ *
  */
 
 /**
@@ -171,6 +178,7 @@
  * @typedef {Object} mPosition
  * @property {mSvgPositionInfo[]} svgPlaceList 장소 위치 정보와 resource 정보를 포함한 목록
  * @property {mSvgPositionInfo[]} svgNodeList 노드(or 센서) 위치 정보와 resource 정보를 포함한 목록
+ * @property {mSvgPositionInfo[]} svgCmdList 명령 목록
  */
 
 /**
@@ -181,10 +189,12 @@
 
 /**
  * @typedef {Object} mSvgPositionInfo
+ * @property {string=} cmdFormat SVG 생성 타입이 명령일 경우 해당 명령 Wrap Cmd Format
  * @property {string} id 접두어 + 넘버링
  * @property {string} name 한글 명칭
  * @property {string=} placeId 노드(or센서)일 경우 위치한 장소의 ID
  * @property {string} resourceId 그리기 정보를 찾을 resourceId
+ * @property {string} cursor 커서[pointer, ...] (기본값: 사용하지 않음)
  * @property {number[]} point 위치
  */
 
@@ -481,11 +491,45 @@
 
 /**
  * @typedef {Object} mControlInfo 명령 정보
- * @property {mflowCmdInfo[]} flowCmdList 흐름 명령 정보
+ * @property {mSingleMainCmdInfo[]} singleCmdList 단일 명령 정보
  * @property {mSetCmdInfo[]} setCmdList 설정 명령 정보
+ * @property {mflowCmdInfo[]} flowCmdList 흐름 명령 정보
  * @property {mScenarioInfo[]} scenarioCmdList 시나리오 명령 정보
  * @property {mTempControlInfo[]} tempControlList 임시 명령 정보
  */
+
+/**
+ * @typedef {Object} mSingleMainCmdInfo 명령 대분류 정보
+ * @property {string=} singleCmdName 단일 명령 제어 이름
+ * @property {string[]} applyDeviceList 적용할 장치 목록(Node Class Id)
+ * @property {mSingleMiddleCmdInfo} singleMidCateCmdInfo 장치 명령 시나리오 정보
+ */
+
+/**
+ * @typedef {Object} mSingleMiddleCmdInfo 명령 정보
+ * @property {string} scenarioMsg 장치 제어 명령 다이어로그 메시지 Title
+ * @property {number=} isSetValue default: 0, 설정 값 입력 화면 여부
+ * @property {setValueInfo=} setValueInfo 입력 값 제약 정보
+ * @property {mSingleSubCmdInfo[]} subCmdList 제어 명령 종류
+ */
+
+/**
+ * @typedef {Object} setValueInfo
+ * @property {string} msg 입력값 앞쪽에 나타낼 Msg
+ * @property {string} min 입력값 하한선
+ * @property {string} max 입력값 상한선
+ */
+
+/**
+ * @typedef {Object} mSingleSubCmdInfo 장치 노드 제어 정보
+ * @property {string} enName On, Off, Open, Close
+ * @property {string} krName 동작, 정지, 열기, 닫기
+ * @property {number=} controlValue 제어 값(0: False, 1: True, 2: Set, 3: Measure, Custom...)
+ * @property {Object} svgColorInfo 
+ * @property {number} svgColorInfo.colorIndex 색상 번호
+ * @property {string[]} svgColorInfo.status 적용 상태
+ * @property {mSingleMiddleCmdInfo=} nextStepInfo 다음 단계가 존재 시
+
 
 /**
  * @typedef {Object} mflowCmdInfo 흐름 명령
@@ -497,6 +541,7 @@
  * @property {string=} destList.actionType common(에뮬레이터, 실제 동작) or controller(실제 동작) or emulator(에뮬레이터)
  * @property {string[]} destList.trueNodeList Open, On 등 장치 동작 수행
  * @property {string[]} destList.falseNodeList Close, Off 등 장치 동작 정지
+ * @property {svgNodePosOpt=} destList.svgNodePosOpt 명령을 위치시키기 위한 옵션
  */
 
 /**
@@ -505,12 +550,14 @@
  * @property {string} cmdName 설정 명령 Name
  * @property {string[]} trueNodeList Open, On 등 장치 동작 수행
  * @property {string[]} falseNodeList Close, Off 등 장치 동작 정지
+ * @property {svgNodePosOpt=} svgNodePosOpt 명령을 위치시키기 위한 옵션
  */
 
 /**
  * @typedef {Object} mScenarioInfo 시나리오 명령 정보(정해둔 시나리오 명령 정보)
  * @property {string} scenarioId 시나리오 명령 Id
  * @property {string} scenarioName 시나리오 명령 이름
+ * @property {svgNodePosOpt=} svgNodePosOpt 명령을 위치시키기 위한 옵션
  * @property {mScenariCmdInfo[]|mScenariCmdInfo[][]|mScenariCmdInfo[][][]} scenarioList 실제 시나리오 명령 목록
  */
 
@@ -559,7 +606,7 @@
  * @typedef {Object} deviceCmdInfo 명령 정보
  * @property {string=} deviceCmdName 장치 노드 제어 이름
  * @property {string[]} applyDeviceList 적용할 장치 목록(Node Class Id)
- * @property {dCmdScenarioInfo} dCmdScenarioInfo 장치 명령 시나리오 정보
+ * @property {mSingleMiddleCmdInfo} dCmdScenarioInfo 장치 명령 시나리오 정보
  */
 
 /**
@@ -567,7 +614,7 @@
  * @property {string} scenarioMsg 장치 제어 명령 다이어로그 메시지 Title
  * @property {number=} isSetValue default: 0, 설정 값 입력 화면 여부
  * @property {setValueInfo=} setValueInfo 입력 값 제약 정보
- * @property {dConfirmInfo[]} confirmList 제어 명령 종류
+ * @property {mSingleSubCmdInfo[]} confirmList 제어 명령 종류
  */
 
 /**
@@ -584,7 +631,7 @@
  * @property {string} enName On, Off, Open, Close
  * @property {string} krName 동작, 정지, 열기, 닫기
  * @property {number=} controlValue 제어 값(0: False, 1: True, 2: Set, 3: Measure, Custom...)
- * @property {dCmdScenarioInfo=} nextStepInfo 다음 단계가 존재 시
+ * @property {mSingleMiddleCmdInfo=} nextStepInfo 다음 단계가 존재 시
  * {
  *  enName: 'Move',
  *  krName: '이동',
@@ -607,16 +654,7 @@
 
 /**
  * DBS에서 장치 개별 제어시 controlValue 식별을 위함
- * @typedef {Map<string, dControlValueStorage>} dControlNodeStorage
- * @example
- * key: nodeId
- * value: dControlIdenInfo
- *
- */
-
-/**
- * DBS에서 장치 개별 제어시 controlValue 식별을 위함
- * @typedef {Map<number, dControlIdenInfo>} dControlValueStorage
+ * @typedef {Map<number, dControlIdenInfo>} dControlValueStorage key: controlValue
  *
  */
 
