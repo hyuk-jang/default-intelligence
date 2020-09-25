@@ -1,3 +1,6 @@
+/** Device Map Maker */
+const dmmModel = require('./dmmModel');
+
 /** Device Client Manager 생성자 설정 옵션 Jsdoc */
 require('./dcmConfig');
 const dcmConfigModel = require('./dcmConfigModel');
@@ -24,7 +27,8 @@ require('./wsSchemaUPSAS');
 require('./mapFormat');
 
 module.exports = {
+  dmmModel,
   dcmConfigModel,
   dccFlagModel,
-  dcmWsModel
+  dcmWsModel,
 };

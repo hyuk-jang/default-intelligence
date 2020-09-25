@@ -28,12 +28,14 @@
  * @typedef {Object} constructorSocket Socket Config
  * @property {number} port 접속 Port
  * @property {string} host 접속 host
+ * @property {string=} connId 다중 Socket 접속을 할 경우 식별 ID
  */
 
 /**
  * @typedef {Object} constructorSocketWithParser Parser를 붙인 Socket Config
  * @property {number} port 접속 Port
  * @property {string} host 접속 host
+ * @property {string=} connId 다중 Socket 접속을 할 경우 식별 ID
  * @property {{parser: string, option:*}} addConfigInfo Socket에 Binding 할 Parser 객체
  * #parser ---> 'delimiterParser'
  * #option --> 각 Parser Type에 맞는 Option

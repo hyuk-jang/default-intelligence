@@ -134,8 +134,15 @@
  * @property {number=} opacity 0: Transparent, 1: 원색(default)
  * @property {string | string[]} color 단일색 or [기본, 제어]
  * @property {string} errColor 오류일 경우 색상. 기본값 Red
+ * @property {string|string[]} svgClass SVG 표현에 적용할 class. dmmModel.mmSvgBtnClass 와 관련이 있음
  * @property {mStrokeInfo} strokeInfo Border
  * @property {mPatternInfo=} patternInfo
+ * @property {mFilterInfo=} filterInfo filter 속성을 넣을 경우
+ */
+
+/**
+ * @typedef {Object} mFilterInfo 미리 정의한 svg 요소. url(#id) 형식으로 정의
+ * @property {string=} filter
  */
 
 /**
