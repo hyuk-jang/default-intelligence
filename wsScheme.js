@@ -65,6 +65,7 @@
  * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
  * @property {number} data_index 해당 센서를 계측 및 제어할 경우 Index가 필요할 경우 사용
  * @property {string} serial_number 장치 뒷면에 나와있는 S/N
+ * @property {string} node_type 노드 타입(세부 제어가 필요할 경우 사용), >>> PXM309, ...etc
  */
 
 /**
@@ -522,6 +523,7 @@
  * @property {string} node_id
  * @property {string} node_real_id
  * @property {string} node_name
+ * @property {string} node_type 노드 타입(세부 제어가 필요할 경우 사용), >>> PXM309, ...etc
  * @property {string} dl_real_id
  * @property {string} dl_id
  * @property {string} dl_name

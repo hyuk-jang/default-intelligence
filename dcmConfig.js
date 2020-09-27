@@ -262,6 +262,8 @@
  * @property {number} is_sensor 센서 여부 (데이터가 수치로 표기되면 센서, 아니면 장치), DB에 센서라면 sensor_data에 저장, 장치라면 device_data에 저장
  * @property {number} data_logger_index Data Logger에서 수집한 데이터 군 중에서 해당 센서 데이터가 위치하는 인덱스
  * @property {number} data_index 해당 센서를 계측 및 제어할 경우 Index가 필요할 경우
+ * @property {string} serial_number 노드 Serial
+ * @property {string} node_type 노드 타입(세부 제어가 필요할 경우 사용), >>> PXM309, ...etc
  * @property {string} n_target_code Node Numbering 번호 (001, 002, ...)
  * @property {string} nd_target_id Node 실제 데이터 Key로 DeviceProtocolConverter Data Key에 사용
  * @property {string} nd_target_name Node 장치 실체적 이름
@@ -408,6 +410,8 @@
 /**
  * @typedef {Object} deviceOption 프로토콜 변환 과정에서 생기는 이벤트에 대해서 처리할 옵션 정보
  * @property {number=} invAmount 인버터 용량 (kW)
+ * @property {Object} ni NI 제어할 때 사용
+ * @property {string} ni.slotId 슬롯에 장착하는 장치 Serial
  */
 
 module;
