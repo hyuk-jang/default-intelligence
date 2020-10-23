@@ -362,9 +362,10 @@
 
 /**
  * @typedef {Object} controlInfo Device Client Controller 객체를 제어하는데 있어 운영상 필요한 boolean 값 모음
- * @prop {boolean} hasOneAndOne 계속하여 연결을 수립할지 여부
- * @prop {boolean} hasErrorHandling 에러가 발생하였을 경우 다음 명령 진행을 멈출지 여부
- * @prop {boolean} hasReconnect 장치의 연결이 끊겼을 경우 자동으로 재접속을 수행할지 여부
+ * @property {boolean} hasOneAndOne 계속하여 연결을 수립할지 여부
+ * @property {boolean} hasErrorHandling 에러가 발생하였을 경우 다음 명령 진행을 멈출지 여부
+ * @property {boolean=} hasOnDataClose (Default: false) notifyData를 발생시킬 수 있는 데이터를 충족할 경우 Device Connect flag
+ * @property {boolean=} hasReconnect (Default: true) 장치 접속 해제 시 재접속 flag
  */
 
 /**
@@ -384,6 +385,8 @@
  * @property {string=} subType 'parser', 'xbee', ....
  * @property {number=} baudRate
  * @property {string=} host 접속 경로(socket 일 경우 사용)
+ * @property {boolean=} hasOnDataClose (Default: false) notifyData를 발생시킬 수 있는 데이터를 충족할 경우 Device Connect flag
+ * @property {boolean=} hasReconnect (Default: true) 장치 접속 해제 시 재접속 flag
  * @property {number|string=} port 접속 포트
  * @property {number=} retryChance 명령 재시도 횟수(default: 0)
  * @property {parserInfo=} addConfigInfo type, subType의 Contoller에서 요구하는 추가 접속 정보
