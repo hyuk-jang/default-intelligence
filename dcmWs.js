@@ -183,6 +183,7 @@
  * @property {string} nodeId
  * @property {number} dlIdx
  * @property {number} dIdx
+ * @property {string} nodeType
  * @property {*} data
  */
 

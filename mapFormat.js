@@ -563,8 +563,9 @@
 
 /**
  * @typedef {Object} mScenarioInfo 시나리오 명령 정보(정해둔 시나리오 명령 정보)
- * @property {string} scenarioId 시나리오 명령 Id
- * @property {string} scenarioName 시나리오 명령 이름
+ * @property {string} cmdId 시나리오 명령 Id
+ * @property {string} cmdName 시나리오 명령 이름
+ * @property {string} scenarioCount 시나리오 반복 횟수
  * @property {svgNodePosOpt=} svgNodePosOpt 명령을 위치시키기 위한 옵션
  * @property {mScenariCmdInfo[]|mScenariCmdInfo[][]|mScenariCmdInfo[][][]} scenarioList 실제 시나리오 명령 목록
  */

@@ -22,6 +22,9 @@
  * @property {string|number} goalValue 달성 기준치 값
  * @property {number} goalRange 기준치 인정 범위.
  * @property {boolean} isCompleteClear 기본 값 false, 이 옵션이 있다면 이 요건만 충족하면 완료 된 것으로 판단. 아니라면 전체 Goal 달성 해야함
+ * @property {Object} expressInfo 표현식으로 데이터 산출
+ * @property {string[]} expressInfo.nodeList 표현식에 사용되는 Node
+ * @property {string} expressInfo.expression 표현식
  * @example
  * goalRange: 0 goalValue 보다 작은
  * goalRange: 1 goalValue 와 같은
@@ -414,7 +417,7 @@
  * @typedef {Object} deviceOption 프로토콜 변환 과정에서 생기는 이벤트에 대해서 처리할 옵션 정보
  * @property {number=} invAmount 인버터 용량 (kW)
  * @property {Object} ni NI 제어할 때 사용
- * @property {string} ni.slotId 슬롯에 장착하는 장치 Serial
+ * @property {string} ni.slotModelType 9201, 9482, ...etc
  */
 
 module;
