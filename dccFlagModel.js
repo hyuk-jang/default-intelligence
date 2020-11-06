@@ -12,8 +12,8 @@ exports.MODBUS = {
       /** address {number}: The Data Address of the first register. */
       address: 0,
       /** dataLength {number}: The total number of registers requested.  */
-      dataLength: 0
-    }
+      dataLength: 0,
+    },
   },
   /** FC 2 */
   readDiscreteInputs: {
@@ -28,8 +28,8 @@ exports.MODBUS = {
       /** address {number}: The Data Address of the first register. */
       address: 0,
       /** dataLength {number}: The total number of registers requested.  */
-      dataLength: 0
-    }
+      dataLength: 0,
+    },
   },
   /** FC 3 */
   readHoldingRegisters: {
@@ -44,8 +44,8 @@ exports.MODBUS = {
       /** address {number}: The Data Address of the first register. */
       address: 0,
       /** dataLength {number}: The total number of registers requested.  */
-      dataLength: 0
-    }
+      dataLength: 0,
+    },
   },
   /** FC 4 */
   readInputRegisters: {
@@ -55,8 +55,8 @@ exports.MODBUS = {
       /** address {number}: The Data Address of the first register. */
       address: 0,
       /** dataLength {number}: The total number of registers requested.  */
-      dataLength: 0
-    }
+      dataLength: 0,
+    },
   },
   /** FC 5 */
   writeSingleCoil: {
@@ -66,8 +66,8 @@ exports.MODBUS = {
       /** address {number}: The Data Address of the first register. */
       address: 0,
       /** state {boolean}: The state to force into coil. */
-      state: false
-    }
+      state: false,
+    },
   },
   /** FC 6 */
   writeSingleRegister: {
@@ -77,8 +77,8 @@ exports.MODBUS = {
       /** address {number}: The Data Address of the first register. */
       address: 0,
       /** value {number}: The value to set into the register. */
-      value: 0
-    }
+      value: 0,
+    },
   },
   /** FC 15 */
   writeMultipleCoils: {
@@ -88,8 +88,8 @@ exports.MODBUS = {
       /** address {number}: The Data Address of the first register. */
       address: 0,
       /** array {array}: The array of states to force into the coils. */
-      array: []
-    }
+      array: [],
+    },
   },
   /** FC 16 */
   writeMultipleRegisters: {
@@ -99,9 +99,9 @@ exports.MODBUS = {
       /** address {number}: The Data Address of the first register. */
       address: 0,
       /** array {array}: The array of values to set into the registers. */
-      array: 0
-    }
-  }
+      array: 0,
+    },
+  },
 };
 
 exports.MODBUS_COMMAND = {
@@ -120,7 +120,7 @@ exports.MODBUS_COMMAND = {
   /** FC15 */
   WriteMultipleCoils: 'writeCoils',
   /** FC16 */
-  WriteMultipleRegisters: 'writeMultipleRegisters'
+  WriteMultipleRegisters: 'writeMultipleRegisters',
 };
 
 exports.definedOperationStatus = {
@@ -212,7 +212,7 @@ exports.definedOperationStatus = {
    * @type {string} Error Non Cmd
    * @desc 유효한 명령 아님
    */
-  E_NON_CMD: 'E_NON_CMD'
+  E_NON_CMD: 'E_NON_CMD',
 };
 
 exports.definedOperationError = {
@@ -245,7 +245,7 @@ exports.definedOperationError = {
    * @type {string} Error Non Cmd
    * @desc 유효한 명령 아님
    */
-  E_NON_CMD: 'E_NON_CMD'
+  E_NON_CMD: 'E_NON_CMD',
 };
 
 exports.definedCommandSetRank = {
@@ -268,7 +268,7 @@ exports.definedCommandSetRank = {
    * @type {number} [3순위] 명령
    * @desc CommandSet이 완료되고 난 후 3순위로 처리해야할 명령 집합
    */
-  THIRD: 3
+  THIRD: 3,
 };
 
 exports.definedCommandSetMessage = {
@@ -292,7 +292,7 @@ exports.definedCommandSetMessage = {
    * @type {string} 장치와 1:1 통신이 설정 되었을 경우
    * @desc 1:1 통신으로 다음 명령 집합이 있더라도 수행하지 않음
    */
-  ONE_AND_ONE_COMUNICATION: 'ONE_AND_ONE_COMUNICATION'
+  ONE_AND_ONE_COMUNICATION: 'ONE_AND_ONE_COMUNICATION',
 };
 
 exports.definedControlEvent = {
@@ -311,7 +311,7 @@ exports.definedControlEvent = {
   /**
    * @type {number} 장치에서 에러 발생
    */
-  DEVICE_ERROR: 'dcDeviceError'
+  DEVICE_ERROR: 'dcDeviceError',
 };
 
 exports.definedCommanderResponse = {
@@ -334,7 +334,7 @@ exports.definedCommanderResponse = {
   /**
    * @type {string} 다음 명령으로 가라.(강제)
    */
-  NEXT: 'NEXT'
+  NEXT: 'NEXT',
 };
 
 exports.controllerParserType = {
@@ -342,9 +342,11 @@ exports.controllerParserType = {
     DELIMITER: 'delimiterParser',
     BYTE_LENGTH: 'byteLengthParser',
     READ_LINE: 'readLineParser',
-    READY: 'readyParser'
+    READY: 'readyParser',
   },
   socket: {
-    DELIMITER: 'delimiterParser'
-  }
+    DELIMITER: 'delimiterParser',
+    READ_LINE: 'readLineParser',
+    BYTE_LENGTH: 'byteLengthParser',
+  },
 };
