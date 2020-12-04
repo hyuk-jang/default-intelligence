@@ -43,12 +43,14 @@
  * @property {number[]} point 최종 적으로 나올 좌표 정보
  * @property {mSvgModelResource} svgModelResource
  * @property {SVG} svgEleBg SVG 생성 엘리먼트 정보
+ * @property {Object[]} svgEleTbls SVG 생성 엘리먼트 정보
  */
 
 /**
  * @typedef {Object} mdNodeInfo
  * @property {string} ncId Node Class Target Id (1 Depth)
  * @property {string} ncName Node Class Target Name (1 Depth)
+ * @property {string} ndId Node Def Target Id (1 Depth)
  * @property {string} ndName Node Define Target Name (2 Depth) 화면에 표시해 줄때
  * @property {string} nodeId Node Id (3 Depth)
  * @property {string} nodeName Node Name (3 Depth)
@@ -85,6 +87,19 @@
  * @typedef {Object} svgModelInfo
  * @property {number[]} point 위치
  * @property {mSvgModelResource} mSvgModelResource
+ */
+
+/**
+ * @typedef {Object} mdConvertInfo
+ * @property {string} cmdFormat SINGLE, SET, FLOW, SCENARIO
+ * @property {string} cmdId CF에 맞는 식별 Id
+ * @property {string} cmdName 명령 이름
+ * @property {number[]} axisScale
+ * @property {number[]} moveScale
+ * @property {number[]} point 최종 적으로 나올 좌표 정보
+ * @property {mdPlaceInfo} mdPlaceInfo
+ * @property {mSvgModelResource} svgModelResource
+ *
  */
 
 /******************** drawInfo 시작  **********************/
@@ -138,11 +153,54 @@
  * @property {mStrokeInfo} strokeInfo Border
  * @property {mPatternInfo=} patternInfo
  * @property {mFilterInfo=} filterInfo filter 속성을 넣을 경우
+ * @property {mInsideInfo=} insideInfo 내부 정보
  */
 
 /**
  * @typedef {Object} mFilterInfo 미리 정의한 svg 요소. url(#id) 형식으로 정의
  * @property {string=} filter
+ */
+
+/**
+ * @typedef {Object} mInsideInfo 내부 정보
+ * @property {mHeaderInfo} headerInfo Title 영역
+ * @property {mBodyInfo} bodyInfo Data 영역, Table Type 일 경우 Node 포함 가능
+ */
+
+/**
+ * @typedef {Object} mHeaderInfo 내부 정보
+ * @property {string=} bgColor 배경 색상
+ * @property {number} shareRate Height 차지 영역 Rate
+ * @property {number=} fontSize 텍스트 사이즈(default: 10)
+ * @property {string=} fontColor 텍스트 색 (default: #000)
+ * @property {string=} strokeColor Header 하단 선 그을때 선 색
+ * @property {string=} strokeWidth Header 하단 선 그을때 선 굵기
+ */
+
+/**
+ * @typedef {Object} mBodyInfo 내부 정보
+ * @property {string=} bgColor 배경 색상
+ * @property {string=} svgClass 배경 색상
+ * @property {number=} fontSize 텍스트 사이즈(default: 10)
+ * @property {string=} fontColor 텍스트 색 (default: #000)
+ * @property {string=} unitColor 텍스트 색 (default: #000)
+ * @property {mTblInfo=} tblInfo 테이블 정보
+ */
+
+/**
+ * @typedef {Object} mTblInfo 테이블 정보
+ * @property {string} rowsCount 테이블 행 개수
+ * @property {string=} strokeColor (default: white)Header 하단 선 그을때 선 색
+ * @property {number=} strokeWidth (default: 1) Header 하단 선 그을때 선 굵기
+ * @property {number=} vStrokeScale (default: none)수직선 그을 위치
+ * @property {mTblDataInfo=} titleInfo 제목 정보, 없으면 표기 안함
+ * @property {mTblDataInfo=} dataInfo 데이터 정보, 없으면 표기 안함
+ */
+
+/**
+ * @typedef {Object} mTblDataInfo Map Resource Stroke
+ * @property {number=} anchor 0: start, 1: middle(default), 2: end
+ * @property {number=} xAxisScale 시작 점
  */
 
 /**
@@ -177,6 +235,7 @@
  * @property {string=} leading default(1.2) 텍스트가 그려진 공간의 높이: 글자크기는 변하지 않고 공간의 높이만 변함 (css의 line-height와 같음)
  * @property {*=} transform 텍스트가 그려진 공간의 높이: 글자크기는 변하지 않고 공간의 높이만 변함 (css의 line-height와 같음)
  * @property {number[]=} axisScale 텍스트 중심축 좌표(default: [0.5, 0.5])
+ * @property {number[]=} moveScale 텍스트 위치 백분율
  * @property {number=} anchor 0: start, 1: middle(default), 2: end
  * ex) 글자크기= 40px이고 leading= 1.5이면 글자크기 1.5배인 60px의 공간에 40px의 글자가 그려짐
  */
@@ -211,6 +270,7 @@
  * @property {string} resourceId 그리기 정보를 찾을 resourceId
  * @property {number[]=} axisScale Node 좌표 백분율 정보 [x1, y1] or [x1, y1, x2, y2]
  * @property {number[]=} moveScale Node 별 위치 백분율
+ * @property {number=} tblIndex Tbl 형식에 들어갈 경우 Index
  */
 
 /**
@@ -283,36 +343,37 @@
  * @desc DV_NODE_CLASS 참조
  * @typedef {Object} mNodeStructureInfo 노드 대분류 구조
  * @property {string} target_id 노드를 가르키는 고유 명(temp, reh, solar, co2, ...)
- * @property {string} target_name target_id에 대응하는 이름(온도, 습도, 일사량, 이산화탄소, ...)
- * @property {number=} is_submit_api Default: 1, Class 단위에서의 API 전송 여부 정의. 세부적으로 지정하고자 할 경우 Def 사용. 0 or 1의 값을 기입하면 Def 까지 일괄 적용, API Server로 Node 데이터를 Socket 통신으로 전송할 지 여부
- * @property {number} is_sensor 센서 여부(0: Device, 1: Sensor<default>). DBW 에서 센서 종류를 판단하기 위해서 사용
- * @property {number=} save_db_type 0: Device, 1: Sensor, 2: Block, 3: Trouble. 지정하지 않을 경우 is_sensor를 따라감. DB에 저장할 때 카테고리를 판별하기 위함
+ * @property {string=} target_name (default: '') target_id에 대응하는 이름(온도, 습도, 일사량, 이산화탄소, ...)
+ * @property {number=} is_submit_api (default: 1), Class 단위에서의 API 전송 여부 정의. 세부적으로 지정하고자 할 경우 Def 사용. 0 or 1의 값을 기입하면 Def 까지 일괄 적용, API Server로 Node 데이터를 Socket 통신으로 전송할 지 여부
+ * @property {number=} is_sensor (default: 1) 센서 여부(0: Device, 1: Sensor). DBW 에서 센서 종류를 판단하기 위해서 사용
+ * @property {number=} save_db_type (default: is_sensor)  0: Device, 1: Sensor, 2: Block, 3: Trouble. 지정하지 않을 경우 is_sensor를 따라감. DB에 저장할 때 카테고리를 판별하기 위함
  * @property {string=} data_unit 데이터 단위(℃, %, W/m², ppl, ...)
  * @property {string=} description 부연 설명이 필요한 경우
- * @property {mNodeDefInfo[]} defList 노드 개요 정보 목록
+ * @property {mNodeDefInfo[]=} defList 노드 개요 정보 목록
  */
 
 /**
  * @desc DV_NODE_DEF 참조
  * @typedef {Object} mNodeDefInfo 노드 개요 정보
  * @property {string} target_prefix 해당 프로젝트에서 쓸 접두사
- * @property {string} target_id 사용 목적에 따라 달리 부를 센서 명으로 데이터 Key를 결정
- * @property {string} target_name 필요시 세부 사용 목적 기술
- * @property {number=} is_submit_api Default: 1, API Server로 Node 데이터를 Socket 통신으로 전송할 지 여부
- * @property {number} is_avg_center 평균 값(센터) 사용 여부
- * @property {string} description 노드 데이터 단위에 대한 부연 설명이 필요한 경우
+ * @property {string=} target_id (default: nc***)) 사용 목적에 따라 달리 부를 센서 명으로 데이터 Key를 결정
+ * @property {string=} target_name (default: nc***) 필요시 세부 사용 목적 기술
+ * @property {number=} is_submit_api (default: nc***) API Server로 Node 데이터를 Socket 통신으로 전송할 지 여부
+ * @property {number=} is_avg_center 평균 값(센터) 사용 여부
+ * @property {string} description (default: nc***) 노드 데이터 단위에 대한 부연 설명이 필요한 경우
  * @property {string=} repeatId repeat 저장소에서 가져다 쓸 nodeList. map 재정의시 repeat key 내용으로 nodeList를 덮어씀
- * @property {mNodeModelInfo[]} nodeList 노드 상세 목록
+ * @property {mNodeModelInfo[]=} nodeList 노드 상세 목록
  */
 
 /**
  * @desc DV_NODE 참조
  * @typedef {Object} mNodeModelInfo 노드 모델 상세 정보
- * @property {string} target_code 노드 넘버링(001, 002, ...)
- * @property {string} target_name 노드 이름
- * @property {number} data_logger_index 해당 센서 데이터의 데이터 로거 인덱스(Default 0)
- * @property {string=} data_index 해당 센서를 계측 및 제어할 경우 Index가 필요할 경우
+ * @property {string=} target_code (default: '') 노드 넘버링(001, 002, ...)
+ * @property {string=} target_name (default: '') 노드 이름
+ * @property {number=} data_logger_index (default: 0) 해당 센서 데이터의 데이터 로거 인덱스
+ * @property {string=} data_index (default: 0) 해당 센서를 계측 및 제어할 경우 Index가 필요할 경우
  * @property {string=} node_type 노드 타입(세부 제어가 필요할 경우 사용), >>> PXM309, ...etc
+ * @property {string=} note 휘발성 메모
  * @property {svgNodePosOpt=} svgNodePosOpt SVG Node를 위치시키기 위한 옵션
  */
 /**
@@ -361,6 +422,7 @@
 /**
  * @typedef {Object} mRelationInfo 관계 정보
  * @property {mPlaceStructureInfo[]} placeRelationList 장소 관계 정보
+ * @property {mConvertRelationInfo[]} convertRelationList 장소 관계 정보
  * @property {mSmartSalternInfo} smartSalternInfo 염전 관계 정보
  * @property {mPipeConnectionRelationInfo[]} pipeConnectionRelationList 염수 이동 관계
  * @property {mBrineFeedRankRelationInfo[]} brineFeedRankRelationList 염수 급수 우선 관계
@@ -413,6 +475,12 @@
  * @typedef {Object} mPlaceInfo 장소 상세 특화 정보
  * @property {mThresholdConfigInfo[]=} thresholdConfigList 임계치 명령 목록
  * @property {{width: number, height: number, depth: number}} placeSize 장소 크기
+ */
+
+/**
+ * @typedef {Object} mConvertRelationInfo 데이터 변환 정보
+ * @property {string} nDefId Node Def Id
+ * @property {Object} convertInfo 변환 정보 {number|string : convertValue}
  */
 
 /**
