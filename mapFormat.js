@@ -64,6 +64,8 @@
  * @property {string} placeNameList node를 소유하고 있는 Place Name 목록
  * @property {mdPlaceInfo=} mdPlaceInfo placeId에 관련된 mdPlaceInfo
  * @property {mSvgModelResource} svgModelResource
+ * @property {Object[]} observerList 옵저버 목록
+ * @property {Function} attach 옵저버 등록 함수
  * @property {SVG} svgEleBg SVG 생성 엘리먼트 정보
  * @property {SVG.<Tspan>} svgEleName SVG 생성 엘리먼트 정보
  * @property {SVG.<Tspan>} svgEleData SVG 생성 엘리먼트 정보
@@ -170,6 +172,7 @@
 /**
  * @typedef {Object} mHeaderInfo 내부 정보
  * @property {string=} bgColor 배경 색상
+ * @property {string=} svgClass (default: resource.defaultSvgClass) Header SVG Class.
  * @property {number} shareRate Height 차지 영역 Rate
  * @property {number=} fontSize 텍스트 사이즈(default: 10)
  * @property {string=} fontColor 텍스트 색 (default: #000)
@@ -179,17 +182,15 @@
 
 /**
  * @typedef {Object} mBodyInfo 내부 정보
- * @property {string=} bgColor 배경 색상
- * @property {string=} svgClass 배경 색상
- * @property {number=} fontSize 텍스트 사이즈(default: 10)
- * @property {string=} fontColor 텍스트 색 (default: #000)
- * @property {string=} unitColor 텍스트 색 (default: #000)
+ * @property {string=} fontColor (default: parent) 텍스트 색
+ * @property {number=} fontSize (default: 10) 텍스트 사이즈
+ * @property {string=} unitColor (default: #000) 텍스트 색
  * @property {mTblInfo=} tblInfo 테이블 정보
  */
 
 /**
  * @typedef {Object} mTblInfo 테이블 정보
- * @property {string} rowsCount 테이블 행 개수
+ * @property {number} rowsCount 테이블 행 개수
  * @property {string=} strokeColor (default: white)Header 하단 선 그을때 선 색
  * @property {number=} strokeWidth (default: 1) Header 하단 선 그을때 선 굵기
  * @property {number=} vStrokeScale (default: none)수직선 그을 위치

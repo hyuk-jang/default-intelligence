@@ -43,6 +43,7 @@
  * @property {string} key 명령 Model Key (일반적으로 Node Definition: 2 Level Key)
  * @property {number=} value FALSE: 0, TRUE: 1, MEASURE: 2(default), SET: 3, dcmConfig.requestDeviceControlType 값 참조
  * @property {*=} setValue value 값이 SET일 경우 어떤 값을 Set 할지 여부. 각 Protocol에 따라 달라짐
+ * @property {nodeInfo} nodeInfo value 값이 SET일 경우 어떤 값을 Set 할지 여부. 각 Protocol에 따라 달라짐
  */
 
 /**
