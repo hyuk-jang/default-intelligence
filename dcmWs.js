@@ -184,6 +184,7 @@
  * @property {number} dlIdx
  * @property {number} dIdx
  * @property {string} nodeType
+ * @property {mModbusInfo} modbusInfo
  * @property {*} data
  */
 
@@ -193,6 +194,7 @@
  * @property {string} prefix
  * @property {string} dataLoggerId
  * @property {string} serialNumber
+ * @property {detailNodeInfo[]} modbusStorage
  * @property {string[]} nodeList
  */
 

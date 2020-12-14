@@ -374,9 +374,18 @@
  * @property {number=} data_logger_index (default: 0) 해당 센서 데이터의 데이터 로거 인덱스
  * @property {string=} data_index (default: 0) 해당 센서를 계측 및 제어할 경우 Index가 필요할 경우
  * @property {string=} node_type 노드 타입(세부 제어가 필요할 경우 사용), >>> PXM309, ...etc
+ * @property {mModbusInfo=} modbusInfo 휘발성 메모
  * @property {string=} note 휘발성 메모
  * @property {svgNodePosOpt=} svgNodePosOpt SVG Node를 위치시키기 위한 옵션
  */
+
+/**
+ * @typedef {Object} mModbusInfo 노드 모드버스 정보
+ * @property {number} fnCode 펑션 코드
+ * @property {number} address 위치
+ * @property {number=} dataLength (default: 1) 데이터 길이
+ */
+
 /**
  * @desc DV_NODE 참조
  * @typedef {Object} mNodeModelInfo1 노드 모델 상세 정보
