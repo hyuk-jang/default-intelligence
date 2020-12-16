@@ -5,7 +5,7 @@
  * @property {string=} WCF Wrap Cmd Format (MEASURE[default], SINGLE, SET, FLOW, SCENARIO)
  * @property {string=} WCT Wrap Cmd Type (CONTROL[default], CANCEL)
  * @property {string} WCI 고유 ID
- * @property {wrapCmdGoalInfo=} WCG 명령 달성 제한 조건
+ * @property {csCmdGoalContraintInfo=} WCG 명령 달성 제한 조건
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (0, 1, 2, 3[default])
  * @property {number=} NI Node ID (SCT 가 SET(3)일 경우 설정하는 값)
  * @property {number=} SCT Single Control Type (0: Close, 1: Open, 2: Status[default], 3: Set)
@@ -25,7 +25,7 @@
  * @property {string=} cmdFormat Wrap Cmd Format (MEASURE[default], SINGLE, SET, FLOW, SCENARIO)
  * @property {string=} cmdType Wrap Cmd Type (CONTROL[default], CANCEL)
  * @property {string} cmdId 고유 ID
- * @property {wrapCmdGoalInfo=} cmdGoal 명령 달성 제한 조건
+ * @property {csCmdGoalContraintInfo=} cmdGoal 명령 달성 제한 조건
  * @property {number=} rank 명령의 우선 순위. 낮을 수록 먼저 실행 (0, 1, 2, 3[default])
  * @property {string=} nodeId Node ID
  * @property {number=} singleControlType 제어 분류  (0: Close, 1: Open, 2: Status[default], 3: Set)
