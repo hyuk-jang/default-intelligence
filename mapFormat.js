@@ -55,6 +55,7 @@
  * @property {string} nodeId Node Id (3 Depth)
  * @property {string} nodeName Node Name (3 Depth)
  * @property {string|number} nodeData 노드 현재 데이터
+ * @property {mModbusInfo=} modbusInfo 모드 버스 사용될 경우 정보
  * @property {number} isSensor 센서 여부
  * @property {string} dataUnit 데이터 단위
  * @property {number[]} axisScale
@@ -490,6 +491,7 @@
 /**
  * @typedef {Object} mConvertRelationInfo 데이터 변환 정보
  * @property {string} nDefId Node Def Id
+ * @property {boolean=} isNodeNameUse (default: false) nodeName으로 치환 여부. convertInfo는 key : true, false 로 작성 필수
  * @property {Object} convertInfo 변환 정보 {number|string : convertValue}
  */
 
