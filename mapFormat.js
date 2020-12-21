@@ -67,6 +67,7 @@
  * @property {mSvgModelResource} svgModelResource
  * @property {Object[]} observerList 옵저버 목록
  * @property {Function} attach 옵저버 등록 함수
+ * @property {Function} dettach 옵저버 제거 함수
  * @property {SVG} svgEleBg SVG 생성 엘리먼트 정보
  * @property {SVG.<Tspan>} svgEleName SVG 생성 엘리먼트 정보
  * @property {SVG.<Tspan>} svgEleData SVG 생성 엘리먼트 정보
@@ -445,12 +446,13 @@
 
 /**
  * @typedef {Object} mImgTriggerInfo 이미지 View Trigger
- * @property {string} itId img trigger id
- * @property {string} imgPath 보여줄 이미지 Path
+ * @property {string} fileName img trigger id
+ * @property {string} folderPath 보여줄 이미지 폴더 Path
+ * @property {string=} filePath (자동생성)읽어올 파일 경로
  * @property {number[]} size 보여줄 이미지 크기
  * @property {number[]} position SVG 위치 정보
  * @property {number=} opacity 0: Transparent, 1: 원색(default)
- * @property {csCmdGoalContraintInfo[]} triggerGoalList
+ * @property {csCmdGoalContraintInfo} triggerGoalInfo
  */
 
 /**
