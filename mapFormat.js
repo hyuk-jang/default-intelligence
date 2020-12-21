@@ -433,6 +433,7 @@
 /**
  * @typedef {Object} mRelationInfo 관계 정보
  * @property {mPlaceStructureInfo[]} placeRelationList 장소 관계 정보
+ * @property {mImgTriggerInfo[]} imgTriggerList 장소 관계 정보
  * @property {mConvertRelationInfo[]} convertRelationList 장소 관계 정보
  * @property {mSmartSalternInfo} smartSalternInfo 염전 관계 정보
  * @property {mPipeConnectionRelationInfo[]} pipeConnectionRelationList 염수 이동 관계
@@ -440,6 +441,16 @@
  * @property {mBrineDrainRankRelationInfo[]} brineDrainRankRelationList 염수 배수 우선 관계
  * @property {mSvgResourceConnectionInfo[]} svgResourceConnectionList 이미지 관계
  * @property {string[]} hiddenTextSvgModelResourceIdList 장소 또는 노드의 텍스트를 숨길 svgModelResouceId
+ */
+
+/**
+ * @typedef {Object} mImgTriggerInfo 이미지 View Trigger
+ * @property {string} itId img trigger id
+ * @property {string} imgPath 보여줄 이미지 Path
+ * @property {number[]} size 보여줄 이미지 크기
+ * @property {number[]} position SVG 위치 정보
+ * @property {number=} opacity 0: Transparent, 1: 원색(default)
+ * @property {csCmdGoalContraintInfo[]} triggerGoalList
  */
 
 /**

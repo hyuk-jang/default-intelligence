@@ -22,6 +22,7 @@
  * @property {string|number} goalValue 달성 기준치 값
  * @property {number} goalRange 기준치 인정 범위.
  * @property {boolean} isCompleteClear 기본 값 false, 이 옵션이 있다면 이 요건만 충족하면 완료 된 것으로 판단. 아니라면 전체 Goal 달성 해야함
+ * @property {number=} isInclusionGoal (default: 0) 달성 기준치 포함 여부 (0: 초과, 미만), (1: 이상, 이하)
  * @property {Object} expressInfo 표현식으로 데이터 산출
  * @property {string[]} expressInfo.nodeList 표현식에 사용되는 Node
  * @property {string} expressInfo.expression 표현식
@@ -237,6 +238,14 @@
  * @property {string} cmdId 명령 이름 영어(srcPlaceId_TO_destPlaceId)
  * @property {string} cmdName 명령 이름 한글(srcPlaceId → destPlaceId)
  * @property {string} actionType common(에뮬레이터, 실제 동작) or controller(실제 동작) or emulator(에뮬레이터)
+ * @property {string[]} trueNodeList Open, On 등 장치 동작 수행
+ * @property {string[]} falseNodeList Close, Off 등 장치 동작 정지
+ */
+
+/**
+ * @typedef {Object} trueAndFalseCmdInfo
+ * @property {string} cmdId 명령 이름 영어(srcPlaceId_TO_destPlaceId)
+ * @property {string} cmdName 명령 이름 한글(srcPlaceId → destPlaceId)
  * @property {string[]} trueNodeList Open, On 등 장치 동작 수행
  * @property {string[]} falseNodeList Close, Off 등 장치 동작 정지
  */
