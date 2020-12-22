@@ -447,7 +447,7 @@
 /**
  * @typedef {Object} mImgTriggerInfo 이미지 View Trigger
  * @property {string} fileName img trigger id
- * @property {string} folderPath 보여줄 이미지 폴더 Path
+ * @property {string|string[]} folderPath 보여줄 이미지 폴더 Path
  * @property {string=} filePath (자동생성)읽어올 파일 경로
  * @property {number[]} size 보여줄 이미지 크기
  * @property {number[]} position SVG 위치 정보

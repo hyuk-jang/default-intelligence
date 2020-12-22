@@ -21,6 +21,7 @@
  * @property {string} nodeId 달성하고자 하는 nodeId
  * @property {string|number} goalValue 달성 기준치 값
  * @property {number} goalRange 기준치 인정 범위.
+ * @property {string=} groupId 명령 달성 제한을 그루핑하여 처리할 경우.
  * @property {boolean} isCompleteClear 기본 값 false, 이 옵션이 있다면 이 요건만 충족하면 완료 된 것으로 판단. 아니라면 전체 Goal 달성 해야함
  * @property {number=} isInclusionGoal (default: 0) 달성 기준치 포함 여부 (0: 초과, 미만), (1: 이상, 이하)
  * @property {Object} expressInfo 표현식으로 데이터 산출
