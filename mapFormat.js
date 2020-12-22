@@ -129,6 +129,7 @@
 /**
  * @typedef {Object} mBackgroundInfo
  * @property {string} backgroundData 배경 경로 or base64 데이터
+ * @property {string=} coverData 겉을 감쌀 BG, ImgTrigger 이후에 그릴 배경 경로(ex: Icon)
  * @property {number[]} backgroundPosition 배경의 위치
  */
 
