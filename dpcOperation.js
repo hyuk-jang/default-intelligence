@@ -64,8 +64,8 @@
  * @property {*} callMethodParam Protocol Converter에 저장되어 있는 메소드에 넘겨줄 2번째 인자
  * @property {number=} scale 결과값에 곱할 배율
  * @property {number=} fixed 소수점 처리 할 자리수
- * @property {boolean=} isLE 소수점 처리 할 자리수
- * @property {boolean=} isUnsigned 소수점 처리 할 자리수
+ * @property {boolean=} (default: false) isLE 소수점 처리 할 자리수
+ * @property {boolean=} isUnsigned (default: true) 소수점 처리 할 자리수
  */
 
 /**
