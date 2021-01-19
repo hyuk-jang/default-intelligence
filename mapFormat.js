@@ -58,6 +58,7 @@
  * @property {mModbusInfo=} modbusInfo 모드 버스 사용될 경우 정보
  * @property {number} isSensor 센서 여부
  * @property {string} dataUnit 데이터 단위
+ * @property {mSvgViewInfo} svgViewInfo node 데이터 변화에 따른 SVG 표현 식
  * @property {number[]} axisScale
  * @property {number[]} moveScale
  * @property {number[]} point 최종 적으로 나올 좌표 정보
@@ -185,7 +186,7 @@
 
 /**
  * @typedef {Object} mBodyInfo 내부 정보
- * @property {string=} fontColor (default: parent) 텍스트 색
+ * @property {string|string[]=} fontColor (default: parent) 텍스트 색
  * @property {number=} fontSize (default: 10) 텍스트 사이즈
  * @property {string=} unitColor (default: #000) 텍스트 색
  * @property {mTblInfo=} tblInfo 테이블 정보
@@ -353,6 +354,7 @@
  * @property {number=} save_db_type (default: is_sensor)  0: Device, 1: Sensor, 2: Block, 3: Trouble. 지정하지 않을 경우 is_sensor를 따라감. DB에 저장할 때 카테고리를 판별하기 위함
  * @property {string=} data_unit 데이터 단위(℃, %, W/m², ppl, ...)
  * @property {string=} description 부연 설명이 필요한 경우
+ * @property {mSvgViewInfo=} svgViewInfo node 데이터 변화에 따른 SVG 표현 식
  * @property {mNodeDefInfo[]=} defList 노드 개요 정보 목록
  */
 
@@ -365,6 +367,7 @@
  * @property {number=} is_submit_api (default: nc***) API Server로 Node 데이터를 Socket 통신으로 전송할 지 여부
  * @property {number=} is_avg_center 평균 값(센터) 사용 여부
  * @property {string} description (default: nc***) 노드 데이터 단위에 대한 부연 설명이 필요한 경우
+ * @property {mSvgViewInfo=} svgViewInfo node 데이터 변화에 따른 SVG 표현 식
  * @property {string=} repeatId repeat 저장소에서 가져다 쓸 nodeList. map 재정의시 repeat key 내용으로 nodeList를 덮어씀
  * @property {mNodeModelInfo[]=} nodeList 노드 상세 목록
  */
@@ -377,9 +380,30 @@
  * @property {number=} data_logger_index (default: 0) 해당 센서 데이터의 데이터 로거 인덱스
  * @property {string=} data_index (default: 0) 해당 센서를 계측 및 제어할 경우 Index가 필요할 경우
  * @property {string=} node_type 노드 타입(세부 제어가 필요할 경우 사용), >>> PXM309, ...etc
+ * @property {mSvgViewInfo=} svgViewInfo node 데이터 변화에 따른 SVG 표현 식
  * @property {mModbusInfo=} modbusInfo 휘발성 메모
  * @property {string=} note 휘발성 메모
  * @property {svgNodePosOpt=} svgNodePosOpt SVG Node를 위치시키기 위한 옵션
+ */
+
+/**
+ * @typedef {Object} mSvgViewInfo node 데이터 변화에 따른 SVG 표현 식
+ * @property {number=} isStrType (default: 1) 임계처리할 데이터 형태
+ * @property {mSvgNumTreholdInfo[]|string[]} thresholdList idx 0값 부터 검토
+ *  */
+
+/**
+ * @typedef {Object} mSvgNumTreholdInfo 숫자 값 변화에 따른 SVG 표현
+ * @property {number} goalValue 달성 기준치 값
+ * @property {number} goalRange 기준치 인정 범위.
+ * @property {number=} isInclusionGoal (default: 0) 달성 기준치 포함 여부 (0: 초과, 미만), (1: 이상, 이하)
+ * @property {Object} expressInfo 표현식으로 데이터 산출
+ * @property {string[]} expressInfo.nodeList 표현식에 사용되는 Node
+ * @property {string} expressInfo.expression 표현식
+ * @example
+ * goalRange: 0 goalValue 보다 작은
+ * goalRange: 1 goalValue 와 같은
+ * goalRange: 2 goalValue 보다 큰
  */
 
 /**
@@ -447,13 +471,36 @@
 
 /**
  * @typedef {Object} mImgTriggerInfo 이미지 View Trigger
- * @property {string} fileName img trigger id
- * @property {string|string[]} folderPath 보여줄 이미지 폴더 Path
+ * @property {string|string[]} fileName img trigger id, 배열일 경우 복수
+ * @property {string|string[]} folderPath 보여줄 이미지 폴더 Path, 배열 일 경우 paht.join 처리
  * @property {string=} filePath (자동생성)읽어올 파일 경로
- * @property {number[]} size 보여줄 이미지 크기
- * @property {number[]} position SVG 위치 정보
- * @property {number=} opacity 0: Transparent, 1: 원색(default)
+ * @property {string[]=} fullFilePath (자동생성)읽어올 파일 경로 목록
+ * @property {number[]=} size (default: mapSize) 보여줄 이미지 크기
+ * @property {number[]=} position (default: [0, 0]) SVG 위치 정보
+ * @property {number=} opacity (default: 1) 0: Transparent, 1: 원색(default)
+ * @property {mImgTriggerPathConfig[]=} filePathConfigList 파일 경로가 다중일 경우 사용
+ * @property {mFilePathInfo[]} filePathInfoList (자동 생성) 최종적으로 파일 생성 위치
  * @property {csCmdGoalContraintInfo} triggerGoalInfo
+ * @description
+ * wrapper filePath와 filePathConfigList 연산 결과 나온 값이 filePathInfoList로 합쳐짐
+ */
+
+/**
+ * @typedef {Object} mImgTriggerPathConfig
+ * @property {string|string[]} fileName img trigger id, 배열일 경우 복수
+ * @property {string|string[]} folderPath 보여줄 이미지 폴더 Path, 배열 일 경우 paht.join 처리
+ * @property {string[]=} filePath (자동생성)읽어올 파일 경로
+ * @property {number[]=} size (default: mapSize) 보여줄 이미지 크기
+ * @property {number[]=} position (default: [0, 0]) SVG 위치 정보
+ * @property {number=} opacity (default: 1) 0: Transparent, 1: 원색(default)
+ */
+
+/**
+ * @typedef {Object} mFilePathInfo
+ * @property {string[]} fullFilePathList 보여줄 파일 Full 경로
+ * @property {number[]=} size (default: mapSize) 보여줄 이미지 크기
+ * @property {number[]=} position (default: [0, 0]) SVG 위치 정보
+ * @property {number=} opacity (default: 1) 0: Transparent, 1: 원색(default)
  */
 
 /**
