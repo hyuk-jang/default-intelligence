@@ -576,6 +576,7 @@
  * @property {number} value 임계 값
  * @property {boolean=} isCall true: 급수 요청, false: 배수 요청, undefined: 아무 것도 하지 않음
  * @property {boolean=} isGroup 그루핑 해서 이동 여부.
+ * @property {number=} isInclusionGoal (default: 0) 달성 기준치 포함 여부 (0: 초과, 미만), (1: 이상, 이하)
  */
 
 /**
